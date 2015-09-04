@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   get 'authentication/login'
   post 'authentication/login'
+
   get 'authentication/welcome'
   post 'authentication/welcome'
-  post 'authentication/auth'
+  
   get 'authentication/get_token'
-  post 'authentication/get_token' 
+  post 'authentication/get_token'
+
+  get 'authentication/error'
+  post 'authentication/error' 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
