@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'mechanize' 
+require 'mechanize'
 # Class that control the Authenticatiom system and its views
 class AuthenticationController < ApplicationController
 
