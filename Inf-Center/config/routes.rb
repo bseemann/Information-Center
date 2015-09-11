@@ -4,12 +4,12 @@ Rails.application.routes.draw do
 
   get 'authentication/welcome'
   post 'authentication/welcome'
-  
-  get 'authentication/get_token'
-  post 'authentication/get_token'
 
   get 'authentication/error'
   post 'authentication/error' 
+
+	get 'authentication/files'
+	post 'authentication/files'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

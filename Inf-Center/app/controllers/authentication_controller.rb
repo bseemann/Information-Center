@@ -1,8 +1,11 @@
 require 'rubygems'
 require 'mechanize'
+require 'dropbox_sdk'
 # Class that control the Authenticatiom system and its views
 class AuthenticationController < ApplicationController
 
+  APP_KEY = '1g9mnjegs1l7j3m'
+  APP_SECRET = 'glhnoqva181wmpa'
 
   def login
 
@@ -30,6 +33,9 @@ class AuthenticationController < ApplicationController
       end
     end
 
+
+
+
   end
 
   def error
@@ -38,8 +44,21 @@ class AuthenticationController < ApplicationController
 
 
 
-  def get_token(email = params[:my_email], senha = params[:my_password]) #It doesn't do nothing at all, for while, just want to keep it here.
+  def files
+    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+    @root_metadata = @client.metadata('/')['contents']
 
+    @files = Array.new
+    @directories = Array.new
+
+    @root_metadata.each do |hash|
+      if hash["is_dir"] == false then
+        @files << hash["path"]
+      else
+        @directories << hash["path"]
+      end
+
+    end
   end
 
 end
