@@ -1,0 +1,16 @@
+<p> Files view </p>
+
+<h1>Meus arquivos </h1>
+<hr/>
+
+
+<p> <% @directories.each do |d|  %>
+    <%= link_to(d) %> <br/>
+    <% end %>
+</p>
+<p><% @files.each do |f|%>
+  <%= f %>  <%= link_to("Download") %> <br/>
+  <% end %>
+</p>
+
+<%# <p><%= @root_metadata %>

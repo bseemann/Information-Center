@@ -1,0 +1,7 @@
+
+<h1>Login</h1>
+<%=form_tag :action => 'welcome', :method => 'POST' do%>
+  email: <input type="text" name="my_email">
+  senha: <input type="password" name="my_password">
+  <%= submit_tag 'Log' %>
+<% end %>
