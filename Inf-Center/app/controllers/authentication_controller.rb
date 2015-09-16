@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'dropbox_sdk'
+
 # Class that control the Authenticatiom system and its views
 class AuthenticationController < ApplicationController
 
@@ -59,6 +60,27 @@ class AuthenticationController < ApplicationController
       end
 
     end
+  end
+
+  def navigate(content = params[:parent_id])
+    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+
+    @root = content
+
+    @metadata = @client.metadata("#{@root}")['contents']
+
+    @files = Array.new
+    @directories = Array.new
+
+    @metadata.each do |hash|
+      if hash["is_dir"] == false then
+        @files << hash["path"]
+      else
+        @directories << hash["path"]
+      end
+
+    end
+
   end
 
 end

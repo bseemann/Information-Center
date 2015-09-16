@@ -1,18 +1,17 @@
-
 <h1>Meus arquivos </h1>
 <hr/>
-
 
 <p> <% @directories.each do |d|  %>
 
       <%=form_tag :action => 'navigate', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
         <%= submit_tag d %>
+
       <% end %>
     <% end %>
 </p>
 
 <p><% @files.each do |f|%>
-    <%= f %>  <%= link_to("Download", @client.media(f)['url']) %> <br/>
+  <%= f %>  <%= link_to("Download") %> <br/>
   <% end %>
 </p>
