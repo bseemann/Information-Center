@@ -6,10 +6,15 @@ Rails.application.routes.draw do
   post 'authentication/welcome'
 
   get 'authentication/error'
-  post 'authentication/error' 
+  post 'authentication/error'
+
+  get 'authentication/navigate'
+	post 'authentication/navigate'
 
 	get 'authentication/files'
 	post 'authentication/files'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
