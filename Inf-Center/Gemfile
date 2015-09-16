@@ -27,6 +27,7 @@ gem 'requests'
 gem 'cookiejar'
 gem 'json'
 gem 'logging'
+gem 'mechanize'
 
 
 gem 'dropbox-sdk'

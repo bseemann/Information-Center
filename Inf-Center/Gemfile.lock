@@ -177,17 +177,12 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   cookiejar
-
   dropbox-sdk
-
   jbuilder (~> 2.0)
   jquery-rails
   json
   logging
-
-
   mechanize
-
   rails (= 4.2.4)
   requests
   sass-rails (~> 5.0)

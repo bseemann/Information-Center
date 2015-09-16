@@ -5,13 +5,13 @@
 
       <%=form_tag :action => 'navigate', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
-        <%= submit_tag d %>
+        <%= submit_tag d.split("/").last %>
 
       <% end %>
     <% end %>
 </p>
 
 <p><% @files.each do |f|%>
-  <%= f %>  <%= link_to("Download") %> <br/>
+  <%= f.split("/").last %>  <%= link_to("Download", @client.media(f)['url']) %> <br/>
   <% end %>
 </p>

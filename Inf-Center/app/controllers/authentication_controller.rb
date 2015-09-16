@@ -44,34 +44,48 @@ class AuthenticationController < ApplicationController
   end
 
 
-
+# Method that creates arrays of files and directories to list on the view files
   def files
+    #Initialize a client for dropbox.
+    #@param access_token given by dropbox
     @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+    #Store the metadata with the content of root in the variable @root_metadata
     @root_metadata = @client.metadata('/')['contents']
 
+    #Creates the variables to store the arrays
     @files = Array.new
     @directories = Array.new
 
+    #iterates the contents of roots to store them in the variables above
+    #if the content is  not a folder stores it on @files, else in the @directories
     @root_metadata.each do |hash|
       if hash["is_dir"] == false then
         @files << hash["path"]
       else
         @directories << hash["path"]
       end
-
     end
   end
 
+  #This is the action wich do the properly navigation into the dropbox, very similar to the other above
+  #@param content is received by the form of the view. Contain the name of the directory to get in.
   def navigate(content = params[:parent_id])
-    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
 
+    #Initialize a client for dropbox.
+    #@param access_token given by dropbox
+    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+    #defines the directory
     @root = content
 
+    #store the hash of contents on the directory
     @metadata = @client.metadata("#{@root}")['contents']
 
+    #Creates the variables to store the arrays
     @files = Array.new
     @directories = Array.new
 
+    #iterates the contents of roots to store them in the variables above
+    #if the content is  not a folder stores it on @files, else in the @directories
     @metadata.each do |hash|
       if hash["is_dir"] == false then
         @files << hash["path"]

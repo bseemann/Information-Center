@@ -13,6 +13,9 @@
 </p>
 
 <p><% @files.each do |f|%>
-    <%= f %>  <%= link_to("Download", @client.media(f)['url']) %> <br/>
+    <% @qwerty = f %>
+    <%= f.split("/").last %>  <%= link_to("Download", @client.media(f)['url']) %> <br/>
   <% end %>
 </p>
+
+<%= @client.media(@qwerty)['url'].split("/").last %>
