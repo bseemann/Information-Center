@@ -5,7 +5,7 @@
 
 <p> <% @directories.each do |d|  %>
 
-      <%=form_tag :action => 'navigate', :method => 'POST' do%>
+      <%=form_tag :action => 'files', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
         <%= submit_tag d %>
       <% end %>
@@ -18,4 +18,18 @@
   <% end %>
 </p>
 
-<%= @client.media(@qwerty)['url'].split("/").last %>
+<hr/>
+<h2>Upload </h2>
+<hr/>
+<%= form_tag({action: :files}, multipart: true) do %>
+
+  <%= hidden_field_tag(:parent_id, @root) %>
+  <%= file_field_tag 'file' %> <br/>
+  <%= submit_tag "upload" %>
+
+<% end %>
+
+<%# @up.original_filename %>
+
+
+<%# @client.media(@qwerty)['url'].split("/").last %>

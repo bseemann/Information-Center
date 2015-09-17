@@ -8,6 +8,8 @@ class AuthenticationController < ApplicationController
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
 
+
+
   def login
 
   end
@@ -33,24 +35,38 @@ class AuthenticationController < ApplicationController
         @token = cj.jar['experience.aiesec.org']['/']["aiesec_token"].value # Stores the cookie into an instance variable @token if the value of the cookie is not nil.
       end
     end
-
-
-
-
   end
+
 
   def error
 
   end
 
 
+
 # Method that creates arrays of files and directories to list on the view files
-  def files
+  def files (content = params[:parent_id], upload = params[:file])
+
+    unless content == nil
+      @root = content
+    end
+
     #Initialize a client for dropbox.
     #@param access_token given by dropbox
     @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+
+    #Uploads the file if some was added to the file_field_tag
+    # Obs: It needs to EXECUTE before get the metadata to upload the files before create the arrays of files and directories
+    unless upload == nil
+      @up_path = upload.path()
+      #file = open(@up.original_path)
+      file = open(@up_path)
+      response = @client.put_file("#{@root}/#{upload.original_filename}", file)
+    end
+
     #Store the metadata with the content of root in the variable @root_metadata
-    @root_metadata = @client.metadata('/')['contents']
+    @root_metadata = @client.metadata(@root)['contents']
+
 
     #Creates the variables to store the arrays
     @files = Array.new
@@ -64,35 +80,6 @@ class AuthenticationController < ApplicationController
       else
         @directories << hash["path"]
       end
-    end
-  end
-
-  #This is the action wich do the properly navigation into the dropbox, very similar to the other above
-  #@param content is received by the form of the view. Contain the name of the directory to get in.
-  def navigate(content = params[:parent_id])
-
-    #Initialize a client for dropbox.
-    #@param access_token given by dropbox
-    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
-    #defines the directory
-    @root = content
-
-    #store the hash of contents on the directory
-    @metadata = @client.metadata("#{@root}")['contents']
-
-    #Creates the variables to store the arrays
-    @files = Array.new
-    @directories = Array.new
-
-    #iterates the contents of roots to store them in the variables above
-    #if the content is  not a folder stores it on @files, else in the @directories
-    @metadata.each do |hash|
-      if hash["is_dir"] == false then
-        @files << hash["path"]
-      else
-        @directories << hash["path"]
-      end
-
     end
 
   end
