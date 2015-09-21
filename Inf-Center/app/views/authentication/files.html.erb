@@ -2,21 +2,37 @@
 <h1>Meus arquivos </h1>
 <hr/>
 
+<table  style="width:70%">
+
+<tr>
+  <td> Files </td>
+  <td> Última Modificação </td>
+  <td> Criação </td>
+</tr>
 
 <p> <% @directories.each do |d|  %>
-
+      <tr>
       <%=form_tag :action => 'files', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
-        <%= submit_tag d %>
+        <td> <%= submit_tag d %> </td>
+
       <% end %>
+    </tr>
     <% end %>
 </p>
 
 <p><% @files.each do |f|%>
+    <tr>
     <% @qwerty = f %>
-    <%= f.split("/").last %>  <%= link_to("Download", @client.media(f)['url']) %> <br/>
+    <td> <%= f.split("/").last %> </td>
+    <td> <%= @file_modification[f].split("+").first %> </td>
+    <td> <%= @file_creation[f].split("+").first %> </td>
+    <td> <%= link_to("Download", @client.media(f)['url']) %> </td>
+  </tr>
   <% end %>
 </p>
+
+</table>
 
 <hr/>
 <h2>Upload </h2>

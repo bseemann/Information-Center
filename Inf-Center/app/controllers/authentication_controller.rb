@@ -59,27 +59,42 @@ class AuthenticationController < ApplicationController
     # Obs: It needs to EXECUTE before get the metadata to upload the files before create the arrays of files and directories
     unless upload == nil
       @up_path = upload.path()
+      @up_obj = upload
       #file = open(@up.original_path)
       file = open(@up_path)
-      response = @client.put_file("#{@root}/#{upload.original_filename}", file)
+      #response = @client.put_file("#{@root}/#{upload.original_filename}", file)
+      uploader = @client.get_chuncked_upload(@up_obj, @up_obj.size())
+
+
     end
 
     #Store the metadata with the content of root in the variable @root_metadata
     @root_metadata = @client.metadata(@root)['contents']
 
-
     #Creates the variables to store the arrays
     @files = Array.new
     @directories = Array.new
+    @file_modification = Hash.new
+    @file_creation = Hash.new
+
 
     #iterates the contents of roots to store them in the variables above
     #if the content is  not a folder stores it on @files, else in the @directories
     @root_metadata.each do |hash|
       if hash["is_dir"] == false then
         @files << hash["path"]
+        #Create a hash whose key values are the name of archives and the properly values the last modification time
+        @file_modification[@files.last] = hash['modified']
+        #Create a hash whose key values are the name of archives and the properly values the last modification time
+        @file_creation[@files.last] = hash['client_mtime']
       else
         @directories << hash["path"]
+
       end
+
+
+
+
     end
 
   end

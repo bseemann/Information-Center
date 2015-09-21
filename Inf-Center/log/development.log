@@ -15816,3 +15816,915 @@ Processing by AuthenticationController#files as HTML
   Parameters: {"utf8"=>"✓", "authenticity_token"=>"Se8BTFuRUnQ4wy/oLALwN1IskQNmzQc6CCa4ZnnObOlaYMjAYhKHExFsZiYo86HM3gG+wcHLpssV4tFIT0oLiw==", "parent_id"=>"/Photos", "commit"=>"/Photos", "method"=>"POST"}
   Rendered authentication/files.html.erb within layouts/application (3209.2ms)
 Completed 200 OK in 5187ms (Views: 3686.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-18 17:18:56 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AuthenticationController#login as HTML
+  Rendered authentication/login.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 1103ms (Views: 1043.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/welcome?method=POST" for 127.0.0.1 at 2015-09-18 17:19:03 -0300
+Processing by AuthenticationController#welcome as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D2Cps2hFJfFcIkMz3Icg1Y8Veva0DmI8/1wFxy7O1g4tuYh045RPjNzNUzsizn5A68sRv3TNMcI1nyRhFOGxRg==", "my_email"=>"mauro.victor5@gmail.com", "my_password"=>"[FILTERED]", "commit"=>"Log", "method"=>"POST"}
+  Rendered authentication/welcome.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 5385ms (Views: 247.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-18 17:19:12 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hvxUgGQN/PNlgvQ1DhtfGRIS+f2o8c6ofViPjnmQ46SkJXVH79yWjuVt5D3wUgGMdsyStGgynVa3m64oQ7+E7A==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2293.6ms)
+Completed 200 OK in 3989ms (Views: 2533.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-21 14:39:29 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AuthenticationController#login as HTML
+  Rendered authentication/login.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 770ms (Views: 745.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/welcome?method=POST" for 127.0.0.1 at 2015-09-21 14:39:32 -0300
+Processing by AuthenticationController#welcome as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qkdBFnEdInjYqWbGdSkKrGNjP0PgfQZs2tiIOAWIzWeZP6cvhiXyowwmF/ZQANCj8SVHgWf8sij74/rSMeS5Mw==", "my_email"=>"mauro.victor5@gmail.com", "my_password"=>"[FILTERED]", "commit"=>"Log", "method"=>"POST"}
+  Rendered authentication/welcome.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 9601ms (Views: 134.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:39:43 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2328.5ms)
+Completed 200 OK in 4537ms (Views: 2476.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:43:26 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OJLqHmKdxmFgdIm8W6Aho7uBY1hwuTEYGEskdsYARRsL6gwnlaUWurT7+Ix+ifusKccbmvc4hVw5cFac8mwxTw==", "parent_id"=>"/Photos", "commit"=>"/Photos", "method"=>"POST"}
+Completed 500 Internal Server Error in 1095ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `a' for #<AuthenticationController:0x007f8a3a9214d8>):
+  app/controllers/authentication_controller.rb:88:in `block in files'
+  app/controllers/authentication_controller.rb:81:in `each'
+  app/controllers/authentication_controller.rb:81:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.2ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (81.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (80.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (3.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (156.9ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:44:00 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OJLqHmKdxmFgdIm8W6Aho7uBY1hwuTEYGEskdsYARRsL6gwnlaUWurT7+Ix+ifusKccbmvc4hVw5cFac8mwxTw==", "parent_id"=>"/Photos", "commit"=>"/Photos", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2250.8ms)
+Completed 200 OK in 3437ms (Views: 2353.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:44:03 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:45:52 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2291.8ms)
+Completed 200 OK in 3460ms (Views: 2428.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:45:55 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:45:56 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:46:48 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2329.4ms)
+Completed 200 OK in 3493ms (Views: 2425.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:46:52 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:46:59 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ULvj0IjKoCli4Icg8BVNWvAbav3uZXrA3y31XPVM7UVjwwXpf/Jw8rZv9hDVPJdVYl0SP2nkzoT+Foe2wSCZEQ==", "parent_id"=>"/ENG3501 - Instrumentação Industrial", "commit"=>"/ENG3501 - Instrumentação Industrial", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (16539.4ms)
+Completed 200 OK in 17726ms (Views: 16640.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:50:48 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ULvj0IjKoCli4Icg8BVNWvAbav3uZXrA3y31XPVM7UVjwwXpf/Jw8rZv9hDVPJdVYl0SP2nkzoT+Foe2wSCZEQ==", "parent_id"=>"/ENG3501 - Instrumentação Industrial", "commit"=>"/ENG3501 - Instrumentação Industrial", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (15927.1ms)
+Completed 200 OK in 17092ms (Views: 16032.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:51:05 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:55:01 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ULvj0IjKoCli4Icg8BVNWvAbav3uZXrA3y31XPVM7UVjwwXpf/Jw8rZv9hDVPJdVYl0SP2nkzoT+Foe2wSCZEQ==", "parent_id"=>"/ENG3501 - Instrumentação Industrial", "commit"=>"/ENG3501 - Instrumentação Industrial", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (16707.3ms)
+Completed 200 OK in 17880ms (Views: 16811.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:55:19 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:55:57 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2272.4ms)
+Completed 200 OK in 3393ms (Views: 2364.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:01 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 14:56:37 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2309.9ms)
+Completed 200 OK in 8576ms (Views: 2407.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 14:56:46 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:08:06 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2396.1ms)
+Completed 200 OK in 8562ms (Views: 2491.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:08:14 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:08:14 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:14 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:15 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:15 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:15 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:15 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:08:33 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2272.5ms)
+Completed 200 OK in 3422ms (Views: 2364.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:08:36 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:12:55 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+Completed 500 Internal Server Error in 6097ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `modified_f' for #<AuthenticationController:0x007f8a47f40e88>):
+  app/controllers/authentication_controller.rb:87:in `block in files'
+  app/controllers/authentication_controller.rb:81:in `each'
+  app/controllers/authentication_controller.rb:81:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (66.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (2.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (41.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (84.3ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:14:06 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2548.0ms)
+Completed 200 OK in 8711ms (Views: 2656.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:14:15 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:17:36 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EknnSm5kmfZbJsRCJ0Qb9JqaT0mKJCUm//MHfz4mzi8hMQFzmVxJLY+ptXICbcH7CNw3iw2lkWLeyHWVCkq6ew==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2294.0ms)
+Completed 200 OK in 3426ms (Views: 2384.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:17:39 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:17:45 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D5yepjGX658las+qAuHKkjsAvcilPwV0mdgM2V54+6I85Hifxq87RPHlvponyBCdqUbFCiK+sTC4434zahSP9g==", "parent_id"=>"/Public", "commit"=>"/Public", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (1113.3ms)
+Completed 200 OK in 2282ms (Views: 1220.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:21:23 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D5yepjGX658las+qAuHKkjsAvcilPwV0mdgM2V54+6I85Hifxq87RPHlvponyBCdqUbFCiK+sTC4434zahSP9g==", "parent_id"=>"/Public", "commit"=>"/Public", "method"=>"POST"}
+Completed 500 Internal Server Error in 1386ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `zip' for "/Public/How to use the Public folder.txt":String):
+  app/controllers/authentication_controller.rb:85:in `block in files'
+  app/controllers/authentication_controller.rb:82:in `each'
+  app/controllers/authentication_controller.rb:82:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.2ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.3ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.3ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (39.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (84.7ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:21:51 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"D5yepjGX658las+qAuHKkjsAvcilPwV0mdgM2V54+6I85Hifxq87RPHlvponyBCdqUbFCiK+sTC4434zahSP9g==", "parent_id"=>"/Public", "commit"=>"/Public", "method"=>"POST"}
+Completed 500 Internal Server Error in 6091ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `join' for "/Public/How to use the Public folder.txt":String):
+  app/controllers/authentication_controller.rb:85:in `block in files'
+  app/controllers/authentication_controller.rb:82:in `each'
+  app/controllers/authentication_controller.rb:82:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (8.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (39.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (86.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-21 15:25:39 -0300
+Processing by AuthenticationController#login as HTML
+  Rendered authentication/login.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 130ms (Views: 129.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/welcome?method=POST" for 127.0.0.1 at 2015-09-21 15:26:06 -0300
+Processing by AuthenticationController#welcome as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wQ1EIHX/ozFWCC4kVMVmRf57iY0X8Ova5M4vQcbvAGbydaIZgsdz6oKHXxRx7LxKbD3xT5BxX57F9V2r8oN0Mg==", "my_email"=>"mauro.victor5@gmail.com", "my_password"=>"[FILTERED]", "commit"=>"Log", "method"=>"POST"}
+  Rendered authentication/welcome.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 9566ms (Views: 86.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:26:17 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lBrnn3eOh1BCB9J5UISOn8NCn6j8h/E2EFnlNC3relKnYgGmgLZXi5aIo0l1rVSQUQTnansGRXIxYpfeGYcOBg==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (9.9ms)
+Completed 500 Internal Server Error in 1065ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `split' for nil:NilClass):
+    19:     <tr>
+    20:     <% @qwerty = f %>
+    21:     <td> <%= f.split("/").last %> </td>
+    22:     <td> <%= @file_modification[f].split("+").first %> </td>
+    23:     <td> <%= link_to("Download", @client.media(f)['url']) %> </td>
+    24:   </tr>
+    25:   <% end %>
+  app/views/authentication/files.html.erb:22:in `block in _app_views_authentication_files_html_erb___1011220587804793471_70115946911620'
+  app/views/authentication/files.html.erb:18:in `each'
+  app/views/authentication/files.html.erb:18:in `_app_views_authentication_files_html_erb___1011220587804793471_70115946911620'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (18.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (61.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (39.9ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (83.3ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:26:55 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lBrnn3eOh1BCB9J5UISOn8NCn6j8h/E2EFnlNC3relKnYgGmgLZXi5aIo0l1rVSQUQTnansGRXIxYpfeGYcOBg==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (8.5ms)
+Completed 500 Internal Server Error in 1051ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `split' for nil:NilClass):
+    19:     <tr>
+    20:     <% @qwerty = f %>
+    21:     <td> <%= f.split("/").last %> </td>
+    22:     <td> <%= @file_modification[f].split("+").first %> </td>
+    23:     <td> <%= link_to("Download", @client.media(f)['url']) %> </td>
+    24:   </tr>
+    25:   <% end %>
+  app/views/authentication/files.html.erb:22:in `block in _app_views_authentication_files_html_erb___1011220587804793471_70115946911620'
+  app/views/authentication/files.html.erb:18:in `each'
+  app/views/authentication/files.html.erb:18:in `_app_views_authentication_files_html_erb___1011220587804793471_70115946911620'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (33.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.1ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (76.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (41.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (85.2ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:28:02 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lBrnn3eOh1BCB9J5UISOn8NCn6j8h/E2EFnlNC3relKnYgGmgLZXi5aIo0l1rVSQUQTnansGRXIxYpfeGYcOBg==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2648.2ms)
+Completed 200 OK in 3774ms (Views: 2739.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:28:06 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:29:22 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lBrnn3eOh1BCB9J5UISOn8NCn6j8h/E2EFnlNC3relKnYgGmgLZXi5aIo0l1rVSQUQTnansGRXIxYpfeGYcOBg==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2293.4ms)
+Completed 200 OK in 3418ms (Views: 2391.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:25 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:29:49 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lBrnn3eOh1BCB9J5UISOn8NCn6j8h/E2EFnlNC3relKnYgGmgLZXi5aIo0l1rVSQUQTnansGRXIxYpfeGYcOBg==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2345.5ms)
+Completed 200 OK in 8928ms (Views: 2450.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:29:58 -0300
+
+
+Started GET "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:42:36 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"method"=>"POST"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `gsub' for nil:NilClass):
+  app/controllers/authentication_controller.rb:72:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.3ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (41.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (6.2ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (93.1ms)
+
+
+Started GET "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:42:43 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"method"=>"POST"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `gsub' for nil:NilClass):
+  app/controllers/authentication_controller.rb:72:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (69.9ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (62.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (123.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-21 15:42:49 -0300
+Processing by AuthenticationController#login as HTML
+  Rendered authentication/login.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 159ms (Views: 158.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/welcome?method=POST" for 127.0.0.1 at 2015-09-21 15:42:52 -0300
+Processing by AuthenticationController#welcome as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dmrOPO/qvwWW8jGP54Z47Ug7fNsSDERMOtKLXKMcK6NFEigFGNJv3kJ9QL/Cr6Li2n0EGZWN8Agb6fm2l3Bf9w==", "my_email"=>"mauro.victor5@gmail.com", "my_password"=>"[FILTERED]", "commit"=>"Log", "method"=>"POST"}
+  Rendered authentication/welcome.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 4339ms (Views: 134.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:43:01 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2287.5ms)
+Completed 200 OK in 3414ms (Views: 2374.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:43:39 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2954.2ms)
+Completed 200 OK in 4097ms (Views: 3061.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:43:43 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:44:17 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2285.6ms)
+Completed 200 OK in 3407ms (Views: 2385.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:44:20 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:45:29 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2354.4ms)
+Completed 200 OK in 3493ms (Views: 2440.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:33 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:45:54 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2271.6ms)
+Completed 200 OK in 3429ms (Views: 2357.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:45:58 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:51:18 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+Completed 500 Internal Server Error in 1062ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant AuthenticationController::Hahs):
+  app/controllers/authentication_controller.rb:78:in `files'
+
+
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (13.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (13.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (78.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.4ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (41.9ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /root/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (94.7ms)
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:51:48 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2337.3ms)
+Completed 200 OK in 3448ms (Views: 2424.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:51:51 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:51:51 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:51:52 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:51:52 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:51:52 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:51:52 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:51:52 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:52:55 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2264.8ms)
+Completed 200 OK in 3423ms (Views: 2392.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:52:58 -0300
+
+
+Started POST "/authentication/files?method=POST" for 127.0.0.1 at 2015-09-21 15:53:20 -0300
+Processing by AuthenticationController#files as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RY9YyKWwKCwCuyWSzGiTV2FPlGhXR0EB24BRAUWQhQN2977xUoj499Y0VKLpQUlY8wnsqtDG9UX6uyPrcfzxVw==", "parent_id"=>"/", "commit"=>"files", "method"=>"POST"}
+  Rendered authentication/files.html.erb within layouts/application (2295.4ms)
+Completed 200 OK in 3454ms (Views: 2401.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/authentication.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/authentication.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-09-21 15:53:23 -0300
