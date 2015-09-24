@@ -42,31 +42,49 @@ class AuthenticationController < ApplicationController
 
   end
 
+  def upload_error
+  end
 
 
 # Method that creates arrays of files and directories to list on the view files
-  def files (content = params[:parent_id], upload = params[:file])
+  def files (content = params[:parent_id], upload = params[:file], new_folder_name = params[:folder_name], files_array = params[:fil])
 
+    unless new_folder_name == nil
+      @new_folder = new_folder_name
+    end
     unless content == nil
       @root = content
     end
+    #unless files_array == nil
+      #@dud1 = files_array
+    #end
 
     #Initialize a client for dropbox.
     #@param access_token given by dropbox
     @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
 
+
+
     #Uploads the file if some was added to the file_field_tag
     # Obs: It needs to EXECUTE before get the metadata to upload the files before create the arrays of files and directories
-    unless upload == nil
-      @up_path = upload.path()
-      @up_obj = upload
-      #file = open(@up.original_path)
-      file = open(@up_path)
-      #response = @client.put_file("#{@root}/#{upload.original_filename}", file)
-      uploader = @client.get_chuncked_upload(@up_obj, @up_obj.size())
-
+    unless upload == nil || files_array.include?("#{upload.original_filename}")
+      #@dude = upload.original_filename
+      file = open(upload.path())
+      response = @client.put_file("#{@root}/#{upload.original_filename}", file)
 
     end
+      #@up_path = upload.path()
+      #@up_obj = upload
+      #file = open(@up_path)
+      #uploader = @client.get_chuncked_upload(@up_obj, @up_obj.size())
+
+
+
+
+    unless @new_folder == nil
+      @client.file_create_folder("#{@root}#{@new_folder}")
+    end
+
 
     #Store the metadata with the content of root in the variable @root_metadata
     @root_metadata = @client.metadata(@root)['contents']
@@ -89,12 +107,7 @@ class AuthenticationController < ApplicationController
         @file_creation[@files.last] = hash['client_mtime']
       else
         @directories << hash["path"]
-
       end
-
-
-
-
     end
 
   end

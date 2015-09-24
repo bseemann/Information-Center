@@ -40,12 +40,20 @@
 <%= form_tag({action: :files}, multipart: true) do %>
 
   <%= hidden_field_tag(:parent_id, @root) %>
+  <%= hidden_field_tag(:fil, @files) %>
   <%= file_field_tag 'file' %> <br/>
   <%= submit_tag "upload" %>
-
 <% end %>
 
-<%# @up.original_filename %>
+<%= form_tag :action => 'files' do%>
+  <%= hidden_field_tag(:parent_id, @root) %>
+  <%= text_field_tag (:folder_name) %>
+  <%=  submit_tag 'criar pasta'%>
+<% end %>
+
+<p> Dude<%= @dude %></p>
+
+<p>Dud1<%= @dud1 %></p>
 
 
 <%# @client.media(@qwerty)['url'].split("/").last %>
