@@ -1,4 +1,6 @@
-
+<p>
+  link para voltar
+</p>
 <h1>Meus arquivos </h1>
 <hr/>
 
@@ -8,26 +10,51 @@
   <td> Files </td>
   <td> Última Modificação </td>
   <td> Criação </td>
+  <td> </td>
+  <td> Renomear </td>
 </tr>
 
-<p> <% @directories.each do |d|  %>
+<p> <% $directories.each do |d|  %>
       <tr>
-      <%=form_tag :action => 'files', :method => 'POST' do%>
+      <%=form_tag :action => 'navigation_params', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
-        <td> <%= submit_tag d %> </td>
-
-      <% end %>
+        <td> <%= submit_tag d.split("/").last %> </td>
+        <% end %>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> <!-- form_tag to rename the directory -->
+        <%= form_tag :action => 'navigation_params' do%>
+          <%= hidden_field_tag(:parent_id, $root) %>
+          <%= hidden_field_tag(:rename_old_name, d) %>
+          <%= text_field_tag (:rename_new_name) %>
+          <%= submit_tag "Renomear"%>
+          <% end %>
+        </td>
     </tr>
     <% end %>
 </p>
 
-<p><% @files.each do |f|%>
+<p><% $files.each do |f|%> <!-- Iterates the files array to show them and show the options -->
     <tr>
-    <% @qwerty = f %>
-    <td> <%= f.split("/").last %> </td>
-    <td> <%= @file_modification[f].split("+").first %> </td>
-    <td> <%= @file_creation[f].split("+").first %> </td>
-    <td> <%= link_to("Download", @client.media(f)['url']) %> </td>
+    <td> <%= f.split("/").last %> </td> <!-- Show just the last part of the path, it means show just the file's name -->
+    <td> <%= $file_modification[f].split("+").first %> </td> <!-- Do not show the last numbers, they're useless for the user -->
+    <td> <%= $file_creation[f].split("+").first %> </td>
+    <td> <%= link_to("Download", $client.media(f)['url']) %> </td> <!-- Show the option for downloading -->
+    <td>
+      <%= form_tag :action => 'navigation_params' do%>
+      <%= hidden_field_tag(:parent_id, $root) %>
+      <%= hidden_field_tag(:rename_old_name, f) %>
+      <%= text_field_tag (:rename_new_name) %>
+      <%= submit_tag "Renomear"%>
+      <% end %> </td>
+    <td><%= form_tag :action => 'navigation_params' do%>
+      <%= hidden_field_tag(:parent_id, $root) %>
+      <%= hidden_field_tag(:move_from, f) %>
+      <%= select_tag 'move_to', options_for_select([$directories.collect{|d| d.split("/").last}, '..'])%>
+      <%= submit_tag 'Mover Para: '%>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </p>
@@ -37,23 +64,18 @@
 <hr/>
 <h2>Upload </h2>
 <hr/>
-<%= form_tag({action: :files}, multipart: true) do %>
+<%= form_tag({action: :navigation_params}, multipart: true) do %>
 
-  <%= hidden_field_tag(:parent_id, @root) %>
-  <%= hidden_field_tag(:fil, @files) %>
+  <%= hidden_field_tag(:parent_id, $root) %>
+  <%= hidden_field_tag(:fil, $files) %>
   <%= file_field_tag 'file' %> <br/>
   <%= submit_tag "upload" %>
 <% end %>
 
-<%= form_tag :action => 'files' do%>
-  <%= hidden_field_tag(:parent_id, @root) %>
+<%= form_tag :action => 'navigation_params' do%>
+  <%= hidden_field_tag(:parent_id, $root) %>
   <%= text_field_tag (:folder_name) %>
   <%=  submit_tag 'criar pasta'%>
 <% end %>
 
-<p> Dude<%= @dude %></p>
-
-<p>Dud1<%= @dud1 %></p>
-
-
-<%# @client.media(@qwerty)['url'].split("/").last %>
+<p> o move_from é: <%= $m %></p>

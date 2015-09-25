@@ -2,12 +2,13 @@ require 'rubygems'
 require 'mechanize'
 require 'dropbox_sdk'
 
-# Class that control the Authenticatiom system and its views
 class AuthenticationController < ApplicationController
+# Class that control the Authenticatiom system and its views
+
+
 
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
-
 
 
   def login
@@ -41,74 +42,62 @@ class AuthenticationController < ApplicationController
   def error
 
   end
+  # Method that creates arrays of files and directories to list on the view files
+  #@param
 
-  def upload_error
-  end
-
-
-# Method that creates arrays of files and directories to list on the view files
-  def files (content = params[:parent_id], upload = params[:file], new_folder_name = params[:folder_name], files_array = params[:fil])
-
+  def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]])
+    $m = move
+    unless content == nil
+      $root = content
+    end
     unless new_folder_name == nil
       @new_folder = new_folder_name
     end
-    unless content == nil
-      @root = content
-    end
-    #unless files_array == nil
-      #@dud1 = files_array
-    #end
-
-    #Initialize a client for dropbox.
-    #@param access_token given by dropbox
-    @client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
-
-
-
-    #Uploads the file if some was added to the file_field_tag
-    # Obs: It needs to EXECUTE before get the metadata to upload the files before create the arrays of files and directories
+    $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
     unless upload == nil || files_array.include?("#{upload.original_filename}")
       #@dude = upload.original_filename
       file = open(upload.path())
-      response = @client.put_file("#{@root}/#{upload.original_filename}", file)
-
+      response = $client.put_file("#{$root}/#{upload.original_filename}", file)
     end
-      #@up_path = upload.path()
-      #@up_obj = upload
-      #file = open(@up_path)
-      #uploader = @client.get_chuncked_upload(@up_obj, @up_obj.size())
 
-
-
+    unless rename == nil
+      $client.file_move("#{$root}/#{rename[1]}","#{$root}/#{rename[0]}")
+    end
 
     unless @new_folder == nil
-      @client.file_create_folder("#{@root}#{@new_folder}")
+      $client.file_create_folder("#{$root}/#{@new_folder}")
     end
 
+    unless move[0] == nil || move[1] == nil
 
-    #Store the metadata with the content of root in the variable @root_metadata
-    @root_metadata = @client.metadata(@root)['contents']
+      $client.file_move("#{move[0]}","#{$root}/#{move[1]}/#{move[0].split("/").last}")
+    end
 
+    @root_metadata = $client.metadata($root)['contents']
     #Creates the variables to store the arrays
-    @files = Array.new
-    @directories = Array.new
-    @file_modification = Hash.new
-    @file_creation = Hash.new
+    $files = Array.new
+    $directories = Array.new
+    $file_modification = Hash.new
+    $file_creation = Hash.new
 
-
-    #iterates the contents of roots to store them in the variables above
-    #if the content is  not a folder stores it on @files, else in the @directories
     @root_metadata.each do |hash|
       if hash["is_dir"] == false then
-        @files << hash["path"]
+        $files << hash["path"]
         #Create a hash whose key values are the name of archives and the properly values the last modification time
-        @file_modification[@files.last] = hash['modified']
+        $file_modification[$files.last] = hash['modified']
         #Create a hash whose key values are the name of archives and the properly values the last modification time
-        @file_creation[@files.last] = hash['client_mtime']
+        $file_creation[$files.last] = hash['client_mtime']
       else
-        @directories << hash["path"]
+        $directories << hash["path"]
       end
     end
+
+    redirect_to authentication_files_path
+
+  end
+
+
+  def files
 
   end
 

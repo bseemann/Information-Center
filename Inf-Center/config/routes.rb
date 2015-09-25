@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 	get 'authentication/files'
 	post 'authentication/files'
 
-	get 'authentication/upload_error'
+	#get 'authentication/navigation_params'
+	post 'authentication/navigation_params'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

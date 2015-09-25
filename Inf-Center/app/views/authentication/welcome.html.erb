@@ -3,7 +3,7 @@
 
 <p>Clique no link "files"  para acessar os arquivos</p>
 
-<%=form_tag :action => 'files', :method => 'POST' do%>
+<%=form_tag :action => 'navigation_params', :method => 'POST' do%>
   <%= hidden_field_tag(:parent_id, "/") %>
   <%= submit_tag "files" %>
 <% end %>
