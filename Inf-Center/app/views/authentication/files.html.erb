@@ -1,5 +1,10 @@
 <p>
-  link para voltar
+  <% unless $root == '/' or $root.split('/') == []%>
+  <%= form_tag :action => 'navigation_params' do%>
+  <%= hidden_field_tag(:parent_id, $root.split('/')[1...-1].join) %>
+  <%= submit_tag "Voltar"%>
+  <% end %>
+  <% end %>
 </p>
 <h1>Meus arquivos </h1>
 <hr/>
@@ -49,9 +54,13 @@
       <%= submit_tag "Renomear"%>
       <% end %> </td>
     <td><%= form_tag :action => 'navigation_params' do%>
+      <% dir = ['..'] %>
+      <% $directories.each do |d|%>
+      <% dir << d.split('/').last %>
+      <% end %>
       <%= hidden_field_tag(:parent_id, $root) %>
       <%= hidden_field_tag(:move_from, f) %>
-      <%= select_tag 'move_to', options_for_select([$directories.collect{|d| d.split("/").last}, '..'])%>
+      <%= select_tag "move_to", options_for_select(dir)%>
       <%= submit_tag 'Mover Para: '%>
       <% end %>
     </td>
@@ -78,4 +87,4 @@
   <%=  submit_tag 'criar pasta'%>
 <% end %>
 
-<p> o move_from é: <%= $m %></p>
+<%= $root.split('/')[1...-1].to_s%>

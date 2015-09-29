@@ -46,40 +46,48 @@ class AuthenticationController < ApplicationController
   #@param
 
   def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]])
-    $m = move
+
+    #Store the path into a global variable because this variable is necessary in others methods.
     unless content == nil
       $root = content
     end
+    # Create new folder if the user submited the form to do it
     unless new_folder_name == nil
       @new_folder = new_folder_name
     end
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+    #Upload a file if the user submited the form to do it and added a file to the upload form
     unless upload == nil || files_array.include?("#{upload.original_filename}")
       #@dude = upload.original_filename
       file = open(upload.path())
       response = $client.put_file("#{$root}/#{upload.original_filename}", file)
     end
-
-    unless rename == nil
+    #Rename the File if the user submited the form to do it
+    unless rename[0] == nil
       $client.file_move("#{$root}/#{rename[1]}","#{$root}/#{rename[0]}")
     end
-
+#Create new folder if the user submited the form to do it
     unless @new_folder == nil
       $client.file_create_folder("#{$root}/#{@new_folder}")
     end
 
+#Move File if the user submited the form to do it
     unless move[0] == nil || move[1] == nil
-
-      $client.file_move("#{move[0]}","#{$root}/#{move[1]}/#{move[0].split("/").last}")
+      if move[1] == '..'
+        $client.file_move("#{move[0]}" , "#{$root.split('/')[1...-1].join}/#{move[0].split("/").last}" )
+      else
+        $client.file_move("#{move[0]}","#{$root}/#{move[1].strip}/#{move[0].split("/").last}")
+      end
     end
 
+#Stores the metadata's content to iterate later and create an array for files and another for directories
     @root_metadata = $client.metadata($root)['contents']
     #Creates the variables to store the arrays
     $files = Array.new
     $directories = Array.new
     $file_modification = Hash.new
     $file_creation = Hash.new
-
+# iterate and create an array for files, for directories, creation and modification.
     @root_metadata.each do |hash|
       if hash["is_dir"] == false then
         $files << hash["path"]
