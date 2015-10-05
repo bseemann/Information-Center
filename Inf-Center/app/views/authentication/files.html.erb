@@ -1,3 +1,4 @@
+
 <p>
   <% unless $root == '/' or $root.split('/') == []%>
   <%= form_tag :action => 'navigation_params' do%>
@@ -12,14 +13,16 @@
 <table  style="width:70%">
 
 <tr>
-  <td> Files </td>
-  <td> Última Modificação </td>
-  <td> Criação </td>
+  <td> <b>Files</b> </td>
+  <td> <b>Última Modificação</b> </td>
+  <td> <b>Criação</b> </td>
   <td> </td>
-  <td> Renomear </td>
+  <td> <b>Renomear</b> </td>
 </tr>
 
-<p> <% $directories.each do |d|  %>
+
+  <p> <% ($show[($offset*($page-1))+1...($offset*($page-1))+1+$offset]).each do |d|  %>
+    <% if $directories.include? d %>
       <tr>
       <%=form_tag :action => 'navigation_params', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
@@ -37,19 +40,16 @@
           <% end %>
         </td>
     </tr>
-    <% end %>
-</p>
-
-<p><% $files.each do |f|%> <!-- Iterates the files array to show them and show the options -->
+    <% else %>
     <tr>
-    <td> <%= f.split("/").last %> </td> <!-- Show just the last part of the path, it means show just the file's name -->
-    <td> <%= $file_modification[f].split("+").first %> </td> <!-- Do not show the last numbers, they're useless for the user -->
-    <td> <%= $file_creation[f].split("+").first %> </td>
-    <td> <%= link_to("Download", $client.media(f)['url']) %> </td> <!-- Show the option for downloading -->
+    <td> <%= d.split("/").last %> </td> <!-- Show just the last part of the path, it means show just the file's name -->
+    <td> <%= $file_modification[d].split("+").first %> </td> <!-- Do not show the last numbers, they're useless for the user -->
+    <td> <%= $file_creation[d].split("+").first %> </td>
+    <td> <%= link_to("Download", $client.media(d)['url']) %> </td>
     <td>
       <%= form_tag :action => 'navigation_params' do%>
       <%= hidden_field_tag(:parent_id, $root) %>
-      <%= hidden_field_tag(:rename_old_name, f) %>
+      <%= hidden_field_tag(:rename_old_name, d) %>
       <%= text_field_tag (:rename_new_name) %>
       <%= submit_tag "Renomear"%>
       <% end %> </td>
@@ -59,27 +59,40 @@
       <% dir << d.split('/').last %>
       <% end %>
       <%= hidden_field_tag(:parent_id, $root) %>
-      <%= hidden_field_tag(:move_from, f) %>
+      <%= hidden_field_tag(:move_from, d) %>
       <%= select_tag "move_to", options_for_select(dir)%>
       <%= submit_tag 'Mover Para: '%>
       <% end %>
     </td>
-  </tr>
-  <% end %>
+    </tr>
+    <% end %>
+    <% end %>
 </p>
 
 </table>
+
+
+<hr/>
+<h4>Página </h4>
+<%# Form para torcar de página%>
+<% for i in 1..$pages do%>
+<%= form_tag :action => 'navigation_params' do%>
+<%= hidden_field_tag(:parent_id, $root) %>
+<%= hidden_field_tag(:page, i) %>
+<%= submit_tag i %>
+<% end %>
+<% end %>
 
 <hr/>
 <h2>Upload </h2>
 <hr/>
 <%= form_tag({action: :navigation_params}, multipart: true) do %>
-
   <%= hidden_field_tag(:parent_id, $root) %>
   <%= hidden_field_tag(:fil, $files) %>
   <%= file_field_tag 'file' %> <br/>
   <%= submit_tag "upload" %>
 <% end %>
+
 
 <%= form_tag :action => 'navigation_params' do%>
   <%= hidden_field_tag(:parent_id, $root) %>
@@ -87,4 +100,4 @@
   <%=  submit_tag 'criar pasta'%>
 <% end %>
 
-<%= $root.split('/')[1...-1].to_s%>
+<p>$show: <%= $page %> <%= $page.class %> </p>

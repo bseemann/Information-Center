@@ -1,6 +1,11 @@
 require 'rubygems'
 require 'mechanize'
 require 'dropbox_sdk'
+#require 'kaminari'
+require 'simply_paginate'
+
+include SimplyPaginate
+
 
 class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
@@ -45,13 +50,17 @@ class AuthenticationController < ApplicationController
   # Method that creates arrays of files and directories to list on the view files
   #@param
 
-  def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]])
+  def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page])
 
     #Store the path into a global variable because this variable is necessary in others methods.
     unless content == nil
       $root = content
     end
-    # Create new folder if the user submited the form to do it
+    #Takes the current page sent through the form at the view's end
+    unless $page == page
+      $page = page.to_i
+    end
+# Create new folder if the user submited the form to do it
     unless new_folder_name == nil
       @new_folder = new_folder_name
     end
@@ -81,14 +90,15 @@ class AuthenticationController < ApplicationController
     end
 
 #Stores the metadata's content to iterate later and create an array for files and another for directories
-    @root_metadata = $client.metadata($root)['contents']
+    $root_metadata = $client.metadata($root)['contents']
     #Creates the variables to store the arrays
     $files = Array.new
     $directories = Array.new
     $file_modification = Hash.new
     $file_creation = Hash.new
+
 # iterate and create an array for files, for directories, creation and modification.
-    @root_metadata.each do |hash|
+    $root_metadata.each do |hash|
       if hash["is_dir"] == false then
         $files << hash["path"]
         #Create a hash whose key values are the name of archives and the properly values the last modification time
@@ -99,6 +109,13 @@ class AuthenticationController < ApplicationController
         $directories << hash["path"]
       end
     end
+    $show=($directories+$files)
+    $offset = 10
+    $pages = if $show.length % $offset == 0 then
+              ($show.length/$offset)
+            else
+              ($show.length/$offset)+1
+            end
 
     redirect_to authentication_files_path
 

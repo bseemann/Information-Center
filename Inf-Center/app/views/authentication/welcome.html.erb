@@ -5,5 +5,6 @@
 
 <%=form_tag :action => 'navigation_params', :method => 'POST' do%>
   <%= hidden_field_tag(:parent_id, "/") %>
+  <%= hidden_field_tag(:page, 1) %>
   <%= submit_tag "files" %>
 <% end %>
