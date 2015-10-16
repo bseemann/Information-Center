@@ -3,6 +3,7 @@
   <% unless $root == '/' or $root.split('/') == []%>
   <%= form_tag :action => 'navigation_params' do%>
   <%= hidden_field_tag(:parent_id, $root.split('/')[1...-1].join) %>
+  <%= hidden_field_tag(:page, 1) %>
   <%= submit_tag "Voltar"%>
   <% end %>
   <% end %>
@@ -18,14 +19,17 @@
   <td> <b>Criação</b> </td>
   <td> </td>
   <td> <b>Renomear</b> </td>
+  <td> </td>
+  <td> <b>Dono</b> </td>
 </tr>
 
-
-  <p> <% ($show[($offset*($page-1))+1...($offset*($page-1))+1+$offset]).each do |d|  %>
+  <% unless $show == []%>
+  <p> <% ($show[($offset*($page-1))...($offset*($page-1))+1+$offset]).each do |d|  %>
     <% if $directories.include? d %>
       <tr>
       <%=form_tag :action => 'navigation_params', :method => 'POST' do%>
         <%= hidden_field_tag(:parent_id, d) %>
+        <%= hidden_field_tag(:page, 1) %>
         <td> <%= submit_tag d.split("/").last %> </td>
         <% end %>
         <td> </td>
@@ -52,7 +56,8 @@
       <%= hidden_field_tag(:rename_old_name, d) %>
       <%= text_field_tag (:rename_new_name) %>
       <%= submit_tag "Renomear"%>
-      <% end %> </td>
+      <% end %>
+    </td>
     <td><%= form_tag :action => 'navigation_params' do%>
       <% dir = ['..'] %>
       <% $directories.each do |d|%>
@@ -64,7 +69,9 @@
       <%= submit_tag 'Mover Para: '%>
       <% end %>
     </td>
+      <td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%></td>
     </tr>
+    <% end %>
     <% end %>
     <% end %>
 </p>
@@ -89,6 +96,7 @@
 <%= form_tag({action: :navigation_params}, multipart: true) do %>
   <%= hidden_field_tag(:parent_id, $root) %>
   <%= hidden_field_tag(:fil, $files) %>
+  <%# hidden_field_tag(:owner, $owner) %>
   <%= file_field_tag 'file' %> <br/>
   <%= submit_tag "upload" %>
 <% end %>
@@ -100,4 +108,4 @@
   <%=  submit_tag 'criar pasta'%>
 <% end %>
 
-<p>$show: <%= $page %> <%= $page.class %> </p>
+<p>$token: <%= $owner %> <%# $page.class %> </p>

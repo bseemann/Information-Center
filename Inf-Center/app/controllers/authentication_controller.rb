@@ -1,24 +1,22 @@
 require 'rubygems'
 require 'mechanize'
 require 'dropbox_sdk'
-#require 'kaminari'
-require 'simply_paginate'
-
-include SimplyPaginate
+require 'uri'
+require 'net/http'
+require 'json'
 
 
 class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
-
+  layout 'login', :only => [:login]
 
 
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
 
+  #def login
 
-  def login
-
-  end
+  #end
 
 #Method that controls the welcome view
 # @param email [String] receives the params from the form on login
@@ -38,9 +36,24 @@ class AuthenticationController < ApplicationController
       if cj.jar['experience.aiesec.org'] == nil  #Verify if inside the cookie exist an experience.aiesec.org
         redirect_to(:action => "error") #If its nil redirect to the error page
       else
-        @token = cj.jar['experience.aiesec.org']['/']["aiesec_token"].value # Stores the cookie into an instance variable @token if the value of the cookie is not nil.
+        $token = cj.jar['experience.aiesec.org']['/']["aiesec_token"].value[44,64]# Stores the cookie into an instance variable @token if the value of the cookie is not nil.
+
       end
     end
+
+    @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{$token}"
+    resp = Net::HTTP.get_response(URI.parse(@request))
+    data = resp.body
+    @current_person = JSON.parse(data)
+
+    if Owner.where(:email => @email).blank?
+      $user = Owner.new(:name => @current_person['person']['full_name'], :email => @email )
+      $user.save
+      $user = $user.name
+    else
+      $user = Owner.where(email: @email).pluck(:name)[0]
+    end
+
   end
 
 
@@ -70,6 +83,11 @@ class AuthenticationController < ApplicationController
       #@dude = upload.original_filename
       file = open(upload.path())
       response = $client.put_file("#{$root}/#{upload.original_filename}", file)
+      #Save a record with the data about who uploaded the file
+      record = Archive.new
+      record.name = upload.original_filename
+      record.owner = $user
+      record.save
     end
     #Rename the File if the user submited the form to do it
     unless rename[0] == nil
