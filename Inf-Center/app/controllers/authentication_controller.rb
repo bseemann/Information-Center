@@ -42,7 +42,7 @@ class AuthenticationController < ApplicationController
     end
 
     @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{$token}"
-
+    agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
     resp = Net::HTTP.get_response(URI.parse(@request))
 
     data = resp.body
