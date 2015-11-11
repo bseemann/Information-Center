@@ -24,7 +24,7 @@ class AuthenticationController < ApplicationController
   def welcome(email = params[:my_email], senha = params[:my_password])
     @email = email #Just for test
     url = 'https://auth.aiesec.org/users/sign_in' #Store the url for authenticate at EXPA
-    agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE} #Initialize an instance to start to work with mechanize
+    agent = Mechanize.new  #Initialize an instance to start to work with mechanize
     page = agent.get(url)
     aiesec_form = page.form() #Selects the form on the page by its name. However this form doens't have a name
     aiesec_form.field_with(:name => 'user[email]').value = email #Set the email field with the args of this function
@@ -36,15 +36,15 @@ class AuthenticationController < ApplicationController
       if cj.jar['experience.aiesec.org'] == nil  #Verify if inside the cookie exist an experience.aiesec.org
         redirect_to(:action => "error") #If its nil redirect to the error page
       else
-        $token = cj.jar['experience.aiesec.org']['/']["aiesec_token"].value[44,64]# Stores the cookie into an instance variable @token if the value of the cookie is not nil.
+        #$token = cj.jar['experience.aiesec.org']['/']["expa_token"].value[44,64] #Take the token code for API. First version
+        $token = cj.jar['experience.aiesec.org']['/']["expa_token"].value #take the expa. Working on November 9, 2015
+
 
       end
     end
 
     @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{$token}"
-    agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
     resp = Net::HTTP.get_response(URI.parse(@request))
-
     data = resp.body
     @current_person = JSON.parse(data)
 
@@ -142,8 +142,8 @@ class AuthenticationController < ApplicationController
   end
 
 
-  def files
+  #def files
 
-  end
+  #end
 
 end

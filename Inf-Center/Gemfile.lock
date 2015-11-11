@@ -80,6 +80,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    material_design_lite-rails (1.0.6)
+      railties (>= 3.1)
     material_design_rails (0.0.1)
     materialize-sass (0.97.1)
       sass (~> 3.3)
@@ -189,6 +191,7 @@ DEPENDENCIES
   jquery-rails
   json
   logging
+  material_design_lite-rails
   material_design_rails
   materialize-sass
   mechanize

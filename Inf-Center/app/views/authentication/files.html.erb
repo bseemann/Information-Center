@@ -95,6 +95,7 @@
 <hr/>
 <%= form_tag({action: :navigation_params}, multipart: true) do %>
   <%= hidden_field_tag(:parent_id, $root) %>
+  <%= hidden_field_tag(:page, i) %>
   <%= hidden_field_tag(:fil, $files) %>
   <%# hidden_field_tag(:owner, $owner) %>
   <%= file_field_tag 'file' %> <br/>
@@ -108,4 +109,4 @@
   <%=  submit_tag 'criar pasta'%>
 <% end %>
 
-<p>$token: <%= $owner %> <%# $page.class %> </p>
+<p>$token: <%= $user %> <%# $page.class %> </p>
