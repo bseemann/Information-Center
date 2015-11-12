@@ -1,18 +1,16 @@
 <h1>Bem vindo</h1>
-<p>você está logado como: <%= @email %> </p>
+<!-- <p>você está logado como: <%= @email %> </p> -->
 
-<p>Clique no link "files"  para acessar os arquivos</p>
+<!-- <p>Clique no link "files"  para acessar os arquivos</p> -->
 
-<%=form_tag :action => 'navigation_params', :method => 'POST' do%>
-  <%= hidden_field_tag(:parent_id, "/") %>
-  <%= hidden_field_tag(:page, 1) %>
-  <%= submit_tag "files" %>
-<% end %>
+<%#form_tag :action => 'navigation_params', :method => 'POST' do%>
+  <%# hidden_field_tag(:parent_id, "/") %>
+  <%# hidden_field_tag(:page, 1) %>
+  <%# submit_tag "files" %>
+<%# end %>
 
-<%= $structure %>
-<%= $structure1 %>
+<%# $structure %>
+<%# $structure1 %>
 <%# @current_person %> <br>
 <%# @request %><br>
 <%# $user %>
-
-
