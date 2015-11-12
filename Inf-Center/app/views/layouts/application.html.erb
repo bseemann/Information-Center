@@ -98,11 +98,19 @@
         <!-- Menu -->
         <nav id="navbar" class="demo-navigation mdl-navigation mdl-color--indigo-600">
           <!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>-->
-          <a class="mdl-navigation__link" href="arquivos.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos</a>
+          <%# button_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, :class => "mdl-navigation__link", {:parent_id => "/", :page => 1}%>
+          <%# link_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, {:parent_id => "/" , :page => 1, method: :post}, :class => "mdl-navigation__link"%>
+          <%=form_tag :action => 'navigation_params', :method => 'POST', :class => "mdl-navigation__link"  do%>
+            <%= hidden_field_tag(:parent_id, "/") %>
+            <%= hidden_field_tag(:page, 1) %>
+            <%= button_tag( '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, type: 'submit', :class => "mdl-navigation__link")  %>
+          <% end %>
+          <%# <a class="mdl-navigation__link" href="authentication_navigation_params_path"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos</a> %>
           <a class="mdl-navigation__link" href="suporte.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">help</i>Ajuda</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">exit_to_app</i>Sair</a>
           <div class="mdl-layout-spacer"></div>
-          <img class="img-rodape" src="img/logo_aiesec.png"/>
+          <%= image_tag("logo_aiesec.png", class: "img-rodape") %>
+
         </nav>
         <!-- END Menu -->
       </div>
@@ -111,21 +119,15 @@
       <!-- Main Content -->
       <main class="mdl-layout__content mdl-color--grey-100">
         <div id ="main-content" class="mdl-grid mdl-grid--no-spacing">
+          <%= yield %>
         </div>
       </main>
       <!-- END Main Content -->
     </div>
     <!--END General -->
-    <script src="js/material.min.js"></script>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript">
-                    $(document).ready(function(){
-                        $("#navbar a").click(function( e ){
-                        e.preventDefault();
-                        var href = $( this ).attr('href');
-                        $("#main-content").load( href +" #main-content");
-                        });
-                    });
-                </script>
+    <%= javascript_include_tag "material.min.js" %>
+    <%= javascript_include_tag "jquery-2.1.4.min.js" %>
+
+    
   </body>
 </html>
