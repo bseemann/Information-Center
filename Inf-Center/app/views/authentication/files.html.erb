@@ -43,6 +43,7 @@
 						<table class="mdl-data-table mdl-js-data-table mdl-color--grey-100">
 							<thead>
 								<tr>
+									<th></th>
 									<th>Nome</th>
 									<th>Data de Criação</th>
 									<th>Data de modificação</th>
@@ -62,6 +63,7 @@
 									<%=form_tag :action => 'navigation_params', :method => 'POST' do%>
 						        <%= hidden_field_tag(:parent_id, d) %>
 						        <%= hidden_field_tag(:page, 1) %>
+						        <td><i class="material-icons" role="presentation">folder</i></td>
 						        <td> <%= submit_tag d.split("/").last %> </td>
 						        <% end %>
 
@@ -104,6 +106,11 @@
 							<% end %>
 							<% end %>
 						</table>
+					</div>
+					<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+							<button class="mdl-button mdl-js-button mdl-button--raised btn-pagination">
+						  		1
+							</button>
 					</div>
 				</div>
 			</div>
