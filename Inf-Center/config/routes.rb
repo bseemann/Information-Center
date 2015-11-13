@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	get 'authentication/files'
 	post 'authentication/files'
 
-	#get 'authentication/navigation_params'
+	get 'authentication/navigation_params'
 	post 'authentication/navigation_params'
 
 
