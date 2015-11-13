@@ -68,15 +68,15 @@ class AuthenticationController < ApplicationController
   def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page])
 
     #Store the path into a global variable because this variable is necessary in others methods.
-    if content == nil
+    if request.get?
       $root = "/"
     else
       $root = content
     end
     #Takes the current page sent through the form at the view's end
-    if $page == nil
+    if request.get?
       $page = 1
-    elsif $page != page
+    else
       $page = page.to_i
     end
 # Create new folder if the user submited the form to do it
