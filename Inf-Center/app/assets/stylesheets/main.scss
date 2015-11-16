@@ -73,53 +73,7 @@ html,body {
 /* ==========================================================================
    Página Principal
    ========================================================================== */
-#arquivo{
 
-  width: 100%;
-}
-
-  #arquivo table{
-
-  width: 100%;
-  border: none;
-
-  }
-
-  #arquivo table td{
-
-    border: none;
-    padding: 20px;
-    color: #616161;
-    font-weight: 700;
-  }
-
-  #arquivo table th{
-
-    border-bottom: 1px solid #DDD;
-    color: #9E9E9E;
-    font-size: 1em;
-  }
-
-
-  #arquivo .mdl-cell{
-
-    padding: 20px;
-    position: relative;
-    margin: 0;
-  }
-
-  #arquivo ul{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    list-style-type: none;
-  }
-
-  #arquivo ul li{
-
-    display: inline;
-    margin: 10px;
-  }
 
 .mdl-menu__container.is-visible{
 
@@ -306,4 +260,72 @@ html,body {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+/* ==========================================================================
+   Arquivos
+   ========================================================================== */
+
+   #arquivo{
+
+  width: 100%;
+}
+
+  #arquivo table{
+
+  width: 100%;
+  border: none;
+
+  }
+
+  #arquivo table td{
+
+    border: none;
+    padding: 20px;
+    color: #616161;
+    font-weight: 700;
+  }
+
+  #arquivo table th{
+
+    border-bottom: 1px solid #DDD;
+    color: #9E9E9E;
+    font-size: 1em;
+  }
+
+
+  #arquivo .mdl-cell{
+
+    padding: 20px;
+    position: relative;
+    margin: 0;
+  }
+
+  #arquivo ul{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    list-style-type: none;
+  }
+
+  #arquivo ul li{
+
+    display: inline;
+    margin: 10px;
+  }
+
+   .folder-button, .folder-button:focus{
+
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+    text-align: right;
+    padding: 3px 6px;
+    cursor: pointer;
+    outline:0;
+  }
+
+.btn-pagination{
+
+  min-width: 2em;
 }
