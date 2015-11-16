@@ -20,15 +20,29 @@
 	        	<div id="arquivo">
 		        	<div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
 		        	<h1>Arquivos</h1>
-		        	<span class="bottom-aligned-text"> MC Files > Finances </span>
+		        	<span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', '->'}" %> </span>
+							<% for i in 1..$pages do %>
 		        	<nav class="mdl-navigation">
 			        	<ul>
-			        		<li><button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
-				            <i class="material-icons mdl-color-text--white">file_upload</i></i>
-			            	</button></li>
+			        		<li>
+
+										<%= form_tag({action: :navigation_params}, multipart: true) do %>
+										  <%= hidden_field_tag(:parent_id, $root) %>
+										  <%= hidden_field_tag(:page, i) %>
+										  <%= hidden_field_tag(:fil, $files) %>
+										  <%= hidden_field_tag(:owner, $owner) %>
+										  <%= file_field_tag 'file', class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" %>
+										  <%# button_tag( '<i class="material-icons mdl-color-text--white">file_upload</i>'.html_safe,  type: 'submit', :id => "btnadd1",  class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" ) %>
+											<% end %>
+										<!-- <button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
+				            <i class="material-icons mdl-color-text--white">file_upload</i>
+										<%# file_field_tag 'file' %>
+									</button> -->
+									</li>
 				            	<div class="mdl-tooltip" for="btnadd1">
 								Adicionar arquivo
 								</div>
+
 			            	<li><button id="btnadd2" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
 				            <i class="material-icons mdl-color-text--white">folder</i>
 			            	</button></li>
@@ -37,6 +51,7 @@
 								</div>
 			            </ul>
 			        </nav>
+							<% end %>
 		        </div>
 
 		        	<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
@@ -73,12 +88,12 @@
 									<td> </td>
 									<td> </td>
 									<td>
-										<%= form_tag :action => 'navigation_params' do%>
-					          <%= hidden_field_tag(:parent_id, $root) %>
-					          <%= hidden_field_tag(:rename_old_name, d) %>
-					          <%= text_field_tag (:rename_new_name) %>
-					          <%= submit_tag "Renomear"%>
-					          <% end %>
+										<%# form_tag :action => 'navigation_params' do%>
+					          <%# hidden_field_tag(:parent_id, $root) %>
+					          <%# hidden_field_tag(:rename_old_name, d) %>
+					          <%# text_field_tag (:rename_new_name) %>
+					          <%# submit_tag "Renomear"%>
+					          <%# end %>
 									</td>
 								</tr>
 
