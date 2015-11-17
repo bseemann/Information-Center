@@ -26,18 +26,18 @@
 			        	<ul>
 			        		<li>
 
-										<%= form_tag({action: :navigation_params}, multipart: true) do %>
-										  <%= hidden_field_tag(:parent_id, $root) %>
-										  <%= hidden_field_tag(:page, i) %>
-										  <%= hidden_field_tag(:fil, $files) %>
-										  <%= hidden_field_tag(:owner, $owner) %>
-										  <%= file_field_tag 'file', class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" %>
+										<%# form_tag({action: :navigation_params}, multipart: true) do %>
+										  <%# hidden_field_tag(:parent_id, $root) %>
+										  <%# hidden_field_tag(:page, i) %>
+										  <%# hidden_field_tag(:fil, $files) %>
+										  <%# hidden_field_tag(:owner, $owner) %>
+										  <%# file_field_tag 'file', class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" %>
 										  <%# button_tag( '<i class="material-icons mdl-color-text--white">file_upload</i>'.html_safe,  type: 'submit', :id => "btnadd1",  class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" ) %>
-											<% end %>
-										<!-- <button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
+											<%# end %>
+										<button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
 				            <i class="material-icons mdl-color-text--white">file_upload</i>
-										<%# file_field_tag 'file' %>
-									</button> -->
+										
+									</button>
 									</li>
 				            	<div class="mdl-tooltip" for="btnadd1">
 								Adicionar arquivo
@@ -78,9 +78,15 @@
 									<%=form_tag :action => 'navigation_params', :method => 'POST' do%>
 						        <%= hidden_field_tag(:parent_id, d) %>
 						        <%= hidden_field_tag(:page, 1) %>
-						        <td><i class="material-icons" role="presentation">folder</i></td>
-						        <td> <%= submit_tag d.split("/").last %> </td>
-						        <% end %>
+										<td>
+											<%= button_tag( :type => 'submit', :class => 'folder-button') do %>
+  											<i class="material-icons" role="presentation">folder</i>
+											<% end %>
+										</td>
+										<td> <%= d.split("/").last %> </td>
+
+										<% end %>
+
 
 									<td> </td>
 									<td> </td>
@@ -102,10 +108,11 @@
 								<% else %>
 
 								<tr>
+									<td> </td>
 									<td> <%= d.split("/").last %> </td>
 									<td> <%= $file_creation[d].split("+").first %> </td>
 									<td> <%= $file_modification[d].split("+").first %> </td>
-									<td> 100kb </td>
+									<td> <%= take_length(d) %> </td>
 									<td> PDF </td>
 									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td>
 									<td>1</td>
@@ -119,14 +126,23 @@
 							</tbody>
 							<% end %>
 							<% end %>
-							<% end %>
+
 						</table>
 					</div>
 					<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-							<button class="mdl-button mdl-js-button mdl-button--raised btn-pagination">
+
+							<% for i in 1..$pages do%>
+							<%= form_tag :action => 'navigation_params' do%>
+							<%= hidden_field_tag(:parent_id, $root) %>
+							<%= hidden_field_tag(:page, i) %>
+							<%= button_tag(i, :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--raised btn-pagination") %>
+							<% end %>
+							<% end %>
+						<!--	<button class="mdl-button mdl-js-button mdl-button--raised btn-pagination">
 						  		1
-							</button>
+							</button> -->
 					</div>
+					<% end %>
 				</div>
 			</div>
 
