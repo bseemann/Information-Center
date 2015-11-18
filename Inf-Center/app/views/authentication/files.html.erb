@@ -109,15 +109,15 @@
 
 								<tr>
 									<td> </td>
-									<td> <%= d.split("/").last %> </td>
-									<td> <%= $file_creation[d].split("+").first %> </td>
-									<td> <%= $file_modification[d].split("+").first %> </td>
-									<td> <%= take_length(d) %> </td>
-									<td> PDF </td>
+									<td> <%= take_name(d[0]) %> </td>
+									<td> <%= d[1] %> </td>
+									<td> <%= d[2] %> </td>
+									<td> <%= d[3] %> </td>
+									<td> <%= d[4] %> </td>
 									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td>
 									<td>1</td>
 									<td>
-										<%= link_to("Download", $client.media(d)['url']) %>
+										<%= link_to("Download", $client.media(d[0])['url']) %>
 									</td>
 									<td>
 

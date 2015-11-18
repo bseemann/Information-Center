@@ -9,7 +9,7 @@ require 'json'
 class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
   layout 'login', :only => [:login]
-
+  include AuthenticationHelper
 
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
@@ -115,20 +115,18 @@ class AuthenticationController < ApplicationController
 
 #Stores the metadata's content to iterate later and create an array for files and another for directories
     $root_metadata = $client.metadata($root)['contents']
-    #Creates the variables to store the arrays
+
+    #Creates the variables to store files and directories
     $files = Array.new
     $directories = Array.new
-    $file_modification = Hash.new
-    $file_creation = Hash.new
+
 
 # iterate and create an array for files, for directories, creation and modification.
     $root_metadata.each do |hash|
       if hash["is_dir"] == false then
-        $files << hash["path"]
-        #Create a hash whose key values are the name of archives and the properly values the last modification time
-        $file_modification[$files.last] = hash['modified']
-        #Create a hash whose key values are the name of archives and the properly values the last modification time
-        $file_creation[$files.last] = hash['client_mtime']
+        #Take all the attributes necessary to show the files informations [path, creation-time, modified-time, lenght, type]
+        $files << [hash["path"], date_format(hash['client_mtime']), date_format(hash['modified']), unit(hash["bytes"]),get_type(hash["path"])]
+        
       else
         $directories << hash["path"]
       end
