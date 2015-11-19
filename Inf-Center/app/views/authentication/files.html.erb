@@ -20,7 +20,7 @@
 	        	<div id="arquivo">
 		        	<div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
 		        	<h1>Arquivos</h1>
-		        	<span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', '->'}" %> </span>
+		        	<span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', '>'}" %> </span>
 							<% for i in 1..$pages do %>
 		        	<nav class="mdl-navigation">
 			        	<ul>
@@ -117,7 +117,7 @@
 									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td>
 									<td>1</td>
 									<td>
-										<%= link_to("Download", $client.media(d[0])['url']) %>
+										<%= button_to("Download", $client.media(d[0])['url']) %>
 									</td>
 									<td>
 
