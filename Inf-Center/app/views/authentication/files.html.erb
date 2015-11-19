@@ -117,7 +117,9 @@
 									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td>
 									<td>1</td>
 									<td>
-										<%= button_to("Download", $client.media(d[0])['url']) %>
+										<%= button_to($client.media(d[0])['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
+											<i class="material-icons">get_app</i>
+										<% end%>
 									</td>
 									<td>
 
