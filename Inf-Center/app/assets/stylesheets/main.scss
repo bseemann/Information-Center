@@ -329,3 +329,22 @@ html,body {
   float: left;
   min-width: 2em;
 }
+
+
+.file-name {
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ max-width: 200px;
+}
+
+.file-button, .file-button:focus{
+
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+    text-align: right;
+    padding: 3px 6px;
+    cursor: pointer;
+    outline:0;
+  }

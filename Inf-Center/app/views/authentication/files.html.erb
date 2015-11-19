@@ -70,7 +70,7 @@
 							</thead>
 
 							<% unless $show == []%>
-							<% ($show[($offset*($page-1))...($offset*($page-1))+1+$offset]).each do |d|  %>
+							<% ($show[($offset*($page-1))...($offset*($page-1))+1+$offset]).each_with_index do |d, index|  %>
 							<% if $directories.include? d %>
 							<tbody>
 								<tr>
@@ -79,11 +79,18 @@
 						        <%= hidden_field_tag(:parent_id, d) %>
 						        <%= hidden_field_tag(:page, 1) %>
 										<td>
-											<%= button_tag( :type => 'submit', :class => 'folder-button') do %>
+											<%= button_tag( :type => 'submit', :class => "file-button file-name") do %>
   											<i class="material-icons" role="presentation">folder</i>
 											<% end %>
 										</td>
-										<td> <%= d.split("/").last %> </td>
+
+										<td> <%= button_tag( :type => 'submit', :class => "file-button file-name", :id => "#{index}") do %>
+											<%= d.split("/").last %>
+										<% end %> </td>
+
+										<div class="mdl-tooltip" for=<%= index %> >
+											<%= d.split("/").last %>
+										</div>
 
 										<% end %>
 
@@ -109,18 +116,19 @@
 
 								<tr>
 									<td> </td>
-									<td> <%= take_name(d[0]) %> </td>
-									<td> <%= d[1] %> </td>
-									<td> <%= d[2] %> </td>
-									<td> <%= d[3] %> </td>
-									<td> <%= d[4] %> </td>
-									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td>
+									<td> <%= take_name(d[0]) %> </td> <!-- File name -->
+									<td> <%= d[1] %> </td>  <!-- Creation date -->
+									<td> <%= d[2] %> </td>  <!-- Modification date-->
+									<td> <%= d[3] %> </td>	<!-- Size -->
+									<td> <%= d[4] %> </td>	<!-- Type -->
+									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td> <!-- Owner -->
 									<td>1</td>
 									<td>
 										<%= button_to($client.media(d[0])['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
 											<i class="material-icons">get_app</i>
 										<% end%>
 									</td>
+
 									<td>
 
 									</td>
