@@ -136,6 +136,14 @@
 									</td>
 
 									<td>
+										<%= form_tag :action => 'navigation_params' do%>
+										  <%= hidden_field_tag(:parent_id, $root) %>
+										  <%= hidden_field_tag(:page, $page) %>
+											<%= hidden_field_tag(:to_remove, d[0]) %>
+												<%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+													<i class="material-icons">delete</i>
+												<% end %>
+									  <% end %>
 
 									</td>
 

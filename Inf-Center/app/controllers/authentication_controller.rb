@@ -65,15 +65,17 @@ class AuthenticationController < ApplicationController
   # Method that creates arrays of files and directories to list on the view files
   #@param
 
-  def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page])
+  def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page], remove=params[:to_remove])
 
     #Store the path into a global variable because this variable is necessary in others methods.
+    #If it is being requested by Arquivos's link set the root as "/"
     if request.get?
       $root = "/"
     else
       $root = content
     end
     #Takes the current page sent through the form at the view's end
+    #If it is being requested by Arquivos's link set the page as 1
     if request.get?
       $page = 1
     else
@@ -83,6 +85,8 @@ class AuthenticationController < ApplicationController
     unless new_folder_name == nil
       @new_folder = new_folder_name
     end
+
+
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
     #Upload a file if the user submited the form to do it and added a file to the upload form
     unless upload == nil || files_array.include?("#{upload.original_filename}")
@@ -111,6 +115,10 @@ class AuthenticationController < ApplicationController
       else
         $client.file_move("#{move[0]}","#{$root}/#{move[1].strip}/#{move[0].split("/").last}")
       end
+    end
+
+    unless remove == nil
+      $client.file_delete(remove)
     end
 
 #Stores the metadata's content to iterate later and create an array for files and another for directories
