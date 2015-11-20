@@ -18,7 +18,7 @@ module AuthenticationHelper
     if file.include? "." then
       type = file.split(".").last.upcase
     else
-      type = "no extension"
+      type = "sem ext."
     end
     type
   end

@@ -335,7 +335,8 @@ html,body {
  white-space: nowrap;
  overflow: hidden;
  text-overflow: ellipsis;
- max-width: 200px;
+ max-width: 150px;
+
 }
 
 .file-button, .file-button:focus{
@@ -347,4 +348,12 @@ html,body {
     padding: 3px 6px;
     cursor: pointer;
     outline:0;
+  }
+
+  .owner-name {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   max-width: 50px;
+
   }

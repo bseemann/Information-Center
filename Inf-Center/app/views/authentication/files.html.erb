@@ -116,12 +116,18 @@
 
 								<tr>
 									<td> </td>
-									<td> <%= take_name(d[0]) %> </td> <!-- File name -->
+									<td> <p  class="file-name" id= <%= index%> > <%= take_name(d[0]) %> </p> </td> <!-- File name -->
+										<div class="mdl-tooltip" for=<%= index %> >
+											<%=  take_name(d[0]) %>
+										</div>
 									<td> <%= d[1] %> </td>  <!-- Creation date -->
 									<td> <%= d[2] %> </td>  <!-- Modification date-->
 									<td> <%= d[3] %> </td>	<!-- Size -->
 									<td> <%= d[4] %> </td>	<!-- Type -->
-									<td> <%= @owner = Archive.where(name: d.split('/').last).pluck(:owner)[0]%> </td> <!-- Owner -->
+									<td> <p  class="owner-name" id= <%= d[0]%> > <%= @owner = Archive.where(name: d[0].split('/').last).pluck(:owner)[0]%> </p> </td> <!-- Owner -->
+										<div class="mdl-tooltip" for=<%= d[0]%>  >
+											<%=  Archive.where(name: d[0].split('/').last).pluck(:owner)[0] %>
+										</div>
 									<td>1</td>
 									<td>
 										<%= button_to($client.media(d[0])['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
