@@ -11,7 +11,12 @@ module AuthenticationHelper
   end
 
   def date_format(date)
-    date.split("+").first
+    text = date.split("+").first
+    text = text.split(" ")
+    text = text[1..-1]
+    month_hash = {"Jan" => 1, "Feb" => 2, "Mar" => 3, "Apr" => 4, "May" => 5, "Jun" => 6, "Jul" => 7, "Aug" => 8, "Sep" => 9, "Oct" => 10, "Nov" => 11, "Dec" => 12 }
+    month = month_hash[text[1]]
+    date = "#{text[0]}/#{month}/#{text[2]}, #{text[3]}"
   end
 
   def get_type(file)

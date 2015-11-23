@@ -20,7 +20,7 @@
 	        	<div id="arquivo">
 		        	<div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
 		        	<h1>Arquivos</h1>
-		        	<span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', '>'}" %> </span>
+		        	<span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', ' > '}" %> </span>
 							<% for i in 1..$pages do %>
 		        	<nav class="mdl-navigation">
 			        	<ul>
@@ -35,20 +35,26 @@
 										  <%# button_tag( '<i class="material-icons mdl-color-text--white">file_upload</i>'.html_safe,  type: 'submit', :id => "btnadd1",  class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" ) %>
 											<%# end %>
 										<button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
-				            <i class="material-icons mdl-color-text--white">file_upload</i>
-
-									</button>
+				            	<i class="material-icons mdl-color-text--white">file_upload</i>
+										</button>
 									</li>
 				            	<div class="mdl-tooltip" for="btnadd1">
 								Adicionar arquivo
 								</div>
 
-			            	<li><button id="btnadd2" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
-				            <i class="material-icons mdl-color-text--white">folder</i>
-			            	</button></li>
-			            		<div class="mdl-tooltip" for="btnadd2">
-								Adicionar pasta
-								</div>
+			            	<li>
+											<%= form_tag :action => 'navigation_params' do%>
+											  <%= hidden_field_tag(:parent_id, $root) %>
+											  <%= hidden_field_tag(:page, i) %>
+												<%= hidden_field_tag(:folder_name, "Nova Pasta") %>
+											  <%# text_field_tag (:folder_name) %>
+												<%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2") do %>
+													<i class="material-icons mdl-color-text--white">folder</i>
+												<% end %>
+											<% end %>
+											<div class="mdl-tooltip" for="btnadd2">
+												Adicionar pasta
+											</div>
 			            </ul>
 			        </nav>
 							<% end %>
@@ -103,6 +109,14 @@
 									<td> </td>
 									<td> </td>
 									<td>
+										<%= form_tag :action => 'navigation_params' do%>
+										  <%= hidden_field_tag(:parent_id, $root) %>
+										  <%= hidden_field_tag(:page, $page) %>
+											<%= hidden_field_tag(:to_remove, d) %>
+												<%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+													<i class="material-icons">delete</i>
+												<% end %>
+									  <% end %>
 										<%# form_tag :action => 'navigation_params' do%>
 					          <%# hidden_field_tag(:parent_id, $root) %>
 					          <%# hidden_field_tag(:rename_old_name, d) %>
