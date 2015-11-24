@@ -133,7 +133,7 @@ class AuthenticationController < ApplicationController
     $root_metadata.each do |hash|
       if hash["is_dir"] == false then
         #Take all the attributes necessary to show the files informations [path, creation-time, modified-time, lenght, type]
-        $files << [hash["path"], date_format(hash['client_mtime']), date_format(hash['modified']), unit(hash["bytes"]),get_type(hash["path"])]
+        $files << [hash["path"], date_format(hash['client_mtime']), date_format(hash['modified']), unit(hash["bytes"]),get_type(hash["path"]), hash["revision"]]
 
       else
         $directories << hash["path"]

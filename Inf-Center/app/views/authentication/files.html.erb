@@ -142,9 +142,11 @@
 										<div class="mdl-tooltip" for=<%= d[0]%>  >
 											<%=  Archive.where(name: d[0].split('/').last).pluck(:owner)[0] %>
 										</div>
-									<td>1</td>
+									<td><%= $client.revisions(d[0]).length %></td>
 									<td>
-										<%= button_to($client.media(d[0])['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
+										<% file = $client.get_file(d[0])%>
+										<%# button_to($client.media(d[0])['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
+										<%= link_to(download(d[0]), :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
 											<i class="material-icons">get_app</i>
 										<% end%>
 									</td>
