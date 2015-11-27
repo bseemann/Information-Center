@@ -1,5 +1,5 @@
 module AuthenticationHelper
-
+include UploadifyRailsHelper
 
   def take_name(name)
     if name.scan("/").count >= 2
@@ -56,6 +56,7 @@ module AuthenticationHelper
 
   #@param path, path of the file you want to download
   def download(path)
+    $client.shares(path)
     #shareble_link = $client.shares(path)
     res = Net::HTTP.get_response(URI("#{$client.shares(path)['url']}"))
     a = "#{res['location'].to_s[0...-1]}1"

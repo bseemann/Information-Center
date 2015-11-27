@@ -12,6 +12,7 @@
 		<%= stylesheet_link_tag "main" %>
 
 		<%= javascript_include_tag "modernizr-2.8.3-respond-1.4.2.min.js" %>
+		<%= javascript_include_tag "toggle-visibility.js" %>
 
 	</head>
 	<body>
@@ -26,17 +27,43 @@
 			        	<ul>
 			        		<li>
 
+										<div id="upload-files">
+											<div class="popupBoxWrapper">
+												<div class="popupBoxContent">
+													<%= form_tag({action: :navigation_params}, multipart: true) do %>
+													  <%= hidden_field_tag(:parent_id, $root) %>
+													  <%= hidden_field_tag(:page, i) %>
+													  <%= hidden_field_tag(:fil, $files) %>
+													  <%= hidden_field_tag(:owner, $owner) %>
+														<%= file_field_tag :file  %>
+														<%= submit_tag "Subir" %>
+														<% end %>
+													<p><%= link_to("fechar", "javascript:void(0)", :onclick => "toggle_visibility('upload-files');") %> </p>
+												</div>
+											</div>
+										</div>
+
 										<%# form_tag({action: :navigation_params}, multipart: true) do %>
 										  <%# hidden_field_tag(:parent_id, $root) %>
 										  <%# hidden_field_tag(:page, i) %>
 										  <%# hidden_field_tag(:fil, $files) %>
 										  <%# hidden_field_tag(:owner, $owner) %>
-										  <%# file_field_tag 'file', class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" %>
-										  <%# button_tag( '<i class="material-icons mdl-color-text--white">file_upload</i>'.html_safe,  type: 'submit', :id => "btnadd1",  class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" ) %>
+
+											<%# file_field_tag :file , class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
+												<!-- <i class="material-icons mdl-color-text--white">file_upload</i> -->
 											<%# end %>
-										<button id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
-				            	<i class="material-icons mdl-color-text--white">file_upload</i>
-										</button>
+											<%= link_to("javascript:void(0)", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :onclick => "toggle_visibility('upload-files');") do %>
+												 <i class="material-icons mdl-color-text--white">file_upload</i>
+											<% end%>
+
+											<!-- <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
+												<i class="material-icons mdl-color-text--white">file_upload</i>
+											</button> -->
+											<%# button_tag( '<i class="material-icons mdl-color-text--white">file_upload</i>'.html_safe,  type: 'submit', :id => "btnadd1",  class: "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right" ) %>
+										<%# end %>
+
+
+
 									</li>
 				            	<div class="mdl-tooltip" for="btnadd1">
 								Adicionar arquivo
@@ -48,10 +75,13 @@
 											  <%= hidden_field_tag(:page, i) %>
 												<%= hidden_field_tag(:folder_name, "Nova Pasta") %>
 											  <%# text_field_tag (:folder_name) %>
-												<%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2") do %>
-													<i class="material-icons mdl-color-text--white">folder</i>
+												<%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2" 	) do %>
+													<i class="material-icons mdl-color-text--white" > folder </i>
 												<% end %>
+
 											<% end %>
+
+
 											<div class="mdl-tooltip" for="btnadd2">
 												Adicionar pasta
 											</div>

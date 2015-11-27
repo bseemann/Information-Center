@@ -14,3 +14,5 @@ Rails.application.config.assets.precompile += %w( modernizr-2.8.3-respond-1.4.2.
 Rails.application.config.assets.precompile += %w( material.min.js )
 Rails.application.config.assets.precompile += %w( jquery-2.1.4.min.js )
 Rails.application.config.assets.precompile += %w( page.js )
+Rails.application.config.assets.precompile += %w( uploadify/uploadify.swf )
+Rails.application.config.assets.precompile += %w( toggle-visibility.js )

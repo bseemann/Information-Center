@@ -350,10 +350,33 @@ html,body {
     outline:0;
   }
 
-  .owner-name {
+.owner-name {
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
    max-width: 50px;
+}
 
-  }
+
+
+#upload-files{
+				top: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 120%;
+				background-color: rgba(0,0,0,0.7);
+        display: none;
+}
+
+
+.popupBoxWrapper{
+				width: 800px;
+        height: 800px;
+        margin: 50px auto;
+        text-align: left;
+}
+.popupBoxContent{
+		background-color: #FFF;
+    padding: 50px;
+}
