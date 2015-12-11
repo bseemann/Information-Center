@@ -17,6 +17,12 @@ Rails.application.routes.draw do
 	get 'authentication/navigation_params'
 	post 'authentication/navigation_params'
 
+  get 'login1' => 'sessions#new'
+
+  post 'sessions/create'
+  
+  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
