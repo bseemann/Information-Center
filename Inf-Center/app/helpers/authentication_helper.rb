@@ -62,5 +62,14 @@ include UploadifyRailsHelper
     a = "#{res['location'].to_s[0...-1]}1"
   end
 
+  def navigation(root)
+    links = root.split("/")
+    path = Array.new
+    links.each_with_index do |l, i|
+      path[i] = links[0..i].join("/")
+    end
+    return path
+  end
 
+<%= link_to l, authentication_navigation_params(:parent_id => path, :page => 1) %>
 end
