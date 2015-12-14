@@ -16,3 +16,8 @@ Rails.application.config.assets.precompile += %w( jquery-2.1.4.min.js )
 Rails.application.config.assets.precompile += %w( page.js )
 Rails.application.config.assets.precompile += %w( uploadify/uploadify.swf )
 Rails.application.config.assets.precompile += %w( toggle-visibility.js )
+Rails.application.config.assets.precompile += %w( lightbox.js )
+Rails.application.config.assets.precompile += %w( dropzone.js )
+Rails.application.config.assets.precompile += %w( context-menu.js )
+
+

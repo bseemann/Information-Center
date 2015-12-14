@@ -28,7 +28,7 @@
 		        	<nav class="mdl-navigation">
 			        	<ul>
 			        		<li>
-
+			        					<!--
 										<div id="upload-files">
 											<div class="popupBoxWrapper">
 												<div class="popupBoxContent">
@@ -44,7 +44,7 @@
 												</div>
 											</div>
 										</div>
-
+										-->
 										<%# form_tag({action: :navigation_params}, multipart: true) do %>
 										  <%# hidden_field_tag(:parent_id, $root) %>
 										  <%# hidden_field_tag(:page, i) %>
@@ -54,9 +54,23 @@
 											<%# file_field_tag :file , class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
 												<!-- <i class="material-icons mdl-color-text--white">file_upload</i> -->
 											<%# end %>
+
+											<%= button_tag(:class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd1" 	) do %>
+													<i class="material-icons mdl-color-text--white" > file_upload </i>
+											<% end %>
+											<!--
+											<button type="button" id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
+				            					<i class="material-icons mdl-color-text--white">file_upload</i></i>
+			            					</button></li>	
+			            					<div class="mdl-tooltip" for="btnadd1">
+												Adicionar arquivo
+											</div>
+											-->								
+								<!-- -->	<!--
 											<%= link_to("javascript:void(0)", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :onclick => "toggle_visibility('upload-files');") do %>
 												 <i class="material-icons mdl-color-text--white">file_upload</i>
 											<% end%>
+											-->
 
 											<!-- <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
 												<i class="material-icons mdl-color-text--white">file_upload</i>
@@ -66,7 +80,7 @@
 
 
 
-									</li>
+									
 				            	<div class="mdl-tooltip" for="btnadd1">
 								Adicionar arquivo
 								</div>
@@ -226,6 +240,9 @@
 
 	<%= javascript_include_tag "material.min.js" %>
   <%= javascript_include_tag "jquery-2.1.4.min.js" %>
+  <%= javascript_include_tag "lightbox.js" %>
+  <%= javascript_include_tag "dropzone.js" %>
+  <%= javascript_include_tag "context-menu.js" %>
 	</body>
 	
 </html>
