@@ -1,4 +1,6 @@
 //= require material
+//= require jquery.turbolinks
+
 /*
  *
  * More info at [www.dropzonejs.com](http://www.dropzonejs.com)

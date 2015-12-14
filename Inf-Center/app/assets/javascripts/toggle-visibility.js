@@ -1,3 +1,4 @@
+//= require jquery.turbolinks
 function toggle_visibility(id) {
 
 			       var e = document.getElementById(id);
