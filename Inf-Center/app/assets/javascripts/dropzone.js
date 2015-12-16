@@ -1,5 +1,5 @@
 //= require material
-//= require jquery.turbolinks
+//= require dropzone
 
 /*
  *

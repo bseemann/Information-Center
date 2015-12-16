@@ -1,5 +1,5 @@
 module AuthenticationHelper
-include UploadifyRailsHelper
+
 
   def take_name(name)
     if name.scan("/").count >= 2

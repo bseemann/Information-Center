@@ -5,14 +5,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Arquivos</title>
-
+		
 		<%= stylesheet_link_tag "https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-light_blue.min.css" %>
 		<%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" %>
 		<%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
 		<%= stylesheet_link_tag "main" %>
 
 		<%= javascript_include_tag "modernizr-2.8.3-respond-1.4.2.min.js" %>
-		<%= javascript_include_tag "toggle-visibility.js" %>
+		<%# javascript_include_tag "toggle-visibility.js" %>
+
+		<%= javascript_include_tag "material.min.js" %>
+		<%= javascript_include_tag "jquery-2.1.4.min.js" %>
+		<%= javascript_include_tag "lightbox.js" %>
+		<%= javascript_include_tag "dropzone.js" %>
 
 	</head>
 
@@ -55,7 +60,7 @@
 												<!-- <i class="material-icons mdl-color-text--white">file_upload</i> -->
 											<%# end %>
 
-											<%= button_tag(:class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd1" 	) do %>
+											<%= button_tag(:class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd1") do %>
 													<i class="material-icons mdl-color-text--white" > file_upload </i>
 											<% end %>
 											<!--
@@ -238,11 +243,8 @@
 				 </form>
 			</div>
 
-	<%= javascript_include_tag "material.min.js" %>
-  <%= javascript_include_tag "jquery-2.1.4.min.js" %>
-  <%= javascript_include_tag "lightbox.js" %>
-  <%= javascript_include_tag "dropzone.js" %>
-  <%= javascript_include_tag "context-menu.js" %>
+	
+	  
 	</body>
 	
 </html>

@@ -1,5 +1,6 @@
 //= require material
-//= require jquery.turbolinks
+
+
 (function() {
   
   "use strict";
