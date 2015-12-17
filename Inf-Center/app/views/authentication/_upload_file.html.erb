@@ -1,0 +1,8 @@
+<%= form_tag({action: :navigation_params}, multipart: true) do %>
+  <%= hidden_field_tag(:parent_id, $root) %>
+  <%= hidden_field_tag(:page, $i) %>
+  <%= hidden_field_tag(:fil, $files) %>
+  <%= hidden_field_tag(:owner, $user.name) %>
+  <%= file_field_tag 'file' %> <br/>
+  <%= submit_tag "Subir" %>
+<% end %>

@@ -28,7 +28,7 @@ class AuthenticationController < ApplicationController
 
   end
   # Method that creates arrays of files and directories to list on the view files
-  #@param
+    #@param
 
   def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page], remove=params[:to_remove])
 
@@ -62,7 +62,7 @@ class AuthenticationController < ApplicationController
       #Save a record with the data about who uploaded the file
       record = Archive.new
       record.name = upload.original_filename
-      record.owner = $user
+      record.owner = $user.name
       record.save
     end
     #Rename the File if the user submited the form to do it
@@ -118,9 +118,9 @@ class AuthenticationController < ApplicationController
   end
 
 
-  #def files
-
-  #end
+  def files
+    $update_form = render_to_string(:partial => "upload_file")
+  end
 
   helper_method :current_user
 
