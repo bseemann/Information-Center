@@ -1,5 +1,5 @@
-class SessionsController < ApplicationController
-
+class SesdsionsController < ApplicationController
+  
   def new
 
   end
@@ -30,17 +30,19 @@ class SessionsController < ApplicationController
       end
     end
 
+    #request the expa's current user data
     @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{$token}"
     resp = Net::HTTP.get_response(URI.parse(@request))
     data = resp.body
     @current_person = JSON.parse(data)
-
+    #Find the user on system
     $user = User.find_by_email(params[:my_email])
 
+    #create sessions if the user exist, else create a user automaticaly 
     if $user
       session[:user_id] = $user.id
       redirect_to authentication_welcome_path
-      $user.photo_url = @current_person['person']["profile_photo_url"]
+      $user.photo_url = @current_person["person"]["profile_photo_url"]
     else
       $user = User.new(:name => @current_person['person']['full_name'], :email => @email )
       $user.photo_url = @current_person['person']["profile_photo_url"]
@@ -53,6 +55,7 @@ class SessionsController < ApplicationController
 
   end
 
+  #Destroy the session
   def destroy
     session[:user_id] = nil
     redirect_to root_path

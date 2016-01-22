@@ -15,8 +15,9 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-
+<!-- Page layaout for the website as a whole -->
 <% unless session[:user_id] == nil %>
+<%= csrf_meta_tags %>
 <html lang="pt">
   <head>
     <meta charset="utf-8">

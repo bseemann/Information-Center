@@ -5,9 +5,10 @@ require 'uri'
 require 'net/http'
 require 'json'
 
-
+# @author Mauro Victor
 class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
+
   layout 'login', :only => [:login]
   include AuthenticationHelper #Use this module of helpers
 
@@ -18,20 +19,20 @@ class AuthenticationController < ApplicationController
 
   #end
 
-#Method that controls the welcome view
-# @param email [String] receives the params from the form on login
-# @param senha [String] receives the params from the form on login
-
-
-
   def error
 
   end
-  # Method that creates arrays of files and directories to list on the view files
-    #@param
 
+  # Takes the params for navigation 
+  # @param content [String] path of the actual directory
+  # @param upload[String] upload file to be uploaded
+  # @param new_folder_name [String] name of the new folder name in case the user fulfilled a form to create a new one
+  # @param files_array [Array] array of files to check if the file to be uploaded alaready exists
+  # @param rename [Array] new and old name from the file that will be renamed
+  # @param move [Array] Origin path and target path for the file will be moved
+  # @param page [Number] Number of the page passed by the user through it's navigation
+  # @param remove [String] Path of file to be removed on the request
   def navigation_params (content=params[:parent_id], upload=params[:file], new_folder_name=params[:folder_name], files_array=params[:fil], rename=[params[:rename_new_name], params[:rename_old_name]], move= [params[:move_from], params[:move_to]], page=params[:page], remove=params[:to_remove])
-
 
     #Store the path into a global variable because this variable is necessary in others methods.
     #If it is being requested by Arquivos's link set the root as "/"
@@ -47,13 +48,14 @@ class AuthenticationController < ApplicationController
     else
       $page = page.to_i
     end
-# Create new folder if the user submited the form to do it
+    # Create new folder if the user submited the form to do it
     unless new_folder_name == nil
       @new_folder = new_folder_name
     end
 
-
+    #start the client from dropbox
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
+    
     #Upload a file if the user submited the form to do it and added a file to the upload form
     unless upload == nil || files_array.include?("#{upload.original_filename}")
       #@dude = upload.original_filename
@@ -69,12 +71,12 @@ class AuthenticationController < ApplicationController
     unless rename[0] == nil
       $client.file_move("#{$root}/#{rename[1]}","#{$root}/#{rename[0]}")
     end
-#Create new folder if the user submited the form to do it
+    #Create new folder if the user submited the form to do it
     unless @new_folder == nil
       $client.file_create_folder("#{$root}/#{@new_folder}")
     end
 
-#Move File if the user submited the form to do it
+    #Move File if the user submited the form to do it
     unless move[0] == nil || move[1] == nil
       if move[1] == '..'
         $client.file_move("#{move[0]}" , "#{$root.split('/')[1...-1].join}/#{move[0].split("/").last}" )
@@ -87,7 +89,7 @@ class AuthenticationController < ApplicationController
       $client.file_delete(remove)
     end
 
-#Stores the metadata's content to iterate later and create an array for files and another for directories
+    #Stores the metadata's content to iterate later and create an array for files and another for directories
     $root_metadata = $client.metadata($root)['contents']
 
     #Creates the variables to store files and directories
@@ -95,7 +97,7 @@ class AuthenticationController < ApplicationController
     $directories = Array.new
 
 
-# iterate and create an array for files, for directories, creation and modification.
+    # iterate and create an array for files, for directories, creation and modification.
     $root_metadata.each do |hash|
       if hash["is_dir"] == false then
         #Take all the attributes necessary to show the files informations [path, creation-time, modified-time, lenght, type]
@@ -105,7 +107,10 @@ class AuthenticationController < ApplicationController
         $directories << hash["path"]
       end
     end
+    
     $show=($directories+$files)
+
+    #Organize the pages
     $offset = 10
     $pages = if $show.length % $offset == 0 then
               ($show.length/$offset)
@@ -117,13 +122,14 @@ class AuthenticationController < ApplicationController
 
   end
 
-
+  #Render a partial for upload files
   def files
     $update_form = render_to_string(:partial => "upload_file")
   end
 
   helper_method :current_user
 
+  #define the current user
   def current_user
     $current_user ||= User.find(session[:user_id]) if session[:user_id]
     return $current_user

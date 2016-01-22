@@ -1,4 +1,4 @@
-
+<!-- LOGIN LAYOUT, in this application we used a special layout for login-->
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -43,10 +43,10 @@
                 <div class="box">
                     <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
-
+                            <!-- AIESEC LOGO -->
                                 <%= image_tag("logo_aiesec.png", class: "img-responsive") %>
 
-
+                                <!-- FORM TO LOG -->
                                 <%= form_tag :action => 'create', :controller => 'sessions' do %>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
                                         <%= email_field_tag 'my_email', nil, class: 'mdl-textfield__input' %>
@@ -59,6 +59,7 @@
                                     </div>
                                     <%= button_tag("Entrar", type: 'submit', class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-cell mdl-cell--12-col mdl-button--accent mdl-color--white mdl-color-text--blue-500")%>
                                 <% end %>
+                                <!-- END -->
 
 
                             </div>
@@ -68,7 +69,7 @@
             </main>
         </div>
 
-        `<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
         <%= javascript_include_tag "js/material.min.js" %>
         <%= javascript_include_tag "js/jquery-2.1.4.min.js" %>
         <%= javascript_include_tag "js/main.js" %>
