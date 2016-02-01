@@ -21,6 +21,7 @@
 		<%= javascript_include_tag "lightbox.js" %>
 		<%= javascript_include_tag "dropzone.js" %>
 		<%= javascript_include_tag "popup.js" %>
+		<%= javascript_include_tag "upload.js.erb" %>
 
 		
 		<%= javascript_tag do %>
@@ -64,7 +65,7 @@
 									<!--
 									<button type="button" id="btnadd1" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right">
 		            					<i class="material-icons mdl-color-text--white">file_upload</i></i>
-	            					</button></li>	
+	            					</button><	
 	            					<div class="mdl-tooltip" for="btnadd1">
 										Adicionar arquivo
 									</div>
@@ -84,6 +85,10 @@
 			            	<div class="mdl-tooltip" for="btnadd1">
 							Adicionar arquivo
 							</div>
+							</li>
+							<button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="modal-button">
+								<i class="material-icons">file_upload</i>
+							</button>
 							<!-- END -->
 
 							<!-- CREATE FOLDER -->	
@@ -103,6 +108,7 @@
 							<div class="mdl-tooltip" for="btnadd2">
 								Adicionar pasta
 							</div>
+							</li>
 							<!-- END -->
 			            </ul>
 			        </nav>
@@ -125,6 +131,7 @@
 							</thead>
 							<!-- SHOW THE DIRECTORIES AND FILES FROM DROPBOX -->
 							
+
 							<% unless $show == []%>
 							<% ($show[($offset*($page-1))...($offset*($page-1))+1+$offset]).each_with_index do |d, index|  %>
 							<% if $directories.include? d %>
@@ -243,16 +250,47 @@
 					<% end %>
 				</div>
 			</div>
+
+		
 			<!-- NOT IN USE -->
 			<div class="mtlsr-lightbox">
 				 <form action="/file-upload" class="dropzone" id="dropzone">
 				 </form>
 			</div>
+			<!-- END -->
+
 
 			<div id="dynamic">
 				
 			</div>
-			<!-- END -->
+			
+			<div class="mdl-card" id="modal">
+	<div>
+		x
+		</div>
+			<div class="mdl-card__title mdl-card--border">
+				<h2 class="mdl-card__title-text"> Upload </h2>
+			</div>
+			<div class="mdl-card__subtitle-text">
+				<strong>Suba um arquivo</strong> 
+			</div>
+			<div class="mdl-card__actions">
+				<%= form_tag({action: :navigation_params}, multipart: true) do %>
+				  <%= hidden_field_tag(:parent_id, $root) %>
+				  <%= hidden_field_tag(:page, $i) %>
+				  <%= hidden_field_tag(:fil, $files) %>
+				  <%= hidden_field_tag(:owner, $user.name) %>
+				  <div class="mdl-card__actions">
+				  <%= file_field_tag 'file' %> <br/>
+				  </div>
+				  <div class="mdl-card__actions">
+				  <%= submit_tag "Subir" %>
+				  </div>
+				<% end %>
+			</div>
+
+
+	</div>
 	
 	  
 	</body>
