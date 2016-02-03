@@ -19,6 +19,6 @@ Rails.application.config.assets.precompile += %w( lightbox.js )
 Rails.application.config.assets.precompile += %w( dropzone.js )
 Rails.application.config.assets.precompile += %w( context-menu.js )
 Rails.application.config.assets.precompile += %w( popup.js )
-Rails.application.config.assets.precompile += %w( upload.js.erb )
+Rails.application.config.assets.precompile += %w( upload.js )
 
 
