@@ -31,6 +31,7 @@
 
 
 	<body>
+	
 
 	        <div id ="main-content" class="mdl-grid mdl-grid--no-spacing">
 
@@ -68,7 +69,7 @@
 									</div>
 									-->								
 							<!--UPLOAD FILES -->	
-								<%= link_to("javascript:open_box()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right") do %>
+								<%= link_to("javascript:fadeT()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right") do %>
 									 <i class="material-icons mdl-color-text--white">file_upload</i>
 								<% end%>
 											
@@ -83,11 +84,7 @@
 							Adicionar arquivo
 							</div>
 							</li>
-							<%= link_to("javascript:fadeT()", :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :id => "modal-button") do %>
-								<i class="material-icons">file_upload</i>
-							<% end %>
-							<!-- END -->
-
+							
 							<!-- CREATE FOLDER -->	
 			            	<li>
 								<%= form_tag :action => 'navigation_params' do%>
