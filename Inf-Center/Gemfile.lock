@@ -197,7 +197,7 @@ DEPENDENCIES
   cookiejar
   dropbox-sdk
   dropzonejs-rails
-  haml
+  haml (~> 4.0, >= 4.0.7)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0, >= 4.0.5)
   json

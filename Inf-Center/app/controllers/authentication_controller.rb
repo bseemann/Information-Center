@@ -119,21 +119,21 @@ class AuthenticationController < ApplicationController
             end
 
     redirect_to authentication_files_path
-
+    
   end
-
+  
   #Render a partial for upload files
   def files
     $update_form = render_to_string(:partial => "upload_file")
   end
-
+  
   helper_method :current_user
-
+  
   #define the current user
   def current_user
     $current_user ||= User.find(session[:user_id]) if session[:user_id]
     return $current_user
   end
-
-
+  
+  
 end

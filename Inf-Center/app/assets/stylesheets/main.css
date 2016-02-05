@@ -8,7 +8,7 @@ body {
    line-height: 1;
    background: #fff;
    background: url("assets/images/bg.jpg");
-
+   
    font-family: 'Roboto', sans-serif;
   }
 * {
@@ -335,7 +335,7 @@ html,body {
  white-space: nowrap;
  overflow: hidden;
  text-overflow: ellipsis;
- max-width: 150px;
+ max-width: 100px;
 
 }
 
@@ -654,5 +654,16 @@ html,body {
   width: 500px;
   height: 250px;
   background-color: #ffff00;
+
+}
+
+#modal_to_move{
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  z-index: 10;
+  width: 500px;
+  height: 250px;
+  background-color: red;
 
 }

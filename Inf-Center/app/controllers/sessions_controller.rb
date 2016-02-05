@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
     else
       $user = User.new(:name => @current_person['person']['full_name'], :email => @email )
       $user.photo_url = @current_person['person']["profile_photo_url"]
-      # $user.postion =
+      $user.postion = @current_person['current_position']['position_name']
       $user.save
       $user_name = $user.name
       session[:user_id] = $user.id

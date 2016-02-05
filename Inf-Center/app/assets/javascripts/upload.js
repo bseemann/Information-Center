@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 
 function fadeT() {
-	$("#modal").fadeToggle();
+	$("#modal").fadeToggle(200);
 }
 
 
