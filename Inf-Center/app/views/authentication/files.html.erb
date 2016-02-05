@@ -58,16 +58,14 @@
 
               <!-- CREATE FOLDER -->  
                     <li>
-                <%= form_tag :action => 'navigation_params' do%>
-                  <%= hidden_field_tag(:parent_id, $root) %>
-                  <%= hidden_field_tag(:page, $i) %>
-                  <%= hidden_field_tag(:folder_name, "Nova Pasta") %>
+                
+                  
                   <%# text_field_tag (:folder_name) %>
-                  <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2"  ) do %>
+                  <%= button_to( "javascript:createFolderPopUp()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2"  ) do %>
                     <i class="material-icons mdl-color-text--white" > folder </i>
                   <% end %>
 
-                <% end %>
+                
 
               <div class="mdl-tooltip" for="btnadd2">
                 Adicionar pasta
@@ -283,6 +281,31 @@
           </div>
           <div class="mdl-card__actions">
           <%= submit_tag "mover" %>
+          </div>
+        <% end %>
+      </div>
+
+
+  </div>
+
+    <div class="mdl-card" id="modal_to_create_folder">
+  
+    <span id="cancel"> <%= link_to "x", "javascript:createFolderPopUp()" %> </span>
+  
+      <div class="mdl-card__title mdl-card--border" >
+        <h2 class="mdl-card__title-text"> Criar Pasta </h2>
+      </div>
+      
+      <div class="mdl-card__actions">
+        <%= form_tag({action: :navigation_params}, multipart: true) do %>
+          <%= hidden_field_tag "parent_id", $root %>
+          <%= hidden_field_tag "page", $page %>
+          <%= hidden_field_tag "fil", $files %>
+          <div class="mdl-card__actions">
+          <%= text_field_tag "folder_name"  %>
+          </div>
+          <div class="mdl-card__actions">
+          <%= submit_tag "Criar" %>
           </div>
         <% end %>
       </div>

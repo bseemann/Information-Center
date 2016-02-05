@@ -5,6 +5,7 @@
 
 $(document).ready(function(){
 	$("#modal_to_move").hide();
+	$("#modal_to_create_folder").hide();
 });
 
 
@@ -12,4 +13,8 @@ function movePopUp(){
 	$("#modal_to_move").fadeToggle(200);
 	$("#move_from").val($("a[name=move_link]").attr("id"));
 	
+}
+
+function createFolderPopUp(){
+	$("#modal_to_create_folder").fadeToggle(200);
 }
