@@ -219,7 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt
   byebug
   capistrano-rails
   coffee-rails (~> 4.1.0)
@@ -227,7 +227,7 @@ DEPENDENCIES
   dropbox-sdk
   dropzonejs-rails
   expa!
-  haml (~> 4.0, >= 4.0.7)
+  haml
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0, >= 4.0.5)
   json
