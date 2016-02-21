@@ -25,6 +25,9 @@ html,body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+main {
+    padding-top:50px;
+}
 
 
 /* ==========================================================================
@@ -91,9 +94,13 @@ html,body {
   bottom: 0;
   padding-bottom: 10px;
 }
-.avatar {
-  width: 48px;
-  height: 48px;
+.mdl-button--icon .mdl-button__ripple-container {
+    width: 56px;
+    height: 56px;
+}
+.mdl-button--icon .avatar {
+  width: 56px;
+  height: 56px;
   border-radius: 24px;
 }
 .layout .demo-header .mdl-textfield {
@@ -198,8 +205,15 @@ html,body {
   color: rgba(255, 255, 255, 0.56);
   margin-right: 32px;
 }
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen)>.mdl-layout__header {
+    margin:0px;
+    width: 100%;
+}
 
-
+#btninfo {
+    height: 56px;
+    width: 56px;
+}
 .demo-cards {
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
@@ -261,6 +275,22 @@ html,body {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.card-vertical.mdl-card {
+    width: 200px;
+    height: 230px;
+    background: #caccd1;
+    position: absolute;
+}
+.card-vertical.mdl-card:hover{
+    background: #caccff;
+
+}
+.card-vertical-icon {
+    display: block;
+    margin: 0 auto;
+}
+
 
 /* ==========================================================================
    Arquivos
