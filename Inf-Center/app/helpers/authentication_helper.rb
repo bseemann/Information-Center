@@ -62,14 +62,17 @@ module AuthenticationHelper
     a = "#{res['location'].to_s[0...-1]}1"
   end
 
-  #def navigation(root)
-  #  links = root.split("/")
-  #  path = Array.new(links.length)
-  #  links.each_with_index do |l, i|
-  #    path[i] = links[0..i].join("/")
-  #  end
-  #  return path
-  #end
+  def navigation(root)
+    dirs = root.split("/")
+    path = Array.new
+
+    dirs.each_with_index do |l,i|
+      path << dirs[0..i].join("/")
+    end
+    path.delete("")
+    
+    return path
+  end
 
  #link_to l, authentication_navigation_params(:parent_id => path, :page => 1) 
 end

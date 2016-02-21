@@ -24,6 +24,7 @@
     <%= javascript_include_tag "lightbox.js" %>
     <%= javascript_include_tag "dropzone.js" %>
     <%= javascript_include_tag "popup.js" %>
+    <%= javascript_include_tag "application.js" %>
     
     
     
@@ -33,13 +34,28 @@
 
   <body>
   
-
+          
+                  
           <div id ="main-content" class="mdl-grid mdl-grid--no-spacing">
 
             <div id="arquivo">
               <div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
               <h1>Arquivos</h1>
-              <span class="bottom-aligned-text"> <%= "MC#{$root.gsub '/', ' > '}" %> </span>
+              <span class="bottom-aligned-text">
+              <% folders = navigation($root) %> 
+              <%= folders.each do|p| %> 
+                <span>
+                <%= link_to(p.split("/").last, {id: "l-#{p}", :class => "path-link"}) %> >
+                </span>
+                <span class="bottom-aligned-text">
+                <%= form_tag :action => 'navigation_params', :method => 'POST', :id => "form-#{p}" do%>
+                        <%= hidden_field_tag(:parent_id, p) %>
+                        <%= hidden_field_tag(:page, 1) %>
+                <% end %>
+                </span>
+                              
+              <% end %>
+              </span>
           <% for $i in 1..$pages do %>
               <nav class="mdl-navigation">
                 <ul>
@@ -134,7 +150,7 @@
                       <%= hidden_field_tag(:parent_id, $root) %>
                       <%= hidden_field_tag(:page, $page) %>
                       <%= hidden_field_tag(:to_remove, d) %>
-                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar esta pasta?'}) do %>
                           <i class="material-icons">delete</i>
                         <% end %>
                     <% end %>
@@ -179,7 +195,7 @@
                       <%= hidden_field_tag(:parent_id, $root) %>
                       <%= hidden_field_tag(:page, $page) %>
                       <%= hidden_field_tag(:to_remove, d[0]) %>
-                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar este arquivo?'}) do %>
                           <i class="material-icons">delete</i>
                         <% end %>
                     <% end %>
@@ -247,7 +263,7 @@
           <%= hidden_field_tag(:parent_id, $root) %>
           <%= hidden_field_tag(:page, $page) %>
           <%= hidden_field_tag(:fil, $files) %>
-          <%= hidden_field_tag(:owner, $user.name) %>
+          <%= hidden_field_tag(:owner, current_user.name) %>
           <div class="mdl-card__actions">
           <%= file_field_tag 'file' %> <br/>
           </div>
@@ -273,7 +289,7 @@
           <%= hidden_field_tag(:parent_id, $root) %>
           <%= hidden_field_tag "page", $page %>
           <%= hidden_field_tag(:fil, $files) %>
-          <%= hidden_field_tag(:owner, $user.name) %>
+          <%= hidden_field_tag(:owner, current_user.name) %>
           <%= hidden_field_tag "move_from" %>
           
           <div class="mdl-card__actions">
