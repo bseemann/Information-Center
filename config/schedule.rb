@@ -19,4 +19,8 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, 'log/cron_log.log'
+set :output, 'log/cron.log'
+
+every 1.minute do
+  rake 'sync_cf:sync'
+end

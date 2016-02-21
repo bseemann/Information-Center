@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/AIESEC-no-Brasil/expa-rb
-  revision: 566082545c97b8f152ac2531392d285f5b80113f
+  revision: f30509af4ceaf9e20b9bdb7c979c3799e3494823
   specs:
     expa (0.1.0)
 
