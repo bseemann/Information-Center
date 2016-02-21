@@ -2,7 +2,7 @@
 <h1> Login</h1>
 
 <%= form_tag :action => 'welcome' do%>
-<%= email_field_tag 'my_email'%>
+<%= email_field_tag 'my_email', class: "form-control"%>
 <%= password_field_tag 'my_password'%>
-<%= submit_tag "Entrar"%>
+<%= button_tag "Entrar", :type => "submit"%>
 <% end %>

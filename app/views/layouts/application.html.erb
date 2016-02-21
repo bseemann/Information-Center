@@ -91,11 +91,11 @@
 
         <!-- Profile -->
         <header class="demo-drawer-header">
-          <%= image_tag($user.photo_url, class: "avatar") %>
+          <%= image_tag(current_user.photo_url, class: "avatar") %>
 
           <!-- <img src="img/user.jpg" class="avatar"> -->
           <div class="avatar-name">
-            <span><%= $user.name %></span>
+            <span><%= current_user.name %></span>
           </div>
         </header>
         <!-- END Profile -->
@@ -112,7 +112,7 @@
           <%# end %>
           <%= link_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, :class =>  "mdl-navigation__link"%>
           <a class="mdl-navigation__link" href="suporte.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">help</i>Ajuda</a>
-          <%= link_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">exit_to_app</i>Sair'.html_safe, logout_path, :class =>  "mdl-navigation__link", method: "delete"%>
+          <%= link_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">exit_to_app</i>Sair'.html_safe, logout_path, :class =>  "mdl-navigation__link"%>
 
           <%# button_tag(logout_path, :method => :delete, :class => "mdl-layout-spacer") do %>
           <%#'<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">exit_to_app</i>Sair'.html_safe%>

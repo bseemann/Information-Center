@@ -8,10 +8,10 @@ require 'json'
 # @author Mauro Victor
 class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
-
+  
   layout 'login', :only => [:login]
   include AuthenticationHelper #Use this module of helpers
-
+  
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
 
@@ -64,7 +64,7 @@ class AuthenticationController < ApplicationController
       #Save a record with the data about who uploaded the file
       record = Archive.new
       record.name = upload.original_filename
-      record.owner = $user.name
+      record.owner = current_user.name
       record.save
     end
     #Rename the File if the user submited the form to do it
@@ -102,7 +102,7 @@ class AuthenticationController < ApplicationController
       if hash["is_dir"] == false then
         #Take all the attributes necessary to show the files informations [path, creation-time, modified-time, lenght, type]
         $files << [hash["path"], date_format(hash['client_mtime']), date_format(hash['modified']), unit(hash["bytes"]),get_type(hash["path"]), hash["revision"]]
-
+        
       else
         $directories << hash["path"]
       end
@@ -122,17 +122,20 @@ class AuthenticationController < ApplicationController
     
   end
   
-  #Render a partial for upload files
+  
   def files
-    $update_form = render_to_string(:partial => "upload_file")
   end
   
   helper_method :current_user
   
   #define the current user
   def current_user
-    $current_user ||= User.find(session[:user_id]) if session[:user_id]
-    return $current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    return @current_user
+  end
+
+  def require_user
+    redirect_to '/login' unless $current_user
   end
   
   
