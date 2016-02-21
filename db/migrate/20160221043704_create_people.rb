@@ -4,12 +4,13 @@ class CreatePeople < ActiveRecord::Migration
       t.integer :expa_id
       t.string :expa_email
       t.string :expa_url
+      t.date :expa_birthday_date
       t.string :expa_full_name
       t.string :expa_last_name
       t.string :expa_profile_photo_url
-      t.integer :expa_home_lc #foreigner_key
-      t.integer :expa_home_mc #foreigner_key
-      t.integer :expa_status #enum
+      t.integer :expa_home_lc #foreigner_key (Office)
+      t.integer :expa_home_mc #foreigner_key (Office)
+      t.integer :expa_status #Enum (From String to Enum)
       #t.string :expa_interviewed
       t.string :expa_phone
       #t.string :expa_location
@@ -23,8 +24,8 @@ class CreatePeople < ActiveRecord::Migration
       #t.string :expa_views
       #t.string :expa_favourites_count
       t.timestamp :expa_contacted_at
-      t.integer :expa_contacted_by #foreiger_key
-      t.integer :expa_gender #enum
+      t.integer :expa_contacted_by #foreiger_key (Person)
+      t.integer :expa_gender #enum (From String to Enum)
       t.text :expa_address_info
       t.string :expa_contact_info
       #t.string :expa_current_office
