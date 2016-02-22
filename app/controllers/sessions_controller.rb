@@ -1,5 +1,5 @@
-class SessionsController < ExpaApplicationsController
-  
+class SessionsController < ApplicationController
+
   def new
 
   end
@@ -9,7 +9,7 @@ class SessionsController < ExpaApplicationsController
   # @param email [String] receives the params from the form on login
   # @param senha [String] receives the params from the form on login
   def create(email = params[:my_email], senha = params[:my_password])
-    
+
     url = 'https://auth.aiesec.org/users/sign_in' #Store the url for authenticate at EXPA
     agent = Mechanize.new  #Initialize an instance to start to work with mechanize
     page = agent.get(url)
@@ -33,7 +33,7 @@ class SessionsController < ExpaApplicationsController
         #Find the user on system
         @user = User.find_by_email(params[:my_email])
 
-        #create sessions if the user exist, else create a user automaticaly 
+        #create sessions if the user exist, else create a user automaticaly
         if @user
           reset_session
           session[:user_id] = @user.id
@@ -52,13 +52,13 @@ class SessionsController < ExpaApplicationsController
 
       end
 
-    
+
     end
 
-    
-    
 
-    
+
+
+
 
   end
 

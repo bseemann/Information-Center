@@ -1,5 +1,20 @@
 class ExpaRdSync
+  @rd_identifiers = {
+      :test => 'test',
+      :new_lead => '',
+      :update_lead => '',
+      :in_progress => '',
+      :match => '',
+      :realize => '',
+      :rejected => '',
+      :completed => ''
+  }
+
+  @rd_tags = {
+
+  }
   def initialize
+
   end
 
   def list_people
@@ -70,6 +85,35 @@ class ExpaRdSync
 
   def sync_rd_station
 
+  end
+
+  def send_to_rd(person, applications, identifier, tag)
+    json_to_rd = {
+        'token_rdstation' => ENV['RD_STATION_TOKEN'],
+        'identificador' => identifier,
+        'email' => person.xp_email,
+        'nome' => person.xp_full_name.to_s + person.xp_last_name,
+        'cargo' => '',
+        'empresa' => '',
+        'telefone' => person.xp_phone,
+        'expa_id' => person.xp_id,
+        'expa_url' => person.xp_url,
+    }
+    json_to_rd['tag'] = tag unless tag.nil?
+    unless applications.empty?
+      json_to_rd.merge!{
+
+      }
+    end
+    https = Net::HTTP.new(uri.host,uri.port)
+    https.use_ssl = true
+    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
+    req.body = json_to_rd.to_json
+    begin
+      https.request(req)
+    rescue => exception
+      puts exception.to_s
+    end
   end
 
   def setup_expa_api

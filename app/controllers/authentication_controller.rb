@@ -6,12 +6,12 @@ require 'net/http'
 require 'json'
 
 # @author Mauro Victor
-class AuthenticationController < ExpaApplicationsController
+class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
-  
+
   layout 'login', :only => [:login]
   include AuthenticationHelper #Use this module of helpers
-  
+
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
 
@@ -23,7 +23,7 @@ class AuthenticationController < ExpaApplicationsController
 
   end
 
-  # Takes the params for navigation 
+  # Takes the params for navigation
   # @param content [String] path of the actual directory
   # @param upload[String] upload file to be uploaded
   # @param new_folder_name [String] name of the new folder name in case the user fulfilled a form to create a new one
@@ -55,7 +55,7 @@ class AuthenticationController < ExpaApplicationsController
 
     #start the client from dropbox
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
-    
+
     #Upload a file if the user submited the form to do it and added a file to the upload form
     unless upload == nil || files_array.include?("#{upload.original_filename}")
       #@dude = upload.original_filename
@@ -102,32 +102,32 @@ class AuthenticationController < ExpaApplicationsController
       if hash["is_dir"] == false then
         #Take all the attributes necessary to show the files informations [path, creation-time, modified-time, lenght, type]
         $files << [hash["path"], date_format(hash['client_mtime']), date_format(hash['modified']), unit(hash["bytes"]),get_type(hash["path"]), hash["revision"]]
-        
+
       else
         $directories << hash["path"]
       end
     end
-    
+
     $show=($directories+$files)
 
     #Organize the pages
     $offset = 10
     $pages = if $show.length % $offset == 0 then
-              ($show.length/$offset)
-            else
-              ($show.length/$offset)+1
-            end
+               ($show.length/$offset)
+             else
+               ($show.length/$offset)+1
+             end
 
     redirect_to authentication_files_path
-    
+
   end
-  
-  
+
+
   def files
   end
-  
+
   helper_method :current_user
-  
+
   #define the current user
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -137,6 +137,6 @@ class AuthenticationController < ExpaApplicationsController
   def require_user
     redirect_to '/login' unless $current_user
   end
-  
-  
+
+
 end
