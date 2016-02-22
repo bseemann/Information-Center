@@ -11,21 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221043713) do
+ActiveRecord::Schema.define(version: 20160222043414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "applications", force: :cascade do |t|
-    t.integer  "expa_id"
-    t.string   "expa_url"
-    t.string   "expa_status"
-    t.integer  "expa_current_status"
-    t.datetime "expa_created_at"
-    t.datetime "expa_updated_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
 
   create_table "archives", force: :cascade do |t|
     t.string   "name"
@@ -34,13 +23,48 @@ ActiveRecord::Schema.define(version: 20160221043713) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "offices", force: :cascade do |t|
-    t.integer  "expa_id"
-    t.string   "expa_name"
-    t.string   "expa_full_name"
-    t.string   "expa_url"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "expa_applications", force: :cascade do |t|
+    t.integer  "xp_id"
+    t.string   "xp_url"
+    t.integer  "xp_status"
+    t.integer  "xp_current_status"
+    t.datetime "xp_created_at"
+    t.datetime "xp_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "expa_offices", force: :cascade do |t|
+    t.integer  "xp_id"
+    t.string   "xp_name"
+    t.string   "xp_full_name"
+    t.string   "xp_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "expa_people", force: :cascade do |t|
+    t.integer  "xp_id"
+    t.string   "xp_email"
+    t.string   "xp_url"
+    t.string   "xp_full_name"
+    t.string   "xp_last_name"
+    t.string   "xp_profile_photo_url"
+    t.integer  "xp_home_lc"
+    t.integer  "xp_home_mc"
+    t.integer  "xp_status"
+    t.string   "xp_phone"
+    t.datetime "xp_created_at"
+    t.datetime "xp_updated_at"
+    t.string   "xp_middles_names"
+    t.string   "xp_aiesec_email"
+    t.datetime "xp_contacted_at"
+    t.integer  "xp_contacted_by"
+    t.integer  "xp_gender"
+    t.text     "xp_address_info"
+    t.string   "xp_contact_info"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "owners", force: :cascade do |t|
@@ -50,31 +74,7 @@ ActiveRecord::Schema.define(version: 20160221043713) do
     t.string   "email"
   end
 
-  create_table "people", force: :cascade do |t|
-    t.integer  "expa_id"
-    t.string   "expa_email"
-    t.string   "expa_url"
-    t.string   "expa_full_name"
-    t.string   "expa_last_name"
-    t.string   "expa_profile_photo_url"
-    t.integer  "expa_home_lc"
-    t.integer  "expa_home_mc"
-    t.integer  "expa_status"
-    t.string   "expa_phone"
-    t.datetime "expa_created_at"
-    t.datetime "expa_updated_at"
-    t.string   "expa_middles_names"
-    t.string   "expa_aiesec_email"
-    t.datetime "expa_contacted_at"
-    t.integer  "expa_contacted_by"
-    t.integer  "expa_gender"
-    t.text     "expa_address_info"
-    t.string   "expa_contact_info"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "rd_station_controls", force: :cascade do |t|
+  create_table "rd_controls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

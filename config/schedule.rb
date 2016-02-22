@@ -22,5 +22,5 @@
 set :output, 'log/cron.log'
 
 every 1.minute do
-  rake 'sync_cf:sync'
+  runner 'EXPASync.new'
 end

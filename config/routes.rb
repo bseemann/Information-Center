@@ -9,22 +9,22 @@ Rails.application.routes.draw do
   post 'authentication/error'
 
   get 'authentication/navigate'
-	post 'authentication/navigate'
+  post 'authentication/navigate'
 
-	get 'authentication/files'
-	post 'authentication/files'
+  get 'authentication/files'
+  post 'authentication/files'
 
-	get 'authentication/navigation_params'
-	post 'authentication/navigation_params'
+  get 'authentication/navigation_params'
+  post 'authentication/navigation_params'
 
-  
+
   get 'login1' => 'sessions#new'
 
   post 'sessions/create'
-  
+
   get 'logout' => 'sessions#destroy'
   delete 'logout' => 'sessions#destroy'
-  
+
   get 'error' => 'sessions#error'
 
 

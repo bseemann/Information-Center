@@ -1,8 +1,8 @@
 GIT
   remote: http://github.com/AIESEC-no-Brasil/expa-rb
-  revision: f30509af4ceaf9e20b9bdb7c979c3799e3494823
+  revision: 8f4954f2497f8b8f3015f35b56ee57e681513d07
   specs:
-    expa (0.1.0)
+    expa (0.1.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -74,7 +74,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dropbox-sdk (1.6.5)
       json
-    dropzonejs-rails (0.7.2)
+    dropzonejs-rails (0.7.3)
       rails (> 3.1)
     erubis (2.7.0)
     execjs (2.6.0)

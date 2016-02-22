@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RdStationControlTest < ActiveSupport::TestCase
+class RdControlTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

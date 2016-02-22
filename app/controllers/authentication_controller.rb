@@ -6,7 +6,7 @@ require 'net/http'
 require 'json'
 
 # @author Mauro Victor
-class AuthenticationController < ApplicationController
+class AuthenticationController < ExpaApplicationsController
 # Class that control the Authenticatiom system and its views
   
   layout 'login', :only => [:login]

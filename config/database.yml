@@ -1,5 +1,5 @@
 production:
-  adapter: <%= ENV["PRODUCTIONT_ADAPTER"] %>
+  adapter: postgresql
   encoding: <%= ENV["PRODUCTION_UNICODE"] %>
   database: <%= ENV["PRODUCTION_DATABASE"] %>
   username: <%= ENV["PRODUCTION_USERNAME"] %>
@@ -8,7 +8,7 @@ production:
   port: <%= ENV["PRODUCTION_POST"] %>
 
 development:
-  adapter: <%= ENV["DEVELOPMENT_ADAPTER"] %>
+  adapter: postgresql
   encoding: <%= ENV["DEVELOPMENT_UNICODE"] %>
   database: <%= ENV["DEVELOPMENT_DATABASE"] %>
   username: <%= ENV["DEVELOPMENT_USERNAME"] %>

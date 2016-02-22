@@ -22,4 +22,3 @@ Rails.application.config.assets.precompile += %w( popup.js )
 Rails.application.config.assets.precompile += %w( upload.js )
 Rails.application.config.assets.precompile += %w( move_file_modal.js )
 Rails.application.config.assets.precompile += %w( application.js )
-
