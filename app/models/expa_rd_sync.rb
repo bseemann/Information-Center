@@ -1,13 +1,11 @@
 class ExpaRdSync
   @rd_identifiers = {
-      :test => 'test',
-      :new_lead => '',
-      :update_lead => '',
-      :in_progress => '',
-      :match => '',
-      :realize => '',
-      :rejected => '',
-      :completed => ''
+      :test => 'test', #This is the identifier that should always be used during test phase
+      :expa => 'expa',
+      :open => 'open',
+      :in_progress => 'in_progress',
+      :accepted => 'accepted',
+      :approved => 'approved'
   }
 
   @rd_tags = {
@@ -88,13 +86,12 @@ class ExpaRdSync
   end
 
   def send_to_rd(person, applications, identifier, tag)
+    #TODO: colocar todos os campos do peoples e applications aqui no RD
     json_to_rd = {
         'token_rdstation' => ENV['RD_STATION_TOKEN'],
         'identificador' => identifier,
         'email' => person.xp_email,
         'nome' => person.xp_full_name.to_s + person.xp_last_name,
-        'cargo' => '',
-        'empresa' => '',
         'telefone' => person.xp_phone,
         'expa_id' => person.xp_id,
         'expa_url' => person.xp_url,
