@@ -10,18 +10,33 @@ class AuthenticationController < ApplicationController
 # Class that control the Authenticatiom system and its views
   
   layout 'login', :only => [:login]
+  
   include AuthenticationHelper #Use this module of helpers
   
   APP_KEY = '1g9mnjegs1l7j3m'
   APP_SECRET = 'glhnoqva181wmpa'
 
-  #def login
-
-  #end
+  
 
   def error
 
   end
+
+  def login 
+    if current_user
+      #request the expa's current user data
+      @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{session[:token]}"
+      resp = Net::HTTP.get_response(URI.parse(@request))
+      data = resp.body
+      @current_person = JSON.parse(data)
+      #Find the user on system
+      @user = User.find_by_email(params[:my_email])
+      redirect_to authentication_welcome_path
+    else
+      render 'login'
+    end
+  end
+
 
   # Takes the params for navigation 
   # @param content [String] path of the actual directory
@@ -37,16 +52,16 @@ class AuthenticationController < ApplicationController
     #Store the path into a global variable because this variable is necessary in others methods.
     #If it is being requested by Arquivos's link set the root as "/"
     if request.get?
-      $root = "/"
+      session[:dbox_path] = "/"
     else
-      $root = content
+      session[:dbox_path] = content
     end
     #Takes the current page sent through the form at the view's end
     #If it is being requested by Arquivos's link set the page as 1
     if request.get?
-      $page = 1
+      session[:page_number] = 1
     else
-      $page = page.to_i
+      session[:page_number] = page.to_i
     end
     # Create new folder if the user submited the form to do it
     unless new_folder_name == nil
@@ -54,13 +69,14 @@ class AuthenticationController < ApplicationController
     end
 
     #start the client from dropbox
+    #still local variable because ain't no room for this in sessions or cookies
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
     
     #Upload a file if the user submited the form to do it and added a file to the upload form
     unless upload == nil || files_array.include?("#{upload.original_filename}")
       #@dude = upload.original_filename
       file = open(upload.path())
-      response = $client.put_file("#{$root}/#{upload.original_filename}", file)
+      response = $client.put_file("#{session[:dbox_path]}/#{upload.original_filename}", file)
       #Save a record with the data about who uploaded the file
       record = Archive.new
       record.name = upload.original_filename
@@ -69,19 +85,19 @@ class AuthenticationController < ApplicationController
     end
     #Rename the File if the user submited the form to do it
     unless rename[0] == nil
-      $client.file_move("#{$root}/#{rename[1]}","#{$root}/#{rename[0]}")
+      $client.file_move("#{session[:dbox_path]}/#{rename[1]}","#{session[:dbox_path]}/#{rename[0]}")
     end
     #Create new folder if the user submited the form to do it
     unless @new_folder == nil
-      $client.file_create_folder("#{$root}/#{@new_folder}")
+      $client.file_create_folder("#{session[:dbox_path]}/#{@new_folder}")
     end
 
     #Move File if the user submited the form to do it
     unless move[0] == nil || move[1] == nil
       if move[1] == '..'
-        $client.file_move("#{move[0]}" , "#{$root.split('/')[1...-1].join}/#{move[0].split("/").last}" )
+        $client.file_move("#{move[0]}" , "#{session[:dbox_path].split('/')[1...-1].join}/#{move[0].split("/").last}" )
       else
-        $client.file_move("#{move[0]}","#{$root}/#{move[1].strip}/#{move[0].split("/").last}")
+        $client.file_move("#{move[0]}","#{session[:dbox_path]}/#{move[1].strip}/#{move[0].split("/").last}")
       end
     end
 
@@ -90,7 +106,7 @@ class AuthenticationController < ApplicationController
     end
 
     #Stores the metadata's content to iterate later and create an array for files and another for directories
-    $root_metadata = $client.metadata($root)['contents']
+    $root_metadata = $client.metadata(session[:dbox_path])['contents']
 
     #Creates the variables to store files and directories
     $files = Array.new
@@ -122,7 +138,10 @@ class AuthenticationController < ApplicationController
     
   end
   
-  
+  #def welcome
+    
+  #end
+
   def files
   end
   

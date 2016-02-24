@@ -42,7 +42,7 @@
               <div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
               <h1>Arquivos</h1>
               <span class="bottom-aligned-text">
-              <% folders = navigation($root) %> 
+              <% folders = navigation(session[:dbox_path]) %> 
               <%= folders.each do|p| %> 
                 <span>
                 <%= link_to(p.split("/").last, {id: "l-#{p}", :class => "path-link"}) %> >
@@ -112,7 +112,7 @@
               
 
               <% unless $show == []%>
-              <% ($show[($offset*($page-1))...($offset*($page-1))+1+$offset]).each_with_index do |d, index|  %>
+              <% ($show[($offset*(session[:page_number]-1))...($offset*(session[:page_number]-1))+1+$offset]).each_with_index do |d, index|  %>
               <% if $directories.include? d %>
               <tbody>
                 <tr>
@@ -147,8 +147,8 @@
                   <td> </td>
                   <td>
                     <%= form_tag :action => 'navigation_params' do%>
-                      <%= hidden_field_tag(:parent_id, $root) %>
-                      <%= hidden_field_tag(:page, $page) %>
+                      <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
+                      <%= hidden_field_tag(:page, session[:page_number]) %>
                       <%= hidden_field_tag(:to_remove, d) %>
                         <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar esta pasta?'}) do %>
                           <i class="material-icons">delete</i>
@@ -192,8 +192,8 @@
                   <!-- Delete-->
                   <td>
                     <%= form_tag :action => 'navigation_params' do%>
-                      <%= hidden_field_tag(:parent_id, $root) %>
-                      <%= hidden_field_tag(:page, $page) %>
+                      <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
+                      <%= hidden_field_tag(:page, session[:page_number]) %>
                       <%= hidden_field_tag(:to_remove, d[0]) %>
                         <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar este arquivo?'}) do %>
                           <i class="material-icons">delete</i>
@@ -218,7 +218,7 @@
           <!-- NAVIGATION THROUGH THE PAGES -->
               <% for i in 1..$pages do%>
               <%= form_tag :action => 'navigation_params' do%>
-              <%= hidden_field_tag(:parent_id, $root) %>
+              <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
               <%= hidden_field_tag(:page, i) %>
               <%= button_tag(i, :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--raised btn-pagination") %>
               <% end %>
@@ -260,8 +260,8 @@
       </div>
       <div class="mdl-card__actions">
         <%= form_tag({action: :navigation_params}, multipart: true) do %>
-          <%= hidden_field_tag(:parent_id, $root) %>
-          <%= hidden_field_tag(:page, $page) %>
+          <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
+          <%= hidden_field_tag(:page, session[:page_number]) %>
           <%= hidden_field_tag(:fil, $files) %>
           <%= hidden_field_tag(:owner, current_user.name) %>
           <div class="mdl-card__actions">
@@ -286,8 +286,8 @@
       
       <div class="mdl-card__actions">
         <%= form_tag({action: :navigation_params}, multipart: true) do %>
-          <%= hidden_field_tag(:parent_id, $root) %>
-          <%= hidden_field_tag "page", $page %>
+          <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
+          <%= hidden_field_tag "page", session[:page_number] %>
           <%= hidden_field_tag(:fil, $files) %>
           <%= hidden_field_tag(:owner, current_user.name) %>
           <%= hidden_field_tag "move_from" %>
@@ -314,8 +314,8 @@
       
       <div class="mdl-card__actions">
         <%= form_tag({action: :navigation_params}, multipart: true) do %>
-          <%= hidden_field_tag "parent_id", $root %>
-          <%= hidden_field_tag "page", $page %>
+          <%= hidden_field_tag "parent_id", session[:dbox_path] %>
+          <%= hidden_field_tag "page", session[:page_number] %>
           <%= hidden_field_tag "fil", $files %>
           <div class="mdl-card__actions">
           <%= text_field_tag "folder_name"  %>
