@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160222043414) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "archives", force: :cascade do |t|
     t.string   "name"
     t.string   "owner"
@@ -47,24 +44,41 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.integer  "xp_id"
     t.string   "xp_email"
     t.string   "xp_url"
+    t.date     "xp_birthday_date"
     t.string   "xp_full_name"
     t.string   "xp_last_name"
     t.string   "xp_profile_photo_url"
-    t.integer  "xp_home_lc"
-    t.integer  "xp_home_mc"
+    t.integer  "xp_home_lc_id"
+    t.integer  "xp_home_mc_id"
     t.integer  "xp_status"
+    t.boolean  "xp_interviewed"
     t.string   "xp_phone"
+    t.string   "xp_location"
     t.datetime "xp_created_at"
     t.datetime "xp_updated_at"
     t.string   "xp_middles_names"
+    t.string   "xp_introduction"
     t.string   "xp_aiesec_email"
+    t.boolean  "xp_payment"
+    t.integer  "xp_views"
+    t.integer  "xp_favourites_count"
     t.datetime "xp_contacted_at"
-    t.integer  "xp_contacted_by"
+    t.string   "xp_contacted_by"
     t.integer  "xp_gender"
     t.text     "xp_address_info"
     t.string   "xp_contact_info"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "xp_current_office_id"
+    t.string   "xp_cv_info"
+    t.string   "xp_profile_photos_urls"
+    t.string   "xp_cover_photo_urls"
+    t.string   "xp_profile"
+    t.string   "xp_academic_experience"
+    t.string   "xp_missing_profile_fields"
+    t.integer  "xp_nps_score"
+    t.string   "xp_permissions"
+    t.integer  "entity_exchange_lc_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "owners", force: :cascade do |t|

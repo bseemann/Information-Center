@@ -2627,3 +2627,24 @@ WHERE c.contype = 'f'
 ORDER BY c.conname
 [0m
   [1m[35mActiveRecord::SchemaMigration Load (208.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (207.5ms)[0m  [1mDROP DATABASE IF EXISTS "bazicon_development"[0m
+  [1m[35m (712.3ms)[0m  CREATE DATABASE "bazicon_development" ENCODING = 'unicode'
+  [1m[36m (502.2ms)[0m  [1mCREATE TABLE "archives" ("id" serial primary key, "name" character varying, "owner" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (300.0ms)[0m  CREATE TABLE "expa_applications" ("id" serial primary key, "xp_id" integer, "xp_url" character varying, "xp_status" integer, "xp_current_status" integer, "xp_created_at" timestamp, "xp_updated_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (244.3ms)[0m  [1mCREATE TABLE "expa_offices" ("id" serial primary key, "xp_id" integer, "xp_name" character varying, "xp_full_name" character varying, "xp_url" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (224.1ms)[0m  CREATE TABLE "expa_people" ("id" serial primary key, "xp_id" integer, "xp_email" character varying, "xp_url" character varying, "xp_birthday_date" date, "xp_full_name" character varying, "xp_last_name" character varying, "xp_profile_photo_url" character varying, "xp_home_lc_id" integer, "xp_home_mc_id" integer, "xp_status" integer, "xp_interviewed" boolean, "xp_phone" character varying, "xp_location" character varying, "xp_created_at" timestamp, "xp_updated_at" timestamp, "xp_middles_names" character varying, "xp_introduction" character varying, "xp_aiesec_email" character varying, "xp_payment" boolean, "xp_views" integer, "xp_favourites_count" integer, "xp_contacted_at" timestamp, "xp_contacted_by" character varying, "xp_gender" integer, "xp_address_info" text, "xp_contact_info" character varying, "xp_current_office_id" integer, "xp_cv_info" character varying, "xp_profile_photos_urls" character varying, "xp_cover_photo_urls" character varying, "xp_profile" character varying, "xp_academic_experience" character varying, "xp_missing_profile_fields" character varying, "xp_nps_score" integer, "xp_permissions" character varying, "entity_exchange_lc_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (344.3ms)[0m  [1mCREATE TABLE "owners" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "email" character varying) [0m
+  [1m[35m (277.4ms)[0m  CREATE TABLE "rd_controls" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (299.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "photo_url" character varying, "postion" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (323.1ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (276.0ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (348.8ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (476.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160222043414')[0m
+  [1m[35m (445.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151015162206')
+  [1m[36m (281.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151016022209')[0m
+  [1m[35m (415.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151016071431')
+  [1m[36m (275.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151201201145')[0m
+  [1m[35m (294.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160222043320')
+  [1m[36m (307.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160222043342')[0m
+  [1m[35m (351.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160222043401')
+  [1m[36mActiveRecord::SchemaMigration Load (840.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m

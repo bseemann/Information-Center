@@ -61,56 +61,37 @@ class ExpaRdSyncTest < Minitest::Test
     assert(ExpaPerson.all.count == 0, 'DB have registers. Make sure to clean DB before run tests, and it has ' + ExpaPerson.all.count.to_s)
     assert(ExpaApplication.all.count == 0, 'DB have registers. Make sure to clean DB before run tests, and it has ' + ExpaApplication.all.count.to_s)
 
-    params = {'per_page' => 25, 'filters[status]' => 'realized'}
+    params = {'per_page' => 100, 'filters[status]' => 'in progress'}
     people = EXPA::Peoples.list_by_param(params)
 
     for person in people do
       applications = EXPA::Peoples.get_applications(person.id)
-      break unless applications.empty?
+      break unless applications.empty? || applications.count == 0
     end
 
     xp_sync = ExpaRdSync.new
     xp_sync.update_db_peoples(person)
 
     assert(ExpaPerson.all.count == 1, 'DB should have only 1 register, but it has ' + ExpaPerson.all.count.to_s)
-    if applications.count > 0
-      assert(ExpaApplication.all.count == applications.count, 'DB should have ' + applications.count.to_s + ' registers , but it has ' + ExpaApplication.all.count.to_s)
-    else
-      assert(applications.count > 0, 'DB should have more than 0 (zero) registers , but it has ' + ExpaApplication.all.count.to_s)
-    end
+    assert(ExpaApplication.all.count == applications.count, 'DB should have ' + applications.count.to_s + ' registers , but it has ' + ExpaApplication.all.count.to_s)
   end
 
   def test_update_application_that_are_already_on_db
     assert(ExpaPerson.all.count == 0, 'DB have registers. Make sure to clean DB before run tests, and it has ' + ExpaPerson.all.count.to_s)
     assert(ExpaApplication.all.count == 0, 'DB have registers. Make sure to clean DB before run tests, and it has ' + ExpaApplication.all.count.to_s)
 
-    params = {'per_page' => 25, 'filters[status]' => 'realized'}
+    params = {'per_page' => 100, 'filters[status]' => 'in progress'}
     people = EXPA::Peoples.list_by_param(params)
 
     for person in people do
       applications = EXPA::Peoples.get_applications(person.id)
-      break unless applications.empty?
+      break unless applications.empty? || applications.count == 0
     end
 
     xp_sync = ExpaRdSync.new
     xp_sync.update_db_peoples(person)
 
     assert(ExpaPerson.all.count == 1, 'DB should have only 1 register, but it has ' + ExpaPerson.all.count.to_s)
-    if applications.count > 0
-      assert(ExpaApplication.all.count == applications.count, 'DB should have ' + applications.count.to_s + ' registers , but it has ' + ExpaApplication.all.count.to_s)
-    else
-      assert(applications.count > 0, 'DB should have more than 0 (zero) registers , but it has ' + ExpaApplication.all.count.to_s)
-    end
-
-    application = applications[0]
-    application.status = application.status + 'testxxtest'
-    same_application = ExpaApplication.find_by_xp_id(application.id)
-    xp_sync.update_db_applications(application)
-    if applications.count > 0
-      assert(ExpaApplication.all.count == applications.count, 'DB should have ' + applications.count.to_s + ' registers , but it has ' + ExpaApplication.all.count.to_s)
-      assert(same_application.xp_status == application.status, "DB didn' updated the register. Name should be " + application.status + " but it is " + same_application.status)
-    else
-      assert(applications.count > 0, 'DB should have more than 0 (zero) registers , but it has ' + ExpaApplication.all.count.to_s)
-    end
+    assert(ExpaApplication.all.count == applications.count, 'DB should have ' + applications.count.to_s + ' registers , but it has ' + ExpaApplication.all.count.to_s)
   end
 end
