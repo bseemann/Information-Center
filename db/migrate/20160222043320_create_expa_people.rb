@@ -11,7 +11,7 @@ class CreateExpaPeople < ActiveRecord::Migration
       t.column :xp_home_lc_id, :integer #done #foreigner_key (expa_office)
       t.column :xp_home_mc_id, :integer #done #foreigner_key (expa_office)
       t.column :xp_status, :integer #done #ENUM (from string to enum)
-      t.column :xp_interviewed, :boolean #done
+      t.column :xp_interviewed, :boolean, default: false #done
       t.column :xp_phone, :string #done
       t.column :xp_location, :string #done
       t.column :xp_created_at, :timestamp #done
@@ -19,7 +19,7 @@ class CreateExpaPeople < ActiveRecord::Migration
       t.column :xp_middles_names, :string #done
       t.column :xp_introduction, :string
       t.column :xp_aiesec_email, :string
-      t.column :xp_payment, :boolean #done
+      t.column :xp_payment, :boolean, default: false #done
       #t.column :xp_programmes, :string #TODO: struct
       t.column :xp_views, :integer #done
       t.column :xp_favourites_count, :integer #done

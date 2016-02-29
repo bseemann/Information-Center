@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   get 'error' => 'sessions#error'
 
+  get '/complete_cadastro', as: 'complete_cadastro', to: 'digital_transformation#index'
+  post '/complete_cadastro/update_person', as: 'update_person', to: 'digital_transformation#update_person'
+
 
 
 

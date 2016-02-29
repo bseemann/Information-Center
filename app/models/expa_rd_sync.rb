@@ -79,19 +79,25 @@ class ExpaRdSync
 
   def send_to_rd(person, application, identifier, tag)
     #TODO: colocar todos os campos do peoples e applications aqui no RD
-    json_to_rd = {
-        'token_rdstation' => ENV['RD_STATION_TOKEN'],
-        'identificador' => identifier,
-        'email' => person.xp_email,
-        'nome' => person.xp_full_name.to_s + person.xp_last_name,
-        'telefone' => person.xp_phone,
-        'expa_id' => person.xp_id,
-        'expa_url' => person.xp_url,
-    }
+    #TODO: colocar breaks conferindo todos os campos
+    json_to_rd = {}
+    json_to_rd['token_rdstation'] = ENV['RD_STATION_TOKEN']
+    json_to_rd['identificador'] = identifier
+    json_to_rd['email'] = person.xp_email
+    json_to_rd['nome'] = person.xp_full_name + person.xp_last_name
+    json_to_rd['expa_id'] = person.xp_id
+    json_to_rd['data_de_nascimento'] = person.xp_birthday_date unless person.xp_birthday_date.nil?
+    json_to_rd['entidade'] = person.xp_home_lc.xp_name unless person.xp_home_lc.nil?
+    json_to_rd['país'] = person.xp_home_mc.xp_name unless person.xp_home_mc.nil?
+    json_to_rd['status'] = person.xp_status unless person.xp_status.nil?
+    json_to_rd['entrevistado'] = person.xp_interviewed  unless person.xp_interviewed.nil?
+    json_to_rd['telefone'] = person.xp_phone unless person.xp_phone.nil?
+    json_to_rd['pagamento'] = person.xp_payment unless person.xp_payment.nil?
+    json_to_rd['nps'] = person.nps_score unless person.nps_score.nil?
+    json_to_rd['entidade OGX'] = person.entity_exchange_lc.xp_name unless person.entity_exchange_lc.nil?
     json_to_rd['tag'] = tag unless tag.nil?
     unless application.nil?
       json_to_rd.merge!{
-
       }
     end
     uri = URI(ENV['RD_STATION_TOKEN'])

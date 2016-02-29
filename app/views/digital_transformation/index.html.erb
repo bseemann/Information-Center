@@ -1,0 +1,703 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+
+  <!--[if lt IE 9]>
+  <style type="text/css" rel="stylesheet">
+    #conversion {
+      width: 400px;
+      min-height: 400px;
+      position: relative;
+      margin: 40px auto 40px auto;
+      float: none;
+      -webkit-border-radius:15px;
+      -moz-border-radius:15px;
+      -o-border-radius:15px;
+      border-radius:15px;
+    }
+  </style>
+  <![endif]-->
+
+  <!--[if lt IE 8]>
+  <style type="text/css" rel="stylesheet">
+  </style>
+  <![endif]-->
+
+  <style type="text/css" rel="stylesheet">
+
+    .social-login {
+      padding-bottom: 15px;
+    }
+    .social-conversion .error-container {
+      background-color: #FFDDDD;
+      margin: 0 0 24px 0;
+      padding: 16px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      border: 1px solid #c3c3c3;
+      text-align: center;
+    }
+    .social-conversion .error-container p {
+      font-size: 16px !important;
+      padding: 0 !important;
+    }
+    .btn {
+      background-color: #f8f8f8;
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+      background: -webkit-linear-gradient(#fff, #f0f0f0);
+      background: linear-gradient(#fff, #f0f0f0);
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      color: #5f5f5f;
+      cursor: pointer;
+      font-weight: bold;
+      text-shadow: 0 1px #fff;
+      white-space: nowrap;
+      background-color: #f0f0f0;
+      outline: none;
+      height: 42px;
+    }
+    .btn-facebook {
+      background-color: #435f9c;
+      background: -webkit-gradient(linear, left top, left bottom, from(#5676bc), to(#31497b));
+      background: -webkit-linear-gradient(#5676bc, #31497b);
+      background: linear-gradient(#5676bc, #31497b);
+      border: 1px solid #293e69;
+      border-top-color: #31497b;
+      color: #444;
+      text-shadow: 0 1px #fff;
+    }
+    .btn-google {
+      background-color: #ef6666;
+      background: -webkit-gradient(linear, left top, left bottom, from(#f87474), to(#e65858));
+      background: -webkit-linear-gradient(#f87474, #e65858);
+      background: linear-gradient(#f87474, #e65858);
+      border: 1px solid #e34242;
+      border-top-color: #e65858;
+      color: #444;
+      text-shadow: 0 1px #fff;
+    }
+    .btn-linkedin {
+      background-color: #007bb6;
+      background: -webkit-gradient(linear, left top, left bottom, from(#009cda), to(#0073b2));
+      background: -webkit-linear-gradient(#009cda, #0073b2);
+      background: linear-gradient(#009cda, #0073b2);
+      border: 1px solid #007bb6;
+      border-top-color: #009cda;
+      color: #444;
+      text-shadow: 0 1px #fff;
+    }
+    .btn-facebook em,
+    .btn-google em,
+    .btn-linkedin em {
+      -webkit-box-shadow: 1px 0 0 rgba(0,0,0,0.05);
+      -moz-box-shadow: 1px 0 0 rgba(0,0,0,0.05);
+      box-shadow: 1px 0 0 rgba(0,0,0,0.05);
+      height: 39px;
+      bottom: 0;
+      left: 0;
+      padding: 0;
+      position: absolute;
+      top: 0;
+    }
+    .btn-social {
+      display: block;
+      margin-bottom: 10px;
+      text-align: left;
+      width: 100%;
+    }
+    .btn-social em {
+      display: inline-block;
+      outline: none;
+      position: relative;
+      vertical-align: middle;
+    }
+    .btn-facebook em {
+      width: 41px;
+      height: 41px;
+      background: url("//s3-sa-east-1.amazonaws.com/rdstation-static/images/landing_page_templates/sprite-social-conversion.png") 0 0 no-repeat;
+      background-color: #5a78b9;
+      background-color: rgba(255,255,255,0.08);
+    }
+    .btn-google em {
+      width: 41px;
+      height: 41px;
+      background: url("//s3-sa-east-1.amazonaws.com/rdstation-static/images/landing_page_templates/sprite-social-conversion.png") -41px 0 no-repeat;
+      background-color: #e65858;
+      background-color: rgba(255,255,255,0.07);
+    }
+    .btn-linkedin em {
+      width: 41px;
+      height: 41px;
+      background: url("//s3-sa-east-1.amazonaws.com/rdstation-static/images/landing_page_templates/sprite-social-conversion.png") -82px 0 no-repeat;
+      background-color: #49b5e1;
+      background-color: rgba(255,255,255,0.08);
+    }
+    .btn-social span {
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      color: #fff;
+      text-shadow: 0 -1px rgba(0,0,0,0.25);
+      font-size: 14px;
+    }
+    /*SEPARADOR - OU */
+    .social-wrap-separator {
+      -webkit-transition: opacity 0.5s linear;
+      transition: opacity 0.5s linear;
+    }
+    .social-separator {
+      color: rgba(0,0,0,0.5);
+      font-weight: bold;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+      display: none;
+      display: block;
+    }
+    .social-separator p {
+      overflow: hidden;
+      font-size: 0.85em !important;
+      text-align: center;
+      padding-bottom: 0 !important
+    }
+    .social-separator p:before,
+    .social-separator p:after {
+      content: "";
+      display: inline-block;
+      height: 1px;
+      position: relative;
+      vertical-align: middle;
+      width: 38%;
+      background: rgba(0,0,0,0.2);
+      -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .social-separator p:before {
+      margin-right: 10px;
+    }
+    .social-separator p:after {
+      margin-left: 10px;
+    }
+    .titulo {
+      color: #f3f4f7;
+      display: block;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 480px) {
+      .btn-social span {
+        margin-left: 5px;
+        font-size: 12px;
+      }
+    }
+  </style>
+
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css" rel="stylesheet">
+  <style type="text/css" rel="stylesheet">
+    /* BASE */
+    #conversion header {
+      display: block;
+      margin: 0;
+      padding: 30px 30px 20px;
+    }
+    #conversion header h2 {
+      display: block;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+    #conversion header p {
+      display: block;
+      font-size: 16px;
+      line-height: 1.2em;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+    #conversion section {
+      display: block;
+      margin: 0;
+      padding: 30px 30px 20px;
+    }
+    #conversion .social-conversion {
+      padding-bottom: 0 !important;
+    }
+    #conversion .social-conversion + section {
+      padding-top: 20px !important;
+    }
+    #conversion-modal .modal-content section p,
+    #conversion section p {
+      display: block;
+      font-size: 12px;
+      line-height: 1em;
+      margin: 0;
+      padding: 0 0 20px 0;
+    }
+    #conversion-modal .modal-content section p.notice,
+    #conversion section p.notice {
+      font-size: 12px;
+    }
+
+    /* FIELDS */
+    #conversion section form div.field,
+    #conversion-modal .modal-content section form div.field {
+      margin: 0;
+      padding: 0 0 12px 0;
+    }
+    #conversion section form div.field div,
+    #conversion-modal .modal-content section form div.field div {
+      clear: both;
+      width: 100%;
+      margin: 0 0 5px 0;
+    }
+    #conversion-modal .modal-content section form input,
+    #conversion-modal .modal-content section form select,
+    #conversion-modal .modal-content section form textarea,
+    #conversion-modal .modal-content section form .select2-choice,
+    #conversion section form input,
+    #conversion section form select,
+    #conversion section form textarea,
+    #conversion section form .select2-choice {
+      display: inline-block;
+      background-color: #FFFFFF;
+      vertical-align: middle;
+      font-size: 18px;
+      line-height: 20px;
+      width: 100%;
+      height: 36px;
+      margin: 0;
+      padding: 5px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+    #conversion-modal .modal-content section form label,
+    #conversion section form label {
+      display: block;
+      min-height: 25px;
+      margin: 0;
+      padding: 0 0 5px 0;
+    }
+    #conversion-modal .modal-content section form select,
+    #conversion section form select {
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+    }
+    #conversion-modal .modal-content section form textarea,
+    #conversion section form textarea {
+      height: 104px;
+    }
+    #conversion-modal .modal-content section form input[type=radio],
+    #conversion-modal .modal-content section form input[type=checkbox],
+    #conversion section form input[type=radio],
+    #conversion section form input[type=checkbox] {
+      width: inherit;
+      height: inherit;
+      margin-top: 0 !important;
+      margin-right: 8px;
+    }
+    #conversion-modal .modal-content section form input[type=radio] + label,
+    #conversion-modal .modal-content section form input[type=radio] + label + label,
+    #conversion-modal .modal-content section form input[type=checkbox] + label,
+    #conversion section form input[type=radio] + label,
+    #conversion section form input[type=radio] + label + label,
+    #conversion section form input[type=checkbox] + label {
+      display: block;
+      width: auto;
+      padding: 5px 0 4px 28px;
+    }
+
+    /* SOCIAL PAY */
+    #conversion section div#pay-area {
+      padding: 16px 0 0 0;
+    }
+    #conversion section div#pay-area p {
+      font-size: 16px;
+    }
+
+    /* CALL TO ACTION */
+    #conversion-modal .modal-content section div.actions,
+    #conversion section div.actions {
+      text-align: center;
+      padding: 16px 0 8px 0;
+    }
+    #conversion-modal .modal-content section div.actions input.call_button,
+    #conversion-modal .modal-content section div.actions a.call_button,
+    #conversion section div.actions input.call_button,
+    #conversion section div.actions a.call_button {
+      display: block;
+      cursor: pointer;
+      height: auto;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+      word-break: break-word;
+      line-height: 1.2em;
+      white-space: normal;
+      vertical-align: middle;
+      margin: 2px auto 24px auto;
+      padding: 15px 20px 17px 20px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+    #conversion-modal .modal-content section div.actions img,
+    #conversion section div.actions img {
+      width: auto !important;
+    }
+
+    /* ERROR */
+    #conversion-modal .modal-content section form label.error,
+    #conversion section form label.error {
+      display: none !important;
+    }
+    #conversion-modal .modal-content section form input.error,,
+    #conversion-modal .modal-content section form textarea.error,
+    #conversion-modal .modal-content section form .select2-container.error .select2-choice,
+    #conversion-modal .modal-content section form select.error,
+    #conversion section form input.error,
+    #conversion section form textarea.error,
+    #conversion section form .select2-container.error .select2-choice,
+    #conversion section form select.error {
+      background-color: #FFDDDD;
+    }
+    #conversion-modal .modal-content section div#error-container,
+    #conversion section div#error-container {
+      display: none;
+      background-color: #FFDDDD;
+      margin: 0 0 24px 0;
+      padding: 16px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+    #conversion-modal .modal-content section div#error-container p,
+    #conversion section div#error-container p {
+      color: #463A33;
+      text-align: center;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* SELECT 2 */
+    .select2-container .select2-choice {
+      background: #FFFFFF;
+    }
+    .select2-container .select2-choice .select2-arrow {
+      background: none;
+      border: none;
+    }
+    .select2-container .select2-choice .select2-arrow b {
+      background-position: 0 5px;
+    }
+    .select2-drop-active {
+      border-color: #FFFFFF;
+      padding: 5px;
+      margin-top: -5px;
+      margin-left: 1px;
+    }
+
+    /* MODAL */
+    .overflow-hidden {
+      overflow: hidden;
+    }
+    .hidden {
+      display: none;
+    }
+    #conversion-modal {
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      overflow-x: hidden;
+      overflow-y: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+      z-index: 1;
+    }
+    #conversion-modal .modal-header {
+      text-align: right;
+      margin-top: -10px;
+    }
+    #conversion-modal .modal-header .close-modal {
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 1.8em;
+      color: #8A8A8A;
+    }
+    #conversion-modal .modal-content {
+      background: #FFFFFF;
+      color: #5c5c5c;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      -moz-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      box-shadow: 0 3px 9px rgba(0,0,0,.5);
+      position: relative;
+      width: auto;
+      margin: 10px;
+      padding: 30px;
+    }
+    #conversion-modal .modal-content header {
+      display: none;
+    }
+    #conversion-modal .modal-content section form input,
+    #conversion-modal .modal-content section form select,
+    #conversion-modal .modal-content section form textarea,
+    #conversion-modal .modal-content section form .select2-choice {
+      border: 1px solid #CCC;
+    }
+
+    /* MEDIA QUERY */
+    @media screen and (min-width: 760px) {
+      #conversion {
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+      }
+      #conversion header {
+        -webkit-border-radius: 15px 15px 0px 0px;
+        -moz-border-radius: 15px 15px 0px 0px;
+        border-radius: 15px 15px 0px 0px;
+      }
+      #conversion section {
+        -webkit-border-radius: 0px 0px 15px 15px;
+        -moz-border-radius: 0px 0px 15px 15px;
+        border-radius: 0px 0px 15px 15px;
+      }
+      #conversion-modal .modal-content {
+        width: 600px;
+        margin: 30px auto;
+      }
+    }
+  </style>
+
+
+  <style type="text/css" rel="stylesheet">
+
+
+    /* BASE */
+    *,
+    ::before,
+    ::after {
+      margin: 0;
+      padding: 0;
+      outline: none;
+      border: none;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    html {
+      -webkit-transition: ease-in;
+      -webkit-transition-duration: 1s;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: cover;
+      -moz-background-size: cover;
+      -webkit-background-size: cover;
+      -o-background-size: cover;
+      -khtml-background-size: cover;
+      -ms-background-size: cover;
+    }
+    html,
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      width: 100%;
+      height: 100%;
+    }
+    #form-container {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    header,
+    footer,
+    nav,
+    section,
+    article,
+    figure {
+      display: block;
+    }
+
+    /* SPECIFIC CONVERSION FORM */
+    #form-container #conversion header {
+      padding: 30px 30px 10px;
+    }
+    #form-container #conversion header h1 {
+      display: block;
+      padding: 0;
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      word-break: break-word;
+    }
+    #form-container #conversion header h2 {
+      font-weight: 200;
+      line-height: 1.2em;
+      text-align: center;
+      word-break: break-word;
+      margin-bottom: 0;
+    }
+    #form-container #conversion header figure {
+      text-align: center;
+    }
+    #form-container #conversion header figure img {
+      max-width: 100%;
+      height: auto;
+    }
+    #form-container #conversion section {
+      padding: 10px 30px 20px;
+    }
+
+    /* COLORS */
+    html {
+    }
+    #conversion {
+      background-color: #0a8ea0;
+    }
+    #conversion header h1 {
+      color: #ffffff;
+    }
+    #conversion header h2 {
+      color: #f3f4f7;
+    }
+    #conversion form input,
+    #conversion form select,
+    #conversion form .select2-choice,
+    #conversion form textarea {
+      border: 1px solid #007486;
+    }
+    #conversion form label {
+      color: #f3f4f7;
+    }
+    #conversion form #error-container {
+      border: 1px solid #007486;
+    }
+    #conversion div.actions input.call_button,
+    #conversion div.actions a.call_button {
+      background-color: #ffc845;
+      border: 1px solid #e5ae2b;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px #996200;
+    }
+    #conversion div.actions input.call_button:hover,
+    #conversion div.actions a.call_button:hover {
+      background-color:#ffe15e;
+    }
+    #conversion section div#pay-area p {
+      color: #f3f4f7;
+    }
+    #conversion section form p.notice {
+      color: #f3f4f7;
+    }
+    #conversion {
+      -webkit-box-shadow: 0 0 40px #;
+      -moz-box-shadow: 0 0 40px #;
+      box-shadow: 0 0 40px #;
+    }
+    #conversion div.actions input.call_button,
+    #conversion div.actions a.call_button {
+      -webkit-box-shadow: 2px 2px 4px #007486;
+      -moz-box-shadow: 2px 2px 4px #007486;
+      box-shadow: 2px 2px 4px #007486;
+    }
+    #conversion div.actions input.call_button:hover,
+    #conversion div.actions a.call_button:hover {
+      -webkit-box-shadow: 2px 2px 8px #00283a;
+      -moz-box-shadow: 2px 2px 8px #00283a;
+      box-shadow: 2px 2px 8px #00283a;
+    }
+
+    /* MEDIA QUERY */
+    @media screen and (min-width: 760px) {
+      #conversion {
+        width: 400px;
+        min-height: 400px;
+        position: relative;
+        margin: 40px auto 40px auto;
+        float: none;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -o-border-radius: 15px;
+        border-radius: 15px;
+      }
+    }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script id="analytics_tracking_code" type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29562174-2']);
+    if (document.domain.indexOf("aiesec.org.br") != -1) { _gaq.push(['_setDomainName', 'aiesec.org.br']); }
+    _gaq.push(['_setAllowLinker', true]);
+
+    _gaq.push(['_trackEvent', 'Forms', 'Viewed', 'RD Station Form viewed', 0, true]);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<div id="form-container">
+  <div id="conversion" class="wrapper">
+    <header>
+      <hgroup>
+        <h1>Oi , já decidiu que tipo de intercâmbio você gostaria de fazer?</h1>
+        <h2>Esqueceu? Acesse <a href="aiesec.org.br">aiesec.org.br</a> para relembrar</h2>
+      </hgroup>
+    </header>
+
+    <section>
+      <%= form_for :ExpaPerson do |f| %>
+          <div class="field">
+              <div class="titulo"> Programa de interesse</div>
+            <%= f.select 'programa_interesse', ['Talentos Globais', 'Cidadão Global'], :class => 'form-control required' %>
+          </div>
+          <div class="field">
+            <div class="titulo"> Como você conhece a AIESEC? </div>
+            <%= f.select 'como_conheceu', ['Youtube', 'Google', 'Facebook'], :class => 'form-control required' %>
+          </div>
+          <div class="actions">
+            <%= f.submit 'Enviar', :class => 'call_button' %>
+          </div>
+          <p class="notice">Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</p>
+          <p class="notice">Seu registro será enviado para o escritório da AIESEC mais próximo.</p>
+      <% end %>
+
+
+    </section>
+
+  </div>
+</div>
