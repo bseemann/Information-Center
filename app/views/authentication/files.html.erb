@@ -52,10 +52,9 @@
                 <%= link_to("javascript:fadeT()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right") do %>
                    <i class="material-icons mdl-color-text--white">file_upload</i>
                 <% end%>
-              
                     <div class="mdl-tooltip" for="btnadd1">
-              Adicionar arquivo
-              </div>
+                      Adicionar arquivo
+                    </div>
               </li>
               <!-- end -->
 
@@ -96,17 +95,13 @@
                 </tr>
               </thead>
               <!-- SHOW THE DIRECTORIES AND FILES FROM DROPBOX -->
-              
-
-              <% unless $show == []%>
-              <% ($show[($offset*(session[:page_number]-1))...($offset*(session[:page_number]-1))+1+$offset]).each_with_index do |d, index|  %>
-              <% if $directories.include? d %>
-              <tbody>
-                <tr>
+              <%= @archives.each_with_index do |a,index| %>
+                <tbody>
+                <% if a.dir == true%>
+                  <tr>
 
                   <%= form_tag :action => 'navigation_params', :method => 'POST' do%>
-                      <%= hidden_field_tag(:parent_id, d) %>
-                      <%= hidden_field_tag(:page, 1) %>
+                      <%= hidden_field_tag(:parent_id, a.path) %>
                     <td>
                       <%= button_tag( :type => 'submit', :class => "file-button file-name") do %>
                         <i class="material-icons" role="presentation">folder</i>
@@ -114,125 +109,82 @@
                     </td>
 
                     <td> <%= button_tag( :type => 'submit', :class => "file-button file-name", :id => "#{index}") do %>
-                      <%= d.split("/").last %>
+                      <%= a.name %>
                     <% end %> </td>
 
                     <div class="mdl-tooltip" for=<%= index %> >
-                      <%= d.split("/").last %>
+                      <%= a.name %>
                     </div>
 
-                    <% end %>
+                  <% end %>
 
+                  <td> <%= a.created_at%> </td><td> <%= a.updated_at %> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
 
-
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
                   <td>
-                    <%= form_tag :action => 'navigation_params' do%>
-                      <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
-                      <%= hidden_field_tag(:page, session[:page_number]) %>
-                      <%= hidden_field_tag(:to_remove, d) %>
+                    <%= form_tag :action => 'remove' do%>
+                      <%= hidden_field_tag(:to_remove, a.name) %>
                         <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar esta pasta?'}) do %>
                           <i class="material-icons">delete</i>
                         <% end %>
                     <% end %>
-                    
                   </td>
                   <td> </td>
                 </tr>
 
-                <% else %>
-
+              <% else %>
                 <tr>
                   <td> </td>
                   <td>
                   <!-- File name -->
-                  <p  class="file-name" id= <%= index%> > <%= take_name(d[0]) %> </p> </td> 
+                  <p  class="file-name" id= <%= index%> > <%= a.name %> </p> </td> 
                     <div class="mdl-tooltip" for=<%= index %> >
-                      <%=  take_name(d[0]) %>
+                      <%= a.name %>
                     </div>
 
-                  <td> <%= d[1] %> </td>  <!-- Creation date -->
-                  <td> <%= d[2] %> </td>  <!-- Modification date-->
-                  <td> <%= d[3] %> </td>  <!-- Size -->
-                  <td> <%= d[4] %> </td>  <!-- Type -->
-                  <!-- Owner -->
-                  <td> <p  class="owner-name" id= <%= d[0]%> > <%= @owner = Archive.where(name: d[0].split('/').last).pluck(:owner)[0]%> </p> </td> <!-- Owner -->
-                    <div class="mdl-tooltip" for=<%= d[0]%>  >
-                      <%= Archive.where(name: d[0].split('/').last).pluck(:owner)[0] %>
+                  <td> <%= a.created_at %> </td>  <!-- Creation date -->
+                  <td> <%= a.updated_at %> </td>  <!-- Modification date-->
+                  <td> <%# d[3] %> </td>  <!-- Size -->
+                  <td> <%# d[4] %> </td>  <!-- Type -->
+
+
+                  <td> <p  class="owner-name" id= <%= a.name%> > <%= @owner = a.owner %> </p> </td> <!-- Owner -->
+                    <div class="mdl-tooltip" for=<%= a.name%>  >
+                      <%= a.owner %>
                     </div>
                   <!-- Tamanho -->
-                  <td><%= $client.revisions(d[0]).length %></td>
+                  <td> </td>
                   <!-- Download-->
                   <td>
-                    <% file = $client.get_file(d[0])%>
                     
-                    <%= link_to(download(d[0]), :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
+                    
+                    <%= link_to(download(a.path.to_s+a.name.to_s), :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
                       <i class="material-icons">get_app</i>
                     <% end%>
                   </td>
-                  <!-- Delete-->
+
                   <td>
                     <%= form_tag :action => 'navigation_params' do%>
-                      <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
-                      <%= hidden_field_tag(:page, session[:page_number]) %>
-                      <%= hidden_field_tag(:to_remove, d[0]) %>
+                      <%= hidden_field_tag(:to_remove, a.name) %>
                         <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar este arquivo?'}) do %>
                           <i class="material-icons">delete</i>
                         <% end %>
                     <% end %>
-
                   </td>
-                  
+
                   <td> 
-                    <%= link_to("javascript:movePopUp()", :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :name => "move_link",:id => d[0]) do %>
+                    <%= link_to("javascript:movePopUp()", :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :name => "move_link",:id => a.name) do %>
                       <i class="material-icons">sort</i>
                     <% end %> 
                   </td>
-
+              <% end %>
+              <%end %>
               </tbody>
-              <% end %>
-              <% end %>
+              </table>
 
-            </table>
           </div>
-          <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-          <!-- NAVIGATION THROUGH THE PAGES -->
-              <% for i in 1..$pages do%>
-              <%= form_tag :action => 'navigation_params' do%>
-              <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
-              <%= hidden_field_tag(:page, i) %>
-              <%= button_tag(i, :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--raised btn-pagination") %>
-              <% end %>
-              <% end %>
-          <!-- END -->
-            
-          </div>
-          <% end %>
+          <%= will_paginate @archives %>
         </div>
-      </div>
-
-    
-      <!-- NOT IN USE -->
-      <div class="mtlsr-lightbox">
-         <form action="/file-upload" class="dropzone" id="dropzone">
-         </form>
-      </div>
-      <!-- END -->
-
-
-      <div id="dynamic">
-        
-      </div>
-      
-      
-  
-    
+      </div>    
   </body>
 
   <div class="mdl-card" id="modal">
@@ -278,7 +230,7 @@
           <%= hidden_field_tag "move_from" %>
           
           <div class="mdl-card__actions">
-          <%= select_tag "move_to", options_for_select($directories, $directories[0]) %>
+          <%= select_tag "move_to", options_for_select(Archive.where(dir: true), Archive.where(dir: true).first)%>
           </div>
           <div class="mdl-card__actions">
           <%= submit_tag "mover" %>

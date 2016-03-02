@@ -18,6 +18,13 @@ Rails.application.routes.draw do
 
   post 'upload' => 'authentication#upload'
 
+  get 'refresh' => 'authentication#refresh'
+
+  post 'rename' => 'authentication#refresh'
+
+  post 'move' => 'authentication#move'
+
+  post 'remove' => 'authentication#remove'
   
   get 'login1' => 'sessions#new'
 
