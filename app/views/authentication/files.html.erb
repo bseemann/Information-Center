@@ -41,22 +41,9 @@
             <div id="arquivo">
               <div class="mdl-cell mdl-cell--12-col mdl-color--indigo-900 mdl-color-text--grey-100">
               <h1>Arquivos</h1>
-              <span class="bottom-aligned-text">
-              <% folders = navigation(session[:dbox_path]) %> 
-              <%= folders.each do|p| %> 
-                <span>
-                <%= link_to(p.split("/").last, {id: "l-#{p}", :class => "path-link"}) %> >
-                </span>
-                <span class="bottom-aligned-text">
-                <%= form_tag :action => 'navigation_params', :method => 'POST', :id => "form-#{p}" do%>
-                        <%= hidden_field_tag(:parent_id, p) %>
-                        <%= hidden_field_tag(:page, 1) %>
-                <% end %>
-                </span>
-                              
-              <% end %>
-              </span>
-          <% for $i in 1..$pages do %>
+              <span><%= session[:dbox_path]%></span> 
+
+          
               <nav class="mdl-navigation">
                 <ul>
                   <li>
@@ -90,7 +77,7 @@
               <!-- END -->
                   </ul>
               </nav>
-          <% end %>
+          
             </div>
 
               <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
@@ -259,10 +246,8 @@
         <strong>Suba um arquivo</strong> 
       </div>
       <div class="mdl-card__actions">
-        <%= form_tag({action: :navigation_params}, multipart: true) do %>
+        <%= form_tag({action: :upload}, multipart: true) do %>
           <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
-          <%= hidden_field_tag(:page, session[:page_number]) %>
-          <%= hidden_field_tag(:fil, $files) %>
           <%= hidden_field_tag(:owner, current_user.name) %>
           <div class="mdl-card__actions">
           <%= file_field_tag 'file' %> <br/>
@@ -288,7 +273,7 @@
         <%= form_tag({action: :navigation_params}, multipart: true) do %>
           <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
           <%= hidden_field_tag "page", session[:page_number] %>
-          <%= hidden_field_tag(:fil, $files) %>
+          <%# hidden_field_tag(:fil, $files) %>
           <%= hidden_field_tag(:owner, current_user.name) %>
           <%= hidden_field_tag "move_from" %>
           
@@ -316,7 +301,7 @@
         <%= form_tag({action: :navigation_params}, multipart: true) do %>
           <%= hidden_field_tag "parent_id", session[:dbox_path] %>
           <%= hidden_field_tag "page", session[:page_number] %>
-          <%= hidden_field_tag "fil", $files %>
+          <%# hidden_field_tag "fil", $files %>
           <div class="mdl-card__actions">
           <%= text_field_tag "folder_name"  %>
           </div>

@@ -81,6 +81,7 @@ class AuthenticationController < ApplicationController
       record = Archive.new
       record.name = upload.original_filename
       record.owner = current_user.name
+      record.local_commitment = current_user.local_commitment
       record.save
     end
     #Rename the File if the user submited the form to do it
@@ -137,7 +138,35 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
     
   end
+
+  def refresh
+    root_metadata = $client.metadata(session[:dbox_path])['contents']
+    root_metadata.each do |file|
+      unless Archive.find_by_name(file['path'].split('/').last)
+        record = Archive.new
+        record.name = $root_metadata['path'].split('/').last
+        record.path = $root_metadata['path']
+        record.save
+      end
+    end
+  end
   
+  def upload(upload=params[:file], path=params[:parent_id])
+    unless upload == nil || Archive.find_by_name("#{upload.original_filename}")
+      file = open(upload.path())
+      response = $client.put_file("#{session[:dbox_path]}/#{upload.original_filename}", file)
+      #Save a record with the data about who uploaded the file
+      record = Archive.new
+      record.name = upload.original_filename
+      record.owner = current_user.name
+      record.local_commitment = current_user.local_commitment
+      record.path = path
+      record.save
+    end
+    
+    redirect_to authentication_files_path
+  end
+
   #def welcome
     
   #end

@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 	post 'authentication/navigate'
 
 	get 'authentication/files'
-	post 'authentication/files'
 
 	get 'authentication/navigation_params'
 	post 'authentication/navigation_params'
+
+  post 'upload' => 'authentication#upload'
 
   
   get 'login1' => 'sessions#new'

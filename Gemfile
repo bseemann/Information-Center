@@ -38,7 +38,6 @@ gem 'rails_12factor', group: :production
 gem 'dropbox-sdk'
 gem 'unirest'
 gem 'materialize-sass'
-gem 'will_paginate'
 
 gem 'material_design_rails'
 gem 'haml', '~> 4.0', '>= 4.0.7'
@@ -46,6 +45,8 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'material_design_lite-rails'
 
 gem 'dropzonejs-rails'
+
+gem 'will_paginate', '~> 3.1'
 
 
 # Use ActiveModel has_secure_password

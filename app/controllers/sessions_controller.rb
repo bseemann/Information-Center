@@ -37,16 +37,17 @@ class SessionsController < ApplicationController
         if @user
           reset_session
           session[:user_id] = @user.id
+          @user.local_commitment = @current_person['current_office']['id']
           User.cache_photo(session[:user_id])
           redirect_to authentication_welcome_path
           #@user.photo_url = @current_person["person"]["profile_photo_url"]
         else
           @user = User.new(:name => @current_person['person']['full_name'], :email => @email )
           @user.photo_url = @current_person['person']["profile_photo_url"]
-          @user.postion = @current_person['current_position']['position_name']
+          @user.postion = @current_person['current_position']['team']['team_type']
+          @user.local_commitment = @current_person['current_office']['id']
           @user.save
           @user_name = @user.name
-          session[:user_id] = @user.id
           User.cache_photo(session[:user_id])
           redirect_to  authentication_welcome_path
         end
