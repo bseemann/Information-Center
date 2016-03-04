@@ -101,13 +101,13 @@
                   <tr>
 
                   <%= form_tag :action => 'navigation_params', :method => 'POST' do%>
-                      <%= hidden_field_tag(:parent_id, a.path) %>
+                      <%= hidden_field_tag(:parent_id, a.path+a.name+"/") %>
                     <td>
                       <%= button_tag( :type => 'submit', :class => "file-button file-name") do %>
                         <i class="material-icons" role="presentation">folder</i>
                       <% end %>
                     </td>
-
+                    <!-- Button for enter a folder -->
                     <td> <%= button_tag( :type => 'submit', :class => "file-button file-name", :id => "#{index}") do %>
                       <%= a.name %>
                     <% end %> </td>
@@ -118,7 +118,7 @@
 
                   <% end %>
 
-                  <td> <%= a.created_at%> </td><td> <%= a.updated_at %> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
+                  <td> <%= a.created_at %> </td><td> <%= a.updated_at[0..9] %> </td><td> </td><td> </td><td> </td><td> </td><td> </td>
 
                   <td>
                     <%= form_tag :action => 'remove' do%>
@@ -141,8 +141,8 @@
                       <%= a.name %>
                     </div>
 
-                  <td> <%= a.created_at %> </td>  <!-- Creation date -->
-                  <td> <%= a.updated_at %> </td>  <!-- Modification date-->
+                  <td> <%= localize(a.created_at, :format => :short)%> </td>  <!-- Creation date -->
+                  <td> <%= a.updated_at[0..9]%> </td>  <!-- Modification date-->
                   <td> <%# d[3] %> </td>  <!-- Size -->
                   <td> <%# d[4] %> </td>  <!-- Type -->
 
@@ -157,15 +157,15 @@
                   <td>
                     
                     
-                    <%= link_to(download(a.path.to_s+a.name.to_s), :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
+                    <%= link_to($client.media(a.path.to_s+a.name.to_s)['url'], :class => "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored")  do %>
                       <i class="material-icons">get_app</i>
                     <% end%>
                   </td>
 
                   <td>
-                    <%= form_tag :action => 'navigation_params' do%>
+                    <%= form_tag :action => 'remove' do%>
                       <%= hidden_field_tag(:to_remove, a.name) %>
-                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored", :data => {:confirm => 'Tem certeza que deseja deletar este arquivo?'}) do %>
+                        <%= button_tag( :type => 'submit', :class => "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
                           <i class="material-icons">delete</i>
                         <% end %>
                     <% end %>
@@ -177,12 +177,11 @@
                     <% end %> 
                   </td>
               <% end %>
-              <%end %>
+              <% end %>
               </tbody>
               </table>
-
+          <!-- Pages' links -->
           </div>
-          <%= will_paginate @archives %>
         </div>
       </div>    
   </body>
@@ -222,15 +221,13 @@
       </div>
       
       <div class="mdl-card__actions">
-        <%= form_tag({action: :navigation_params}, multipart: true) do %>
+        <%= form_tag({action: :move}) do %>
           <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
           <%= hidden_field_tag "page", session[:page_number] %>
           <%# hidden_field_tag(:fil, $files) %>
-          <%= hidden_field_tag(:owner, current_user.name) %>
-          <%= hidden_field_tag "move_from" %>
-          
+          <%= hidden_field_tag(:owner, current_user.name) %>   
           <div class="mdl-card__actions">
-          <%= select_tag "move_to", options_for_select(Archive.where(dir: true), Archive.where(dir: true).first)%>
+          <%= select_tag "move_to", options_for_select(Archive.where(dir: true).pluck(:name), Archive.where(dir: true).first)%>
           </div>
           <div class="mdl-card__actions">
           <%= submit_tag "mover" %>

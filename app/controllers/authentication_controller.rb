@@ -20,8 +20,8 @@ class AuthenticationController < ApplicationController
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
   end
 
-  def files()
-    @archives = Archive.where({ show: true, path: session[:dbox_path] }).paginate(:page => params[:page], :per_page => 7)
+  def files
+    @archives = Archive.where({ show: true, path: session[:dbox_path] })
   end
 
   def login 
@@ -124,14 +124,14 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
   end
 
-  def move(move= [params[:move_from], params[:move_to]])
+  def move(move=params[:move_to])
     unless move[0] == nil || move[1] == nil
       if move[1] == '..'
         $client.file_move("#{move[0]}" , "#{session[:dbox_path].split('/')[1...-1].join}/#{move[0].split("/").last}" )
       else
-        $client.file_move("#{move[0]}","#{session[:dbox_path]}/#{move[1].strip}/#{move[0].split("/").last}")
-        record = Archive.find_by_name(move[0].split('/').last)
-        record.path = move[1]
+        $client.file_move(session[:dbox_path],"#{session[:dbox_path]}/#{move.strip}/")
+        record = Archive.find_by_name(move.split('/').last)
+        record.path = move
         record.save
       end
     end
@@ -139,7 +139,7 @@ class AuthenticationController < ApplicationController
   end
 
   def remove(remove=params[:to_remove])
-    record = Archive.find_by_name(d[0].split('/').last)
+    record = Archive.find_by_name(remove)
     record.show = false
     record.save
     redirect_to authentication_files_path
