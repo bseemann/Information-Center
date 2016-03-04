@@ -26,14 +26,14 @@ class DigitalTransformationController < ApplicationController
         params['form_data']['entidade_proxima'] == '-' ||
         params['form_data']['email'].empty? ||
         params['landing'].empty? ||
-        person.nil?
+        !ExpaPerson.exists?(person)
         redirect_to '/complete_cadastro?error=true&landing=' + params['landing'] #TODO: POG
         return
 
     else
       person.how_got_to_know_aiesec = @how_got_to_know_aiesec.find_index(params['form_data']['como_conheceu']) - 1
       office = ExpaOffice.find_by_xp_name(params['form_data']['entidade_proxima'])
-      if office.nil?
+      unless ExpaOffice.exists?(office)
         office = ExpaOffice.new
         office.xp_name=params['form_data']['entidade_proxima']
         office.save
