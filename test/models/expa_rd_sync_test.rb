@@ -17,6 +17,11 @@ class ExpaRdSyncTest < Minitest::Test
     end
   end
 
+  def test_asd
+    xp_sync = ExpaRdSync.new
+    xp_sync.list_open
+  end
+
   def test_insert_new_register_at_db
     assert(ExpaPerson.all.count == 0, 'DB have registers. Make sure to clean DB before run tests, and it has ' + ExpaPerson.all.count.to_s)
 

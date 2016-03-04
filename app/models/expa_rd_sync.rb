@@ -68,7 +68,7 @@ class ExpaRdSync
 
     setup_expa_api
     applications = EXPA::Peoples.get_applications(person.xp_id)
-    if applications.nil?
+    unless applications.empty?
       applications.each do |application|
         update_db_applications(application)
       end
@@ -114,8 +114,9 @@ class ExpaRdSync
       json_to_rd.merge!{
       }
     end
-    uri = URI(ENV['RD_STATION_TOKEN'])
+    uri = URI(ENV['RD_STATION_URL'])
     https = Net::HTTP.new(uri.host,uri.port)
+    https.use_ssl = true
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
     req.body = json_to_rd.to_json
     begin

@@ -2927,3 +2927,104 @@ ActionController::RoutingError (No route matches [GET] "/javascripts/js/main.js"
   Rendered /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
   Rendered /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (163.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (982.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+DEPRECATION WARNING: You did not specify a value for the configuration option `active_support.test_order`. In Rails 5, the default value of this option will change from `:sorted` to `:random`.
+To disable this warning and keep the current behavior, you can add the following line to your `config/environments/test.rb`:
+
+  Rails.application.configure do
+    config.active_support.test_order = :sorted
+  end
+
+Alternatively, you can opt into the future behavior by setting this option to `:random`. (called from test_order at /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.2.4/lib/active_support/test_case.rb:42)
+  [1m[35mExpaPerson Load (895.7ms)[0m  SELECT  "expa_people".* FROM "expa_people" WHERE "expa_people"."xp_id" = $1 LIMIT 1  [["xp_id", 902065]]
+  [1m[36m (770.5ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (874.4ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 988 LIMIT 1
+  [1m[36mSQL (714.0ms)[0m  [1mINSERT INTO "expa_offices" ("xp_full_name", "xp_name", "xp_id", "xp_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["xp_full_name", "AIESEC in FLORIANOPOLIS"], ["xp_name", "FLORIANOPOLIS"], ["xp_id", 988], ["xp_url", "https://gis.aiesec.org/v1/offices/988"], ["created_at", "2016-03-04 17:56:02.306503"], ["updated_at", "2016-03-04 17:56:02.306503"]]
+  [1m[35m (714.8ms)[0m  COMMIT
+  [1m[36m (825.7ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (795.7ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1
+  [1m[36mSQL (745.1ms)[0m  [1mINSERT INTO "expa_offices" ("xp_full_name", "xp_name", "xp_id", "xp_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["xp_full_name", "AIESEC in BRAZIL"], ["xp_name", "BRAZIL"], ["xp_id", 1606], ["xp_url", "https://gis.aiesec.org/v1/offices/1606"], ["created_at", "2016-03-04 17:56:10.501742"], ["updated_at", "2016-03-04 17:56:10.501742"]]
+  [1m[35m (859.9ms)[0m  COMMIT
+  [1m[36m (2163.3ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaPerson Exists (3027.8ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_id" = 902065 LIMIT 1
+  [1m[36mExpaPerson Exists (902.1ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_email" = 'deisypiaia@gmail.com' LIMIT 1[0m
+  [1m[35mExpaPerson Exists (864.9ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_aiesec_email" IS NULL LIMIT 1
+  [1m[36mSQL (860.8ms)[0m  [1mINSERT INTO "expa_people" ("xp_id", "xp_email", "xp_url", "xp_full_name", "xp_last_name", "xp_profile_photo_url", "xp_home_lc_id", "xp_home_mc_id", "xp_status", "xp_location", "xp_created_at", "xp_updated_at", "xp_nps_score", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["xp_id", 902065], ["xp_email", "deisypiaia@gmail.com"], ["xp_url", "https://gis.aiesec.org/v1/people/902065"], ["xp_full_name", "Deisy Piaia"], ["xp_last_name", "Piaia"], ["xp_profile_photo_url", "https://gis-production.s3.amazonaws.com/profile_photos/medium/1457114059.jpg"], ["xp_home_lc_id", 1], ["xp_home_mc_id", 2], ["xp_status", 0], ["xp_location", ""], ["xp_created_at", "2016-03-04 17:52:29.000000"], ["xp_updated_at", "2016-03-04 17:54:25.000000"], ["xp_nps_score", 0], ["created_at", "2016-03-04 17:56:44.140427"], ["updated_at", "2016-03-04 17:56:44.140427"]]
+  [1m[35m (829.2ms)[0m  COMMIT
+  [1m[36mExpaPerson Load (913.0ms)[0m  [1mSELECT  "expa_people".* FROM "expa_people" WHERE "expa_people"."xp_id" = $1 LIMIT 1[0m  [["xp_id", 902064]]
+  [1m[36mActiveRecord::SchemaMigration Load (742.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+DEPRECATION WARNING: You did not specify a value for the configuration option `active_support.test_order`. In Rails 5, the default value of this option will change from `:sorted` to `:random`.
+To disable this warning and keep the current behavior, you can add the following line to your `config/environments/test.rb`:
+
+  Rails.application.configure do
+    config.active_support.test_order = :sorted
+  end
+
+Alternatively, you can opt into the future behavior by setting this option to `:random`. (called from test_order at /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.2.4/lib/active_support/test_case.rb:42)
+  [1m[35mExpaPerson Load (815.4ms)[0m  SELECT  "expa_people".* FROM "expa_people" WHERE "expa_people"."xp_id" = $1 LIMIT 1  [["xp_id", 902071]]
+  [1m[36m (852.5ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (715.0ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 233 LIMIT 1
+  [1m[36mSQL (708.1ms)[0m  [1mINSERT INTO "expa_offices" ("xp_full_name", "xp_name", "xp_id", "xp_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["xp_full_name", "AIESEC in Insper"], ["xp_name", "Insper"], ["xp_id", 233], ["xp_url", "https://gis.aiesec.org/v1/offices/233"], ["created_at", "2016-03-04 18:03:22.443241"], ["updated_at", "2016-03-04 18:03:22.443241"]]
+  [1m[35m (855.0ms)[0m  COMMIT
+  [1m[36m (887.3ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (775.2ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1
+  [1m[36m (759.9ms)[0m  [1mROLLBACK[0m
+  [1m[35m (738.1ms)[0m  BEGIN
+  [1m[36mExpaPerson Exists (697.1ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_id" = 902071 LIMIT 1[0m
+  [1m[35mExpaPerson Exists (842.0ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_email" = 'danielemuths@hotmail.com' LIMIT 1
+  [1m[36mExpaPerson Exists (859.4ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_aiesec_email" IS NULL LIMIT 1[0m
+  [1m[35m (830.8ms)[0m  ROLLBACK
+  [1m[36m (18.3ms)[0m  [1mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Load (967.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+DEPRECATION WARNING: You did not specify a value for the configuration option `active_support.test_order`. In Rails 5, the default value of this option will change from `:sorted` to `:random`.
+To disable this warning and keep the current behavior, you can add the following line to your `config/environments/test.rb`:
+
+  Rails.application.configure do
+    config.active_support.test_order = :sorted
+  end
+
+Alternatively, you can opt into the future behavior by setting this option to `:random`. (called from test_order at /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.2.4/lib/active_support/test_case.rb:42)
+  [1m[35mExpaPerson Load (731.0ms)[0m  SELECT  "expa_people".* FROM "expa_people" WHERE "expa_people"."xp_id" = $1 LIMIT 1  [["xp_id", 902080]]
+  [1m[36m (849.2ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (726.0ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 541 LIMIT 1
+  [1m[36mSQL (832.4ms)[0m  [1mINSERT INTO "expa_offices" ("xp_full_name", "xp_name", "xp_id", "xp_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["xp_full_name", "AIESEC in Recife"], ["xp_name", "Recife"], ["xp_id", 541], ["xp_url", "https://gis.aiesec.org/v1/offices/541"], ["created_at", "2016-03-04 18:06:05.262455"], ["updated_at", "2016-03-04 18:06:05.262455"]]
+  [1m[35m (708.9ms)[0m  COMMIT
+  [1m[36m (730.6ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (784.4ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1
+  [1m[36m (799.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (818.2ms)[0m  BEGIN
+  [1m[36mExpaPerson Exists (755.7ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_id" = 902080 LIMIT 1[0m
+  [1m[35mExpaPerson Exists (906.4ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_email" = 'luizguilhermechada@yahoo.com.br' LIMIT 1
+  [1m[36mExpaOffice Exists (682.1ms)[0m  [1mSELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1[0m
+  [1m[35mSQL (809.6ms)[0m  INSERT INTO "expa_people" ("xp_id", "xp_email", "xp_url", "xp_full_name", "xp_last_name", "xp_profile_photo_url", "xp_home_lc_id", "xp_status", "xp_location", "xp_created_at", "xp_updated_at", "xp_nps_score", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"  [["xp_id", 902080], ["xp_email", "luizguilhermechada@yahoo.com.br"], ["xp_url", "https://gis.aiesec.org/v1/people/902080"], ["xp_full_name", "Luiz Guilherme Chada"], ["xp_last_name", "Chada"], ["xp_profile_photo_url", "https://gis-img.s3.amazonaws.com/missing_profile_l.svg"], ["xp_home_lc_id", 4], ["xp_status", 0], ["xp_location", ""], ["xp_created_at", "2016-03-04 18:04:54.000000"], ["xp_updated_at", "2016-03-04 18:04:54.000000"], ["xp_nps_score", 0], ["created_at", "2016-03-04 18:06:13.232020"], ["updated_at", "2016-03-04 18:06:13.232020"]]
+  [1m[36m (697.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (722.5ms)[0m  BEGIN
+  [1m[36mExpaPerson Exists (860.0ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE ("expa_people"."xp_id" = 902080 AND "expa_people"."id" != 2) LIMIT 1[0m
+  [1m[35mExpaPerson Exists (864.9ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE ("expa_people"."xp_email" = 'luizguilhermechada@yahoo.com.br' AND "expa_people"."id" != 2) LIMIT 1
+  [1m[36mExpaOffice Exists (777.0ms)[0m  [1mSELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1[0m
+  [1m[35m (1009.3ms)[0m  COMMIT
+  [1m[36mExpaPerson Load (890.7ms)[0m  [1mSELECT  "expa_people".* FROM "expa_people" WHERE "expa_people"."xp_id" = $1 LIMIT 1[0m  [["xp_id", 902071]]
+  [1m[35m (883.6ms)[0m  BEGIN
+  [1m[36mExpaOffice Exists (822.4ms)[0m  [1mSELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 233 LIMIT 1[0m
+  [1m[35m (936.5ms)[0m  ROLLBACK
+  [1m[36m (681.6ms)[0m  [1mBEGIN[0m
+  [1m[35mExpaOffice Exists (801.3ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1
+  [1m[36m (767.7ms)[0m  [1mROLLBACK[0m
+  [1m[35m (994.3ms)[0m  BEGIN
+  [1m[36mExpaPerson Exists (682.3ms)[0m  [1mSELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_id" = 902071 LIMIT 1[0m
+  [1m[35mExpaPerson Exists (774.5ms)[0m  SELECT  1 AS one FROM "expa_people" WHERE "expa_people"."xp_email" = 'danielemuths@hotmail.com' LIMIT 1
+  [1m[36mExpaOffice Exists (683.7ms)[0m  [1mSELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 233 LIMIT 1[0m
+  [1m[35mExpaOffice Exists (830.9ms)[0m  SELECT  1 AS one FROM "expa_offices" WHERE "expa_offices"."xp_id" = 1606 LIMIT 1
+  [1m[36mSQL (868.8ms)[0m  [1mINSERT INTO "expa_people" ("xp_id", "xp_email", "xp_url", "xp_full_name", "xp_last_name", "xp_profile_photo_url", "xp_status", "xp_location", "xp_created_at", "xp_updated_at", "xp_nps_score", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["xp_id", 902071], ["xp_email", "danielemuths@hotmail.com"], ["xp_url", "https://gis.aiesec.org/v1/people/902071"], ["xp_full_name", "Daniele Santos"], ["xp_last_name", "Santos"], ["xp_profile_photo_url", "https://gis-img.s3.amazonaws.com/missing_profile_d.svg"], ["xp_status", 0], ["xp_location", ""], ["xp_created_at", "2016-03-04 17:57:06.000000"], ["xp_updated_at", "2016-03-04 17:57:06.000000"], ["xp_nps_score", 0], ["created_at", "2016-03-04 18:09:09.014286"], ["updated_at", "2016-03-04 18:09:09.014286"]]
+  [1m[35m (867.6ms)[0m  COMMIT
+  [1m[36mExpaPerson Load (908.9ms)[0m  [1mSELECT "expa_people".* FROM "expa_people"[0m
+  [1m[35m (681.8ms)[0m  BEGIN
+  [1m[36mSQL (837.4ms)[0m  [1mDELETE FROM "expa_people" WHERE "expa_people"."id" = $1[0m  [["id", 1]]
+  [1m[35m (818.2ms)[0m  COMMIT
+  [1m[36m (683.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (779.0ms)[0m  DELETE FROM "expa_people" WHERE "expa_people"."id" = $1  [["id", 2]]
+  [1m[36m (1025.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (854.1ms)[0m  BEGIN
+  [1m[36mSQL (736.3ms)[0m  [1mDELETE FROM "expa_people" WHERE "expa_people"."id" = $1[0m  [["id", 3]]
+  [1m[35m (696.9ms)[0m  COMMIT
+  [1m[36mExpaApplication Load (705.2ms)[0m  [1mSELECT "expa_applications".* FROM "expa_applications"[0m

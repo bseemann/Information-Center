@@ -16,8 +16,6 @@ class ExpaPerson < ActiveRecord::Base
             uniqueness: true
   validates :xp_email,
             uniqueness: true
-  validates :xp_aiesec_email,
-            uniqueness: true
 
   after_validation :downcase_email
 
