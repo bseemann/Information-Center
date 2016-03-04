@@ -155,6 +155,7 @@ class DigitalTransformationController < ApplicationController
                                'Stand',
                                'Instagram',
                                'Campanha de indicação',
+                               'Youth Speak',
                                'Outros']
   end
 end

@@ -87,7 +87,7 @@ class ExpaPerson < ActiveRecord::Base
       xp = EXPA.setup()
       #TODO: EXPA.setup.auth(logged_email, logged_password)
       xp.auth(ENV['ROBOZINHO_EMAIL'], ENV['ROBOZINHO_PASSWORD'])
-      self.applications = EXPA::Peoples.list_applications_by_id()
+      self.applications = EXPA::Peoples.list_applications_by_id(self.xp_id)
     else
       self.applications
     end

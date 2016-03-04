@@ -8,9 +8,9 @@ class ExpaOffice < ActiveRecord::Base
             uniqueness: true
 
   def update_from_expa(data)
-    self.xp_full_name = data.full_name
-    self.xp_name = data.name
-    self.xp_id = data.id
-    self.xp_url = data.url.to_s
+    self.xp_full_name = data.full_name unless data.full_name.nil?
+    self.xp_name = data.name unless data.name.nil?
+    self.xp_id = data.id unless data.id.nil?
+    self.xp_url = data.url.to_s unless data.url.nil?
   end
 end
