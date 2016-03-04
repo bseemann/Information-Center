@@ -44,6 +44,12 @@ class CreateExpaPeople < ActiveRecord::Migration
       t.column :xp_permissions, :string #json #done
 
       t.column :entity_exchange_lc_id, :integer #done #foreigner_key (office)
+      t.column :interested_program, :integer #enum
+      t.column :interested_sub_product, :integer #enum
+      t.column :how_got_to_know_aiesec, :integer #enum
+
+      t.column :customized_fields, :text #json
+      t.column :control_podio, :text #json
 
       t.timestamps null: false
     end

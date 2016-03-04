@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160222043414) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "archives", force: :cascade do |t|
     t.string   "name"
     t.string   "owner"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.integer  "xp_home_lc_id"
     t.integer  "xp_home_mc_id"
     t.integer  "xp_status"
-    t.boolean  "xp_interviewed"
+    t.boolean  "xp_interviewed",            default: false
     t.string   "xp_phone"
     t.string   "xp_location"
     t.datetime "xp_created_at"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.string   "xp_middles_names"
     t.string   "xp_introduction"
     t.string   "xp_aiesec_email"
-    t.boolean  "xp_payment"
+    t.boolean  "xp_payment",                default: false
     t.integer  "xp_views"
     t.integer  "xp_favourites_count"
     t.datetime "xp_contacted_at"
@@ -77,8 +80,13 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.integer  "xp_nps_score"
     t.string   "xp_permissions"
     t.integer  "entity_exchange_lc_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "interested_program"
+    t.integer  "interested_sub_product"
+    t.integer  "how_got_to_know_aiesec"
+    t.text     "customized_fields"
+    t.text     "control_podio"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "owners", force: :cascade do |t|

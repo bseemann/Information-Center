@@ -22,5 +22,9 @@
 set :output, 'log/cron.log'
 
 every 1.minute do
-  runner 'EXPASync.new'
+  runner 'EXPASync.new.list_open'
+end
+
+every 2.day do
+  runner 'EXPASync.new.list_people'
 end

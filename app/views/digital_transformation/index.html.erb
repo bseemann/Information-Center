@@ -674,29 +674,39 @@
   <div id="conversion" class="wrapper">
     <header>
       <hgroup>
-        <h1>Oi , já decidiu que tipo de intercâmbio você gostaria de fazer?</h1>
+        <h1>Oi, já decidiu que tipo de intercâmbio você gostaria de fazer?</h1>
         <h2>Esqueceu? Acesse <a href="aiesec.org.br">aiesec.org.br</a> para relembrar</h2>
       </hgroup>
     </header>
 
     <section>
-      <%= form_for :ExpaPerson do |f| %>
+      <%= form_for(:form_data ,:url => { :action => 'update' }) do |f| %>
+          <% if params.has_key?('error') %>
+            <p>Preencha corretamente todos os campos. Verifique seu e-mail.</p>
+          <% end %>
           <div class="field">
-              <div class="titulo"> Programa de interesse</div>
-            <%= f.select 'programa_interesse', ['Talentos Globais', 'Cidadão Global'], :class => 'form-control required' %>
+            <label for="email">E-mail*</label>
+            <%= f.text_field 'email', :class => 'form-control required' %>
           </div>
           <div class="field">
-            <div class="titulo"> Como você conhece a AIESEC? </div>
-            <%= f.select 'como_conheceu', ['Youtube', 'Google', 'Facebook'], :class => 'form-control required' %>
+            <label for="programa_interesse">Programa de interesse*</label>
+            <%= f.select 'programa_interesse', @interested_program_sub_product, :class => 'form-control required' %>
+          </div>
+          <div class="field">
+            <label for="como_conheceu">Como você conheceu a AIESEC?*</label>
+            <%= f.select 'como_conheceu', @how_got_to_know_aiesec, :class => 'form-control required' %>
+          </div>
+          <div class="field">
+            <label for="entidade_proxima">Confirme a entidade da AIESEC mais próxima de você*</label>
+            <%= f.select 'entidade_proxima', @entities, :class => 'form-control required' %>
           </div>
           <div class="actions">
             <%= f.submit 'Enviar', :class => 'call_button' %>
           </div>
           <p class="notice">Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</p>
           <p class="notice">Seu registro será enviado para o escritório da AIESEC mais próximo.</p>
-      <% end %>
-
-
+          <input type="hidden" name="landing" value="<%= params['landing'] %>" />
+    <% end %>
     </section>
 
   </div>

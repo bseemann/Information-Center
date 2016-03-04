@@ -1,6 +1,9 @@
 class ExpaPerson < ActiveRecord::Base
-  enum status: ['open', 'in progress', 'realized']
-  enum gender: ['Male', 'Female']
+  enum status: [:open, :in_progress, :accepted, :approved, :realized, :completed]
+  enum gender: [:male, :female]
+  enum interested_program: [:global_volunteer, :global_talents]
+  enum interested_sub_product: [:global_volunteer_arab, :global_volunteer_east_europe, :global_volunteer_africa, :global_volunteer_asia, :global_volunteer_latam]
+  enum how_got_to_know_aiesec: [:facebook, :friends_family, :google, :posters, :tv, :twitter, :academic_center, :junior_company, :flyer, :disclouse_in_classroom, :global_village, :stand, :instagram, :indication_campaign, :youth_speak, :other]
 
   #attr_accessor :applications
 
@@ -17,9 +20,6 @@ class ExpaPerson < ActiveRecord::Base
             uniqueness: true
 
   after_validation :downcase_email
-
-  @enum_gender = {:male => 'Male',
-                  :female => 'Female'}
 
   def update_from_expa(data)
     unless data.home_lc.nil?
@@ -112,31 +112,4 @@ class ExpaPerson < ActiveRecord::Base
     #TODO method
   end
 
-  def xp_gender_to_s
-    @enum_gender[:male] if self.male?
-    @enum_gender[:female] if self.female?
-  end
-
-  def xp_gender_from_s(s)
-    case s
-      when @enum_gender[:male] then self.male!
-      when @enum_gender[:female] then self.female!
-    end
-  end
-
-  def male!
-    self.xp_gender = 1
-  end
-
-  def female!
-    self.xp_gender = 2
-  end
-
-  def male?
-    self.xp_gender == 1
-  end
-
-  def female?
-    self.xp_gender == 2
-  end
 end

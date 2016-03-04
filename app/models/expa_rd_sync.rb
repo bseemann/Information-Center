@@ -1,17 +1,24 @@
 class ExpaRdSync
+  attr_accessor :rd_identifiers
+  attr_accessor :rd_tags
+
+
   def initialize
-    @rd_identifiers = {
+    self.rd_identifiers = {
         :test => 'test', #This is the identifier that should always be used during test phase
         :expa => 'expa',
         :open => 'open',
-        :enable => 'enable',
+        :landing_1 => 'form-video-suporte-aiesec',
+        :landing_2 => '15-dicas-para-planejar-sua-viagem-sem-imprevistos',
         :in_progress => 'in_progress',
+        :rejected => 'rejected',
         :accepted => 'accepted',
         :approved => 'approved'
     }
 
-    @rd_tags = {
-
+    self.rd_tags = {
+        :gip => 'GIP',
+        :gcdp => 'GCDP'
     }
   end
 
@@ -33,7 +40,7 @@ class ExpaRdSync
     time = Time.now - 10*60 # 10 minutes windows
     people = EXPA::Peoples.list_everyone_created_after(time)
     people.each do |person|
-      send_to_rd(person, nil, @rd_identifiers[:open], nil)
+      send_to_rd(person, nil, rd_identifiers[:open], nil)
     end
   end
 
@@ -45,9 +52,9 @@ class ExpaRdSync
     else
       if person.xp_status != xp_person.status
         case xp_person.status
-          when 'in progress' then send_to_rd(xp_person, nil, @rd_identifiers[:in_progress], nil)
-          when 'accepted' then send_to_rd(xp_person, nil, @rd_identifiers[:accepted], nil)
-          when 'approved' then send_to_rd(xp_person, nil, @rd_identifiers[:approved], nil)
+          when 'in progress' then send_to_rd(xp_person, nil, rd_identifiers[:in_progress], nil)
+          when 'accepted' then send_to_rd(xp_person, nil, rd_identifiers[:accepted], nil)
+          when 'approved' then send_to_rd(xp_person, nil, rd_identifiers[:approved], nil)
           else nil
         end
       end
@@ -63,7 +70,7 @@ class ExpaRdSync
         update_db_applications(application)
       end
     end
-    send_to_rd(person, nil, @rd_identifiers[:test], nil) #TODO enviar também applications (somente quanto tá accepted, match, relized, complted)
+    send_to_rd(person, nil, rd_identifiers[:test], nil) #TODO enviar também applications (somente quanto tá accepted, match, relized, complted)
   end
 
   def update_db_applications(xp_application)
@@ -83,9 +90,9 @@ class ExpaRdSync
     json_to_rd = {}
     json_to_rd['token_rdstation'] = ENV['RD_STATION_TOKEN']
     json_to_rd['identificador'] = identifier
-    json_to_rd['email'] = person.xp_email
-    json_to_rd['nome'] = person.xp_full_name + person.xp_last_name
-    json_to_rd['expa_id'] = person.xp_id
+    json_to_rd['email'] = person.xp_email unless person.xp_email.nil?
+    json_to_rd['nome'] = person.xp_full_name + person.xp_last_name unless person.xp_full_name.nil? || person.xp_last_name.nil?
+    json_to_rd['expa_id'] = person.xp_id unless person.xp_id.nil?
     json_to_rd['data_de_nascimento'] = person.xp_birthday_date unless person.xp_birthday_date.nil?
     json_to_rd['entidade'] = person.xp_home_lc.xp_name unless person.xp_home_lc.nil?
     json_to_rd['país'] = person.xp_home_mc.xp_name unless person.xp_home_mc.nil?
@@ -93,8 +100,11 @@ class ExpaRdSync
     json_to_rd['entrevistado'] = person.xp_interviewed  unless person.xp_interviewed.nil?
     json_to_rd['telefone'] = person.xp_phone unless person.xp_phone.nil?
     json_to_rd['pagamento'] = person.xp_payment unless person.xp_payment.nil?
-    json_to_rd['nps'] = person.nps_score unless person.nps_score.nil?
-    json_to_rd['entidade OGX'] = person.entity_exchange_lc.xp_name unless person.entity_exchange_lc.nil?
+    json_to_rd['nps'] = person.xp_nps_score unless person.xp_nps_score.nil?
+    json_to_rd['entidade_OGX'] = person.entity_exchange_lc.xp_name unless person.entity_exchange_lc.nil?
+    json_to_rd['como_conheceu_AIESEC'] = person.how_got_to_know_aiesec unless person.how_got_to_know_aiesec.nil?
+    json_to_rd['programa_interesse'] = person.interested_program unless person.interested_program.nil?
+    json_to_rd['sub_produto_interesse'] = person.interested_sub_product unless person.interested_sub_product.nil?
     json_to_rd['tag'] = tag unless tag.nil?
     unless application.nil?
       json_to_rd.merge!{
