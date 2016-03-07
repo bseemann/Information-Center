@@ -74,8 +74,9 @@
             </div>
           </div>-->
           <span> 
-            <%= form_tag do %> 
-
+            <%= form_tag(controller: :authentication, action: :files) do %> 
+              <%= label_tag "Pesquisa"%>
+              <%= text_field_tag "search" %>
 
             <% end %>
           </span>

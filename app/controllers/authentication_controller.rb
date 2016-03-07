@@ -20,8 +20,18 @@ class AuthenticationController < ApplicationController
     $client = DropboxClient.new("siZpe-o98xoAAAAAAAAAl9HJEsrdDz0EPFebqJHr-oZryn0TL2aNhcGVSQvEjm71")
   end
 
-  def files
-    @archives = Archive.where({show: true, path: session[:dbox_path]})
+  def files(search=params[:search])
+    if search == nil 
+      @archives = Archive.where({show: true, path: session[:dbox_path]})
+    else
+      files_list = Archive.all.pluck(:name)
+      search_list = Array.new
+      files_list.each do |f|
+        search_list << f.to_s if f.to_s.include?(search)
+      end
+      @archives = Archive.where({show: true, path: session[:dbox_path], name: search_list})
+    end
+
   end
 
   def login 
@@ -136,10 +146,6 @@ class AuthenticationController < ApplicationController
     record.show = false
     record.save
     redirect_to authentication_files_path
-  end
-
-  def search(word)
-
   end
   
   helper_method :current_user
