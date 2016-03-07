@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
   # @param email [String] receives the params from the form on login
   # @param senha [String] receives the params from the form on login
   def create(email = params[:my_email], senha = params[:my_password])
-    
     url = 'https://auth.aiesec.org/users/sign_in' #Store the url for authenticate at EXPA
     agent = Mechanize.new  #Initialize an instance to start to work with mechanize
     page = agent.get(url)
@@ -42,12 +41,13 @@ class SessionsController < ApplicationController
           redirect_to authentication_welcome_path
           #@user.photo_url = @current_person["person"]["profile_photo_url"]
         else
-          @user = User.new(:name => @current_person['person']['full_name'], :email => @email )
+          @user = User.new(:name => @current_person['person']['full_name'], :email => email )
           @user.photo_url = @current_person['person']["profile_photo_url"]
           @user.postion = @current_person['current_position']['team']['team_type']
           @user.local_commitment = @current_person['current_office']['id']
           @user.save
           @user_name = @user.name
+          session[:user_id] = @user.id
           User.cache_photo(session[:user_id])
           redirect_to  authentication_welcome_path
         end

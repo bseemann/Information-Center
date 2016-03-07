@@ -21,7 +21,7 @@ class AuthenticationController < ApplicationController
   end
 
   def files
-    @archives = Archive.where({ show: true, path: session[:dbox_path] })
+    @archives = Archive.where({show: true, path: session[:dbox_path]})
   end
 
   def login 
@@ -124,17 +124,10 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
   end
 
-  def move(move=params[:move_to])
-    unless move[0] == nil || move[1] == nil
-      if move[1] == '..'
-        $client.file_move("#{move[0]}" , "#{session[:dbox_path].split('/')[1...-1].join}/#{move[0].split("/").last}" )
-      else
-        $client.file_move(session[:dbox_path],"#{session[:dbox_path]}/#{move.strip}/")
-        record = Archive.find_by_name(move.split('/').last)
-        record.path = move
-        record.save
-      end
-    end
+  def move(move=[params[:move_to], params[:move_from]])
+    record = Archive.find_by_name(move[1])
+    record.path = (session[:dbox_path] == "/") ? "/#{move[0]}/" : "#{session[:dbox_path]}/#{move[0]}/"
+    record.save
     redirect_to authentication_files_path
   end
 
@@ -145,9 +138,9 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
   end
 
+  def search(word)
 
-
-  
+  end
   
   helper_method :current_user
   
