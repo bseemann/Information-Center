@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   
   get 'error' => 'sessions#error'
 
+  post 'back' => 'authentication#go_back'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

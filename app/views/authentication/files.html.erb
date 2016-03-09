@@ -61,12 +61,12 @@
               <!-- CREATE FOLDER -->  
                     <li>
                 
-                  
+                  <!--
                   <%# text_field_tag (:folder_name) %>
-                  <%= button_to( "javascript:createFolderPopUp()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2"  ) do %>
+                  <%# button_to( "javascript:createFolderPopUp()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2"  ) do %>
                     <i class="material-icons mdl-color-text--white" > folder </i>
-                  <% end %>
-
+                  <%# end %>
+                  -->
                 
 
               <div class="mdl-tooltip" for="btnadd2">
@@ -83,7 +83,7 @@
             <table class="mdl-data-table mdl-js-data-table mdl-color--grey-100">
               <thead>
                 <tr>
-                  <th></th>
+                  <th><%= link_to '<i class="mdl-color-text material-icons" role="presentation">arrow_back</i>'.html_safe, back_path, method: :post %></th>
                   <th>Nome</th>
                   <th>Data de Criação</th>
                   <th>Data de modificação</th>
@@ -91,6 +91,10 @@
                   <th>Tipo</th>
                   <th>Autor</th>
                   <th>Versões</th>
+                  <th>Download</th>
+                  <th>Deletar</th>
+                  <th>Mover</th>
+
 
                 </tr>
               </thead>

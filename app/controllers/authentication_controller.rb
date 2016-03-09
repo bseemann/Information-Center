@@ -159,6 +159,11 @@ class AuthenticationController < ApplicationController
   def require_user
     redirect_to '/login' unless $current_user
   end
+
+  def go_back
+    session[:dbox_path] = session[:dbox_path].split("/")[0...-1].join("/") + "/"
+    redirect_to authentication_files_path
+  end
   
   
 end
