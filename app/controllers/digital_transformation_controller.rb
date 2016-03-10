@@ -47,11 +47,11 @@ class DigitalTransformationController < ApplicationController
       person.interested_sub_product = 'global_volunteer_asia' if params['form_data']['programa_interesse'] == 'Cidadão Global Ásia'
       person.interested_sub_product = 'global_volunteer_latam' if params['form_data']['programa_interesse'] == 'Cidadão Global América Latina'
       if person.control_podio.nil?
-        person.control_podio = {'podio' => false}.to_s
+        person.control_podio = {'podio' => false}.to_json.to_s
       else
-        podio = person.control_podio.to_json
+        podio = JSON.parse(person.control_podio)
         podio['podio'] = false
-        person = podio.to_s
+        person = podio.to_json.to_s
       end
       person.save
 
@@ -151,7 +151,7 @@ class DigitalTransformationController < ApplicationController
                                'Empresa Júnior',
                                'Flyer',
                                'Divulgação em sala de aula',
-                               'Global Vilalge',
+                               'Global Village',
                                'Stand',
                                'Instagram',
                                'Campanha de indicação',

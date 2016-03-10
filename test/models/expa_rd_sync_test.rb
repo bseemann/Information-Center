@@ -19,7 +19,7 @@ class ExpaRdSyncTest < Minitest::Test
 
   def test_asd
     xp_sync = ExpaRdSync.new
-    xp_sync.list_open
+    xp_sync.update_podio
   end
 
   def test_insert_new_register_at_db

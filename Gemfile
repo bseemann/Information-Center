@@ -45,6 +45,12 @@ gem 'bcrypt'
 # gem 'unicorn'
 gem 'passenger'
 
+#Para atualizar o Robozinho do Podio
+gem 'podio'
+gem 'oauth2'
+gem 'faraday', '~> 0.8.10'
+
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 # Access an IRB console on exception pages or by using <%= console %> in views

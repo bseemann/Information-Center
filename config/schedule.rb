@@ -25,6 +25,11 @@ every 1.minute do
   runner 'ExpaRdSync.new.list_open'
 end
 
-every 2.day do
+every 10.minutes do
+  runner 'ExpaRdSync.new.update_podio'
+end
+
+every 2.days do
   runner 'ExpaRdSync.new.list_people'
 end
+

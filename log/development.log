@@ -3028,3 +3028,29 @@ Alternatively, you can opt into the future behavior by setting this option to `:
   [1m[36mSQL (736.3ms)[0m  [1mDELETE FROM "expa_people" WHERE "expa_people"."id" = $1[0m  [["id", 3]]
   [1m[35m (696.9ms)[0m  COMMIT
   [1m[36mExpaApplication Load (705.2ms)[0m  [1mSELECT "expa_applications".* FROM "expa_applications"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (806.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+DEPRECATION WARNING: You did not specify a value for the configuration option `active_support.test_order`. In Rails 5, the default value of this option will change from `:sorted` to `:random`.
+To disable this warning and keep the current behavior, you can add the following line to your `config/environments/test.rb`:
+
+  Rails.application.configure do
+    config.active_support.test_order = :sorted
+  end
+
+Alternatively, you can opt into the future behavior by setting this option to `:random`. (called from test_order at /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.2.4/lib/active_support/test_case.rb:42)
+  [1m[35m (721.1ms)[0m  SELECT COUNT(*) FROM "expa_people" WHERE ("expa_people"."control_podio" IS NOT NULL)
+  [1m[36m (857.8ms)[0m  [1mSELECT COUNT(*) FROM "expa_people"[0m
+  [1m[35mExpaPerson Load (31.8ms)[0m  SELECT "expa_people".* FROM "expa_people"
+  [1m[36mActiveRecord::SchemaMigration Load (712.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+DEPRECATION WARNING: You did not specify a value for the configuration option `active_support.test_order`. In Rails 5, the default value of this option will change from `:sorted` to `:random`.
+To disable this warning and keep the current behavior, you can add the following line to your `config/environments/test.rb`:
+
+  Rails.application.configure do
+    config.active_support.test_order = :sorted
+  end
+
+Alternatively, you can opt into the future behavior by setting this option to `:random`. (called from test_order at /Users/ivsucram/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.2.4/lib/active_support/test_case.rb:42)
+  [1m[35m (806.0ms)[0m  SELECT COUNT(*) FROM "expa_people"
+  [1m[36m (845.2ms)[0m  [1mSELECT COUNT(*) FROM "expa_offices"[0m
+  [1m[35m (757.0ms)[0m  SELECT COUNT(*) FROM "expa_offices"
+  [1m[36mExpaOffice Load (1361.1ms)[0m  [1mSELECT "expa_offices".* FROM "expa_offices"[0m
+  [1m[35mExpaOffice Load (809.9ms)[0m  SELECT  "expa_offices".* FROM "expa_offices"  ORDER BY "expa_offices"."id" ASC LIMIT 1

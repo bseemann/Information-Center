@@ -42,9 +42,111 @@ class ExpaRdSync
     time = Time.now - 10*60 # 10 minutes windows
     people = EXPA::Peoples.list_everyone_created_after(time)
     people.each do |xp_person|
-      person = update_db_peoples(xp_person)
-      send_to_rd(person, nil, self.rd_identifiers[:open], nil)
+      person = ExpaPerson.find_by_xp_id(xp_person.id)
+      if ExpaPerson.exists?(person)
+        update_db_peoples(xp_person)
+      else
+        person = update_db_peoples(xp_person)
+        send_to_rd(person, nil, self.rd_identifiers[:open], nil)
+      end
     end
+  end
+
+  def update_podio
+    Podio.setup(:api_key => ENV['PODIO_API_KEY'], :api_secret => ENV['PODIO_API_SECRET'])
+    Podio.client.authenticate_with_credentials(ENV['PODIO_USERNAME'], ENV['PODIO_PASSWORD'])
+
+    entities = {'ABC' => 340039892,
+                 'ARACAJU' => 306817550,
+                 'BALNEARIO CAMBORIU' => 306820346,
+                 'BAURU' => 306825623,
+                 'BELÉM' => 362628356,
+                 'BELO HORIZONTE' => 306810804,
+                 'BLUMENAU' => 362628487,
+                 'BRASÍLIA' => 306812018,
+                 'CAMPINA GRANDE' => 362628658,
+                 'CAMPO GRANDE' => 306825376,
+                 'CHAPECO' => 306822862,
+                 'CUIABA' => 336444212,
+                 'CURITIBA' => 306813088,
+                 'ESPM' => 306812929,
+                 'FLORIANÓPOLIS' => 306811093,
+                 'FORTALEZA' => 306810283,
+                 'FRANCA' => 306818036,
+                 'GOIANIA' => 306817719,
+                 'GV' => 306822659,
+                 'INSPER' => 306817462,
+                 'ITAJUBA' => 306822498,
+                 'JOAO PESSOA' => 306824849,
+                 'JOINVILLE' => 306818877,
+                 'LIMEIRA' => 335437867,
+                 'LONDRINA' => 3751474,
+                 'MACEIO' => 362629308,
+                 'MANAUS' => 306817297,
+                 'MARILIA' => 362629660,
+                 'MARINGÁ' => 306811055,
+                 'NATAL' => 362629783,
+                 'PASSO FUNDO' => 362630011,
+                 'PELOTAS' => 306820564,
+                 'POCOS DE CALDAS' => 362630236,
+                 'PORTO ALEGRE' => 306810913,
+                 'PUC' => 306817495,
+                 'RECIFE' => 306810735,
+                 'RIBEIRAO PRETO' => 306820937,
+                 'RIO DE JANEIRO' => 306811119,
+                 'SALVADOR' => 306811026,
+                 'SANTA CRUZ DO SUL' => 306825793,
+                 'SANTA MARIA' => 306813159,
+                 'SANTAREM' => 353882059,
+                 'SANTOS' => 306819356,
+                 'SAO CARLOS' => 306812438,
+                 'SAO JOSÉ DO RIO PRETO' => 353885407,
+                 'SOROCABA' => 306825137,
+                 'TERESINA' => 340037977,
+                 'UBERLÂNDIA' => 306813291,
+                 'USP' => 306817495,
+                 'VALE DO PARAÍBA' => 306817098,
+                 'VALE DO SAO FRANCISCO' => 362630905,
+                 'VICOSA' => 362631010,
+                 'VITÓRIA' => 306810868,
+                 'VOLTA REDONDA' => 335438552}
+
+    # procurar por todos os ExpaPerson que tem o campo "Podio" preenchido
+    people = ExpaPerson.where.not(control_podio: nil)
+    # dar um for em todos e pegar os podio ==> false
+    people.each do |person|
+      if JSON.parse(person.control_podio).key?('podio') && JSON.parse(person.control_podio)['podio'] == false
+        begin
+          if person.interested_program == 'global_volunteer'
+            Podio::Item.create(14573133, {
+                :fields => {
+                    'nome' => person.xp_full_name,
+                    'nome-da-pessoaentidade-que-lhe-indicou' => 'Robozinho cadastrou diretamente do EXPA. Ignore todos os campos. ID do EXPA: ' + person.xp_id.to_s,
+                    'aiesec-mais-proxima2' => entities[person.entity_exchange_lc_id.xp_name]
+                }
+            })
+          elsif person.interested_program == 'global_talents'
+            Podio::Item.create(14573323, {
+                :fields => {
+                    'nome' => person.xp_full_name,
+                    'nome-da-pessoaentidade-que-lhe-indicou' => 'Robozinho cadastrou diretamente do EXPA. Ignore todos os campos. ID do EXPA: ' + person.xp_id.to_s,
+                    'aiesec-mais-proxima2' => entities[person.entity_exchange_lc_id.xp_name]
+                }
+            })
+          end
+        rescue => exception
+          puts exception.to_s
+        else
+          res = person.control_podio.to_json
+          res['podio'] = true
+          person.control_podio = res.to_s
+          person.save
+        end
+      end
+    end
+    # enviar para o podio
+    # atualizar para podio ==> true
+    # todos felizes
   end
 
   def update_db_peoples(xp_person)
