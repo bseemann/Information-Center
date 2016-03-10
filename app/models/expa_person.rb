@@ -13,27 +13,38 @@ class ExpaPerson < ActiveRecord::Base
   belongs_to :entity_exchange_lc, class_name: 'ExpaOffice'
 
   validates :xp_id,
-            uniqueness: true
+            uniqueness: true,
+            presence: false
   validates :xp_email,
-            uniqueness: true
+            uniqueness: true,
+            presence: false
 
   after_validation :downcase_email
 
   def update_from_expa(data)
     unless data.home_lc.nil?
-      home_lc = ExpaOffice.new
-      home_lc.update_from_expa(data.home_lc)
-      home_lc.save
+      home_lc = ExpaOffice.find_by_xp_id(data.home_lc.id)
+      unless ExpaOffice.exists?(home_lc)
+        home_lc = ExpaOffice.new
+        home_lc.update_from_expa(data.home_lc)
+        home_lc.save
+      end
     end
     unless data.home_mc.nil?
-      home_mc = ExpaOffice.new
-      home_mc.update_from_expa(data.home_mc)
-      home_mc.save
+      home_mc = ExpaOffice.find_by_xp_id(data.home_mc.id)
+      unless ExpaOffice.exists?(home_mc)
+        home_mc = ExpaOffice.new
+        home_mc.update_from_expa(data.home_mc)
+        home_mc.save
+      end
     end
     unless data.current_office.nil?
-      current_office = ExpaOffice.new
-      current_office.update_from_expa(data.current_office)
-      current_office.save
+      current_office = ExpaOffice.find_by_xp_id(data.current_office.id)
+      unless ExpaOffice.exists?(current_office)
+        current_office = ExpaOffice.new
+        current_office.update_from_expa(data.current_office)
+        current_office.save
+      end
     end
 
 

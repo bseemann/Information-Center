@@ -5,7 +5,8 @@ class ExpaOffice < ActiveRecord::Base
   has_many :people_on_entity_exchange_lc, class_name: 'ExpaPerson', foreign_key:'entity_exchange_lc'
 
   validates :xp_id,
-            uniqueness: true
+            uniqueness: true,
+            presence: false
 
   def update_from_expa(data)
     self.xp_full_name = data.full_name unless data.full_name.nil?

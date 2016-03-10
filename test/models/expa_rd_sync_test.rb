@@ -6,6 +6,7 @@ class ExpaRdSyncTest < Minitest::Test
       xp = EXPA.setup()
       xp.auth(ENV['ROBOZINHO_EMAIL'],ENV['ROBOZINHO_PASSWORD'])
     end
+    teardown
   end
 
   def teardown
@@ -15,11 +16,9 @@ class ExpaRdSyncTest < Minitest::Test
     ExpaApplication.all.each do |application|
       application.destroy
     end
-  end
-
-  def test_asd
-    xp_sync = ExpaRdSync.new
-    xp_sync.update_podio
+    ExpaOffice.all.each do |office|
+      office.destroy
+    end
   end
 
   def test_insert_new_register_at_db

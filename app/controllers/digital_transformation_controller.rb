@@ -35,10 +35,10 @@ class DigitalTransformationController < ApplicationController
       office = ExpaOffice.find_by_xp_name(params['form_data']['entidade_proxima'])
       unless ExpaOffice.exists?(office)
         office = ExpaOffice.new
-        office.xp_name=params['form_data']['entidade_proxima']
+        office.xp_name = params['form_data']['entidade_proxima']
         office.save
       end
-      person.entity_exchange_lc_id = office
+      person.entity_exchange_lc = office
       person.interested_program = 'global_volunteer' if params['form_data']['programa_interesse'].include?'Cidadão Global'
       person.interested_program = 'global_talents' if params['form_data']['programa_interesse'].include?'Talentos Globais'
       person.interested_sub_product = 'global_volunteer_arab' if params['form_data']['programa_interesse'] == 'Cidadão Global Mundo Árabe'
@@ -51,7 +51,7 @@ class DigitalTransformationController < ApplicationController
       else
         podio = JSON.parse(person.control_podio)
         podio['podio'] = false
-        person = podio.to_json.to_s
+        person.control_podio = podio.to_json.to_s
       end
       person.save
 
@@ -86,7 +86,6 @@ class DigitalTransformationController < ApplicationController
                                        'Cidadão Global Ásia',
                                        'Cidadão Global América Latina']
     @entities = ['-',
-                 'ABC',
                  'ARACAJU',
                  'BALNEARIO CAMBORIU',
                  'BAURU',
@@ -99,12 +98,10 @@ class DigitalTransformationController < ApplicationController
                  'CHAPECO',
                  'CUIABA',
                  'CURITIBA',
-                 'ESPM',
                  'FLORIANÓPOLIS',
                  'FORTALEZA',
                  'FRANCA',
                  'GOIANIA',
-                 'GV',
                  'INSPER',
                  'ITAJUBA',
                  'JOAO PESSOA',
@@ -120,7 +117,6 @@ class DigitalTransformationController < ApplicationController
                  'PELOTAS',
                  'POCOS DE CALDAS',
                  'PORTO ALEGRE',
-                 'PUC',
                  'RECIFE',
                  'RIBEIRAO PRETO',
                  'RIO DE JANEIRO',
@@ -131,10 +127,14 @@ class DigitalTransformationController < ApplicationController
                  'SANTOS',
                  'SAO CARLOS',
                  'SAO JOSÉ DO RIO PRETO',
+                 'SAO PAULO - UNIDADE ABC',
+                 'SAO PAULO - UNIDADE ESPM',
+                 'SAO PAULO - UNIDADE GV',
+                 'SAO PAULO - UNIDADE PUC',
+                 'SAO PAULO - UNIDADE USP',
                  'SOROCABA',
                  'TERESINA',
                  'UBERLÂNDIA',
-                 'USP',
                  'VALE DO PARAÍBA',
                  'VALE DO SAO FRANCISCO',
                  'VICOSA',

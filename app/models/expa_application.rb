@@ -3,7 +3,8 @@ class ExpaApplication < ActiveRecord::Base
   enum xp_status: [:open, :in_progress, :accepted, :matched, :realized] #TODO: Use prefix when they launch outside edge
 
   validates :xp_id,
-            uniqueness: true
+            uniqueness: true,
+            presence: false
 
   def update_from_expa(data)
     self.xp_id = data.id unless data.id.nil?
