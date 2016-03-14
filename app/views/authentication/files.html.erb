@@ -60,12 +60,12 @@
               <!-- CREATE FOLDER -->  
                     <li>
                 
-                  <!--
+                  
                   <%# text_field_tag (:folder_name) %>
-                  <%# button_to( "javascript:createFolderPopUp()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2"  ) do %>
+                  <%= button_to("javascript:createFolderPopUp()", :class => "mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent fab-top-right", :id => "btnadd2") do %>
                     <i class="material-icons mdl-color-text--white" > folder </i>
-                  <%# end %>
-                  -->
+                  <% end %>
+                  
                 
 
               <div class="mdl-tooltip" for="btnadd2">
@@ -201,8 +201,6 @@
       </div>
       <div class="mdl-card__actions">
         <%= form_tag({action: :upload}, multipart: true) do %>
-          <%= hidden_field_tag(:parent_id, session[:dbox_path]) %>
-          <%= hidden_field_tag(:owner, current_user.name) %>
           <div class="mdl-card__actions">
           <%= file_field_tag 'file' %> <br/>
           </div>
@@ -239,7 +237,7 @@
 
 
   </div>
-
+    
     <div class="mdl-card" id="modal_to_create_folder">
   
     <span id="cancel"> <%= link_to "x", "javascript:createFolderPopUp()" %> </span>
@@ -249,12 +247,10 @@
       </div>
       
       <div class="mdl-card__actions">
-        <%= form_tag({action: :navigation_params}, multipart: true) do %>
-          <%= hidden_field_tag "parent_id", session[:dbox_path] %>
-          <%= hidden_field_tag "page", session[:page_number] %>
+        <%= form_tag({action: :new_folder}) do %>
           <%# hidden_field_tag "fil", $files %>
           <div class="mdl-card__actions">
-          <%= text_field_tag "folder_name"  %>
+          <%= text_field_tag :folder_name  %>
           </div>
           <div class="mdl-card__actions">
           <%= submit_tag "Criar" %>
@@ -264,6 +260,8 @@
 
 
   </div>
+
+  
 
     <%= javascript_include_tag "upload.js" %>
     <%= javascript_include_tag "move_file_modal.js" %>

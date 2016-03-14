@@ -21,8 +21,7 @@ function closePop() {
 	$("#modal_to_move").fadeOut(200);
 }
 
-/*
+
 function createFolderPopUp(){
 	$("#modal_to_create_folder").fadeToggle(200);
 }
-*/

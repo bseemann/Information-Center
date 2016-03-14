@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301152153) do
+ActiveRecord::Schema.define(version: 20160314124210) do
 
   create_table "archives", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160301152153) do
     t.boolean  "dir",              default: false
     t.boolean  "show",             default: true
     t.string   "path",             default: "/"
+    t.boolean  "public",           default: false
   end
 
   create_table "owners", force: :cascade do |t|

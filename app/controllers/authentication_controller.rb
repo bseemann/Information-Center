@@ -95,7 +95,7 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
   end
   
-  def upload(upload=params[:file], path=params[:parent_id])
+  def upload(upload=params[:file])
     unless upload == nil || Archive.find_by_name("#{upload.original_filename}")
       file = open(upload.path())
       response = $client.put_file("#{session[:dbox_path]}/#{upload.original_filename}", file)
@@ -104,7 +104,7 @@ class AuthenticationController < ApplicationController
       record.name = upload.original_filename
       record.owner = current_user.name
       record.local_commitment = current_user.local_commitment
-      record.path = path
+      record.path = session[:dbox_path]
       record.show = true
       record.dir = false
       record.save
@@ -112,17 +112,17 @@ class AuthenticationController < ApplicationController
     redirect_to authentication_files_path
   end
 
-  #def new_folder(new_folder=params[:folder_name])
-  #  unless new_folder == nil
-  #    $client.file_create_folder("#{session[:dbox_path]}/#{new_folder}")
-  #    record = Archive.new
-  #    record.name = new_folder
-  #    record.path = session[:dbox_path]
-  #    record.dir = true
-  #    record.save
-  #  end
-  #  redirect_to authentication_files_path
-  #end
+  def new_folder(new_folder=params[:folder_name])
+    unless new_folder == nil
+      $client.file_create_folder("#{session[:dbox_path]}/#{new_folder}")
+      record = Archive.new
+      record.name = new_folder
+      record.path = session[:dbox_path]
+      record.dir = true
+      record.save
+    end
+    redirect_to authentication_files_path
+  end
 
   def rename(rename=[params[:rename_new_name], params[:rename_old_name]])
     unless rename[0] == nil

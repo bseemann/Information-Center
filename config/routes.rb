@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'move' => 'authentication#move'
 
   post 'remove' => 'authentication#remove'
+
+  post 'authentication/new_folder'
   
   get 'login1' => 'sessions#new'
 
