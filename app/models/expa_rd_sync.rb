@@ -30,6 +30,7 @@ class ExpaRdSync
     total_pages = total_pages + 1 if total_items % params['per_page'] > 0
 
     for i in 1..total_pages
+      params['page'] = i
       people = EXPA::Peoples.list_by_param(params)
       people.each do |xp_person|
         update_db_peoples(xp_person)
@@ -62,7 +63,7 @@ class ExpaRdSync
                  'BELÉM' => 362628356,
                  'BELO HORIZONTE' => 306810804,
                  'BLUMENAU' => 362628487,
-                 'BRASÍLIA' => 306812018,
+                 'BRASILIA' => 306812018,
                  'CAMPINA GRANDE' => 362628658,
                  'CAMPO GRANDE' => 306825376,
                  'CHAPECO' => 306822862,
@@ -154,9 +155,9 @@ class ExpaRdSync
     if !ExpaPerson.exists?(person)
       person = ExpaPerson.new
     else
-      if person.xp_status != xp_person.status
-        case xp_person.status
-          when 'in progress' then send_to_rd(xp_person, nil, self.rd_identifiers[:in_progress], nil)
+      if person.xp_status != xp_person.status.to_s.downcase.gsub(' ','_')
+        case xp_person.status.to_s.downcase.gsub(' ','_')
+          when 'in_progress' then send_to_rd(xp_person, nil, self.rd_identifiers[:in_progress], nil)
           when 'accepted' then send_to_rd(xp_person, nil, self.rd_identifiers[:accepted], nil)
           when 'approved' then send_to_rd(xp_person, nil, self.rd_identifiers[:approved], nil)
           else nil

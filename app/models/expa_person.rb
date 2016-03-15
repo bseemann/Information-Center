@@ -57,7 +57,7 @@ class ExpaPerson < ActiveRecord::Base
     self.xp_profile_photo_url = data.profile_photo_url.to_s unless data.profile_photo_url.nil?
     self.xp_home_lc = home_lc unless home_lc.nil?
     self.xp_home_mc = home_mc unless home_mc.nil?
-    self.xp_status = data.status unless data.status.nil?
+    self.xp_status = data.status.to_s.downcase.gsub(' ','_') unless data.status.nil?
     self.xp_interviewed = data.interviewed unless data.interviewed.nil?
     self.xp_phone = data.phone unless data.phone.nil?
     self.xp_location = data.location unless data.location.nil?
@@ -92,9 +92,8 @@ class ExpaPerson < ActiveRecord::Base
   end
 
   def applications
-    if applications.nil?
+    if self.applications.nil?
       xp = EXPA.setup()
-      #TODO: EXPA.setup.auth(logged_email, logged_password)
       xp.auth(ENV['ROBOZINHO_EMAIL'], ENV['ROBOZINHO_PASSWORD'])
       self.applications = EXPA::Peoples.list_applications_by_id(self.xp_id)
     else
@@ -102,23 +101,11 @@ class ExpaPerson < ActiveRecord::Base
     end
   end
 
-  def complete_full_name
-    self.xp_full_name + self.xp_middles_names + self.xp_last_name
-  end
-
   private
 
   def downcase_email
     self.xp_email.downcase unless self.xp_email.nil?
     self.xp_aiesec_email.downcase unless self.xp_aiesec_email.nil?
-  end
-
-  def xp_status_to_s
-    #TODO method
-  end
-
-  def xp_status_from_s(s)
-    #TODO method
   end
 
 end

@@ -29,7 +29,7 @@ every 10.minutes do
   runner 'ExpaRdSync.new.update_podio'
 end
 
-every 2.days do
+every :day, at: '1am' do
   runner 'ExpaRdSync.new.list_people'
 end
 

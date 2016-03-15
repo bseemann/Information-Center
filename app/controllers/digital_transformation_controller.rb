@@ -27,7 +27,7 @@ class DigitalTransformationController < ApplicationController
         params['form_data']['email'].empty? ||
         params['landing'].empty? ||
         !ExpaPerson.exists?(person)
-        redirect_to '/complete_cadastro?error=true&landing=' + params['landing'] #TODO: POG
+        redirect_to '/complete_cadastro?error=true&landing=' + params['landing'] #TODO: Isso aqui é POG usando método GET
         return
 
     else
@@ -92,7 +92,7 @@ class DigitalTransformationController < ApplicationController
                  'BELÉM',
                  'BELO HORIZONTE',
                  'BLUMENAU',
-                 'BRASÍLIA',
+                 'BRASILIA',
                  'CAMPINA GRANDE',
                  'CAMPO GRANDE',
                  'CHAPECO',
