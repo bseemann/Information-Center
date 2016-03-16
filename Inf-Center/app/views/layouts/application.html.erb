@@ -86,31 +86,8 @@
 
       <!-- END HEADER -->
 
-      <!-- Sidebar -->
-      <!--
-      <div class="demo-drawer mdl-layout__drawer mdl-color--indigo-900 mdl-color-text--blue-grey-50">
-	-->
-
-      <!-- Profile -->
-      <!--
-        <header class="demo-drawer-header">
-          <%= image_tag($user.photo_url, class: "avatar") %>
-	-->
-      <!-- <img src="img/user.jpg" class="avatar"> -->
-      <!--
-          <div class="avatar-name">
-            <span><%= $user.name %></span>
-          </div>
-	</header>
-	-->
-        <!-- END Profile -->
-
 	<!-- Menu -->
-	<!--
-        <nav id="navbar" class="demo-navigation mdl-navigation mdl-color--indigo-600">
-	 -->
-	<!--<a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>-->
-          <%# button_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, :class => "mdl-navigation__link", {:parent_id => "/", :page => 1}%>
+	 <%# button_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, :class => "mdl-navigation__link", {:parent_id => "/", :page => 1}%>
           <%# link_to '<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">folder</i>Arquivos'.html_safe, authentication_navigation_params_path, {:parent_id => "/" , :page => 1, method: :post}, :class => "mdl-navigation__link"%>
           <%#form_tag :action => 'navigation_params', :method => 'POST', :class => "mdl-navigation__link"  do%>
             <%# hidden_field_tag(:parent_id, "/") %>
@@ -125,41 +102,48 @@
           <%#'<i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">exit_to_app</i>Sair'.html_safe%>
           <%# end %>
 
-<!--
-          <div class="mdl-layout-spacer"></div>
-          <%= image_tag("logo_aiesec.png", class: "img-rodape") %>
-
-	</nav>
         <!-- END Menu -->
-      </div> -->
-      <!-- END Sidebar -->
 
       <!-- Main Content -->
       <main class="mdl-layout__content mdl-color--grey-100">
-        <div id ="main-content" class="mdl-grid mdl-grid--no-spacing">
-          <%= yield %>
-      </div>
-      <div class="card-vertical mdl-card mdl-shadow--2dp">
+      <div class="horizontal-layout">
+       <div class="card-vertical mdl-card mdl-shadow--2dp">
 	  <div class="mdl-card__actions">
 	      <a href="#">
 		  <div class="card-vertical-icon">
 		      <%= image_tag("document.png", class: "card-vertical-icon") %>
 		  </div>
-		  <div class="mdl-card__actions">
-		    <span >Documentos privados</span>
+		  <div class="card-vertical-title">
+		      <span>Documentos privados</span>
 		  </div>
 	       </a>
 	  </div>
       </div>
-	</main>
+      <div class="card-vertical-space">&nsbp;</div>
+        <div class="card-vertical mdl-card mdl-shadow--2dp">
+	  <div class="mdl-card__actions">
+	      <a href="#">
+		  <div class="card-vertical-icon">
+		      <%= image_tag("globe.png", class: "card-vertical-icon") %>
+		  </div>
+		  <div class="card-vertical-title">
+		      <span>Documentos públicos</span>
+		  </div>
+	       </a>
+	  </div>
+        </div>
+</div>
+
       <!-- END Main Content -->
-      <!--</div>-->
     <!--END General -->
     <%= javascript_include_tag "material.min.js" %>
     <%= javascript_include_tag "jquery-2.1.4.min.js" %>
 
 
-  </body>
+    </body>
+    <footer>
+	<%= image_tag("logo.png",class: "footer-image") %>
+    </footer>
 </html>
 
 <% end %>
