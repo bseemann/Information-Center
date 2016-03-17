@@ -57,7 +57,8 @@ class ExpaRdSync
     Podio.setup(:api_key => ENV['PODIO_API_KEY'], :api_secret => ENV['PODIO_API_SECRET'])
     Podio.client.authenticate_with_credentials(ENV['PODIO_USERNAME'], ENV['PODIO_PASSWORD'])
 
-    entities = { 'ARACAJU' => 306817550,
+    entities = { 'ALFENAS' => 362627844,
+                 'ARACAJU' => 306817550,
                  'BALNEARIO CAMBORIU' => 306820346,
                  'BAURU' => 306825623,
                  'BELÉM' => 362628356,
@@ -154,19 +155,20 @@ class ExpaRdSync
 
     if !ExpaPerson.exists?(person)
       person = ExpaPerson.new
+      person.update_from_expa(xp_person)
+      person.save
     else
       if person.xp_status != xp_person.status.to_s.downcase.gsub(' ','_')
+        person.update_from_expa(xp_person)
+        person.save
         case xp_person.status.to_s.downcase.gsub(' ','_')
-          when 'in_progress' then send_to_rd(xp_person, nil, self.rd_identifiers[:in_progress], nil)
-          when 'accepted' then send_to_rd(xp_person, nil, self.rd_identifiers[:accepted], nil)
-          when 'approved' then send_to_rd(xp_person, nil, self.rd_identifiers[:approved], nil)
+          when 'in_progress' then send_to_rd(person, nil, self.rd_identifiers[:in_progress], nil)
+          when 'accepted' then send_to_rd(person, nil, self.rd_identifiers[:accepted], nil)
+          when 'approved' then send_to_rd(person, nil, self.rd_identifiers[:approved], nil)
           else nil
         end
       end
     end
-
-    person.update_from_expa(xp_person)
-    person.save
 
     setup_expa_api
     applications = EXPA::Peoples.get_applications(person.xp_id)
