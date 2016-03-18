@@ -247,6 +247,7 @@
     #conversion-modal .modal-content section p.notice,
     #conversion section p.notice {
       font-size: 12px;
+      text-align: center;
     }
 
     /* FIELDS */
@@ -674,40 +675,47 @@
   <div id="conversion" class="wrapper">
     <header>
       <hgroup>
-        <h1>Oi, já decidiu que tipo de intercâmbio você gostaria de fazer?</h1>
-        <h2>Esqueceu? Acesse <a href="aiesec.org.br">aiesec.org.br</a> para relembrar</h2>
+        <% if params.has_key?('landing') && params['landing'] == '1' %>
+            <h1>Saiba como a AIESEC te dá suporte durante o seu intercâmbio</h1>
+            <h2>Preencha esse formulário para ter acesso ao video explicativo</h2>
+        <% elsif params.has_key?('landing') && params['landing'] == '2' %>
+            <h1>15 dicas para planejar a sua viagem sem imprevistos</h1>
+            <h2>Preencha esse formulário para ter acesso ao ebook explicativo</h2>
+        <% end %>
       </hgroup>
     </header>
 
     <section>
       <%= form_for(:form_data ,:url => { :action => 'update' }) do |f| %>
           <% if params.has_key?('error') %>
-            <p>Preencha corretamente todos os campos. Verifique seu e-mail.</p>
+            <p style="color: darkorange" class="notice">Certifique-se de que todos os campos foram selecionados e de que você está usando o mesmo e-mail que se cadastrou anteriormente no <a style="color: cornflowerblue" href="http://aiesec.org.br/inscricao">site da AIESEC</a></p>
           <% end %>
           <div class="field">
-            <label for="email">E-mail*</label>
+            <label for="email">E-mail cadastrado*</label>
             <%= f.text_field 'email', :class => 'form-control required' %>
           </div>
           <div class="field">
-            <label for="programa_interesse">Programa de interesse*</label>
+            <label for="programa_interesse">Programa de interesse *</label>
             <%= f.select 'programa_interesse', @interested_program_sub_product, :class => 'form-control required' %>
           </div>
           <div class="field">
-            <label for="como_conheceu">Como você conheceu a AIESEC?*</label>
+            <label for="como_conheceu">Como você conheceu a AIESEC? *</label>
             <%= f.select 'como_conheceu', @how_got_to_know_aiesec, :class => 'form-control required' %>
           </div>
           <div class="field">
-            <label for="entidade_proxima">Confirme a entidade da AIESEC mais próxima de você*</label>
+            <label for="entidade_proxima">Confirme a entidade da AIESEC mais próxima de você *</label>
             <%= f.select 'entidade_proxima', @entities, :class => 'form-control required' %>
           </div>
           <div class="actions">
-            <%= f.submit 'Enviar', :class => 'call_button' %>
+            <% if params.has_key?('landing') && params['landing'] == '1' %>
+                <%= f.submit 'Abrir video', :class => 'call_button' %>
+            <% elsif params.has_key?('landing') && params['landing'] == '2' %>
+                <%= f.submit 'Baixar ebook', :class => 'call_button' %>
+            <% end %>
           </div>
-          <p class="notice">Prometemos não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</p>
-          <p class="notice">Seu registro será enviado para o escritório da AIESEC mais próximo.</p>
+          <p class="notice">Seu registro será enviado para a AIESEC mais próxima. Assim poderemos te ajudar a escolher seu intercâmbio</p>
           <input type="hidden" name="landing" value="<%= params['landing'] %>" />
     <% end %>
     </section>
-
   </div>
 </div>

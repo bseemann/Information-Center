@@ -41,11 +41,15 @@ class DigitalTransformationController < ApplicationController
       person.entity_exchange_lc = office
       person.interested_program = 'global_volunteer' if params['form_data']['programa_interesse'].include?'Cidadão Global'
       person.interested_program = 'global_talents' if params['form_data']['programa_interesse'].include?'Talentos Globais'
-      person.interested_sub_product = 'global_volunteer_arab' if params['form_data']['programa_interesse'] == 'Cidadão Global Mundo Árabe'
-      person.interested_sub_product = 'global_volunteer_east_europe' if params['form_data']['programa_interesse'] == 'Cidadão Global Leste Europeu'
-      person.interested_sub_product = 'global_volunteer_africa' if params['form_data']['programa_interesse'] == 'Cidadão Global África'
-      person.interested_sub_product = 'global_volunteer_asia' if params['form_data']['programa_interesse'] == 'Cidadão Global Ásia'
-      person.interested_sub_product = 'global_volunteer_latam' if params['form_data']['programa_interesse'] == 'Cidadão Global América Latina'
+      person.interested_sub_product = 'global_volunteer_arab' if params['form_data']['programa_interesse'].include?'Mundo Árabe'
+      person.interested_sub_product = 'global_volunteer_east_europe' if params['form_data']['programa_interesse'].include?'Leste Europeu'
+      person.interested_sub_product = 'global_volunteer_africa' if params['form_data']['programa_interesse'].include?'África'
+      person.interested_sub_product = 'global_volunteer_asia' if params['form_data']['programa_interesse'].include?'Ásia'
+      person.interested_sub_product = 'global_volunteer_latam' if params['form_data']['programa_interesse'].include?'América Latina'
+      person.interested_sub_product = 'global_talents_start_up' if params['form_data']['programa_interesse'].include?'Start Up'
+      person.interested_sub_product = 'global_talents_educacional' if params['form_data']['programa_interesse'].include?'Educacional'
+      person.interested_sub_product = 'global_talents_IT' if params['form_data']['programa_interesse'].include?'Tecnologia da Informação'
+      person.interested_sub_product = 'global_talents_management' if params['form_data']['programa_interesse'].include?'Gestão'
       if person.control_podio.nil?
         person.control_podio = {'podio' => false}.to_json.to_s
       else
@@ -80,25 +84,32 @@ class DigitalTransformationController < ApplicationController
 
   def set_fields
     @interested_program_sub_product = ['-',
-                                       'Cidadão Global Mundo Árabe',
-                                       'Cidadão Global Leste Europeu',
-                                       'Cidadão Global África',
-                                       'Cidadão Global Ásia',
-                                       'Cidadão Global América Latina']
+                                       'Cidadão Global (Intercâmbio Social) Mundo Árabe',
+                                       'Cidadão Global (Intercâmbio Social) Leste Europeu',
+                                       'Cidadão Global (Intercâmbio Social) África',
+                                       'Cidadão Global (Intercâmbio Social) Ásia',
+                                       'Cidadão Global (Intercâmbio Social) América Latina',
+                                       'Talentos Globais (Intercâmbio Profissional) Start Up',
+                                       'Talentos Globais (Intercâmbio Profissional) Educacional',
+                                       'Talentos Globais (Intercâmbio Profissional) Tecnologia da Informação',
+                                       'Talentos Globais (Intercâmbio Profissional) Gestão']
     @entities = ['-',
+                 'ALFENAS',
                  'ARACAJU',
+                 'ARARAQUARA',
                  'BALNEARIO CAMBORIU',
                  'BAURU',
-                 'BELÉM',
+                 'BELEM',
                  'BELO HORIZONTE',
                  'BLUMENAU',
                  'BRASILIA',
                  'CAMPINA GRANDE',
                  'CAMPO GRANDE',
+                 'CAMPO MOURAO',
                  'CHAPECO',
                  'CUIABA',
                  'CURITIBA',
-                 'FLORIANÓPOLIS',
+                 'FLORIANOPOLIS',
                  'FORTALEZA',
                  'FRANCA',
                  'GOIANIA',
@@ -111,10 +122,11 @@ class DigitalTransformationController < ApplicationController
                  'MACEIO',
                  'MANAUS',
                  'MARILIA',
-                 'MARINGÁ',
+                 'MARINGA',
                  'NATAL',
                  'PASSO FUNDO',
                  'PELOTAS',
+                 'PIRASSUNUNGA',
                  'POCOS DE CALDAS',
                  'PORTO ALEGRE',
                  'RECIFE',
@@ -129,16 +141,20 @@ class DigitalTransformationController < ApplicationController
                  'SAO JOSÉ DO RIO PRETO',
                  'SAO PAULO - UNIDADE ABC',
                  'SAO PAULO - UNIDADE ESPM',
-                 'SAO PAULO - UNIDADE GV',
+                 'SAO PAULO - UNIDADE GETULIO VARGAS',
+                 'SAO PAULO - UNIDADE INSPER',
+                 'SAO PAULO - UNIDADE MACKENZIE',
                  'SAO PAULO - UNIDADE PUC',
                  'SAO PAULO - UNIDADE USP',
                  'SOROCABA',
                  'TERESINA',
+                 'UBERABA',
                  'UBERLÂNDIA',
-                 'VALE DO PARAÍBA',
+                 'VALE DO PARAIBA / ITA',
                  'VALE DO SAO FRANCISCO',
+                 'VARGINHA',
                  'VICOSA',
-                 'VITÓRIA',
+                 'VITORIA',
                  'VOLTA REDONDA']
     @how_got_to_know_aiesec = ['-',
                                'Facebook',
