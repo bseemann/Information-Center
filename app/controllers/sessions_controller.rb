@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def create(email = params[:my_email], senha = params[:my_password])
 
     url = 'https://auth.aiesec.org/users/sign_in' #Store the url for authenticate at EXPA
-    agent = Mechanize.new  #Initialize an instance to start to work with mechanize
+    agent = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'TLSv1', OpenSSL::SSL::VERIFY_NONE}  #Initialize an instance to start to work with mechanize
     page = agent.get(url)
     aiesec_form = page.form() #Selects the form on the page by its name. However this form doens't have a name
     aiesec_form.field_with(:name => 'user[email]').value = email #Set the email field with the args of this function
