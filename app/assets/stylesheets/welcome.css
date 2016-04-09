@@ -1,0 +1,21 @@
+.card-vertical-space {
+visibility: hidden;
+}
+.card-vertical.mdl-card {
+    width: 200px;
+    height: 230px;
+    background: #caccd1;
+    position: relative;
+}
+.card-vertical.mdl-card:hover{
+    background: #caccff;
+
+}
+.card-vertical-icon {
+    display: block;
+    margin: 0 auto;
+    padding-top: 1.0em;
+}
+.card-vertical-title {
+    padding: 20px 10px 10px 10px;
+}

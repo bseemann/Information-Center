@@ -19,8 +19,13 @@ ActiveRecord::Schema.define(version: 20160222043414) do
   create_table "archives", force: :cascade do |t|
     t.string   "name"
     t.string   "owner"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.string   "updated_at",                       null: false
+    t.string   "local_commitment"
+    t.boolean  "dir",              default: false
+    t.boolean  "show",             default: true
+    t.string   "path",             default: "/"
+    t.boolean  "public",           default: false
   end
 
   create_table "expa_applications", force: :cascade do |t|
@@ -94,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "email"
+    t.string   "local_commitment"
   end
 
   create_table "rd_controls", force: :cascade do |t|
@@ -106,8 +112,9 @@ ActiveRecord::Schema.define(version: 20160222043414) do
     t.string   "email"
     t.string   "photo_url"
     t.string   "postion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "local_commitment"
   end
 
 end

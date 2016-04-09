@@ -1,5 +1,7 @@
-class SessionsController < ApplicationController
+require 'net/http'
 
+class SessionsController < ApplicationController
+  
   def new
 
   end
@@ -23,42 +25,40 @@ class SessionsController < ApplicationController
       if cj.jar['experience.aiesec.org'] == nil  #Verify if inside the cookie exist an experience.aiesec.org
         redirect_to(:action => "error") #If its nil redirect to the error page
       else
-        #$token = cj.jar['experience.aiesec.org']['/']["expa_token"].value[44,64] #Take the token code for API. First version
-        $token = cj.jar['experience.aiesec.org']['/']["expa_token"].value #take the expa. Working on November 9, 2015
+       #session[:token] = cj.jar['experience.aiesec.org']['/']["expa_token"].value[44,64] #Take the token code for API. First version
+        session[:token] = cj.jar['experience.aiesec.org']['/']["expa_token"].value #take the expa. Working on November 9, 2015
         #request the expa's current user data
-        @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{$token}"
+        @request = "https://gis-api.aiesec.org:443/v1/current_person.json?access_token=#{session[:token]}"
         resp = Net::HTTP.get_response(URI.parse(@request))
         data = resp.body
         @current_person = JSON.parse(data)
         #Find the user on system
         @user = User.find_by_email(params[:my_email])
 
-        #create sessions if the user exist, else create a user automaticaly
+       #create sessions if the user exist, else create a user automaticaly 
         if @user
           reset_session
           session[:user_id] = @user.id
+          User.cache_photo(session[:user_id])
           redirect_to authentication_welcome_path
           #@user.photo_url = @current_person["person"]["profile_photo_url"]
         else
-          @user = User.new(:name => @current_person['person']['full_name'], :email => @email )
+          @user = User.new(:name => @current_person['person']['full_name'], :email => email )
           @user.photo_url = @current_person['person']["profile_photo_url"]
-          @user.postion = @current_person['current_position']['position_name']
+          @user.postion = @current_person['current_position']['team']['team_type']
+          #@user.local_commitment = @current_person['person']['home_lc']['id']
           @user.save
           @user_name = @user.name
           session[:user_id] = @user.id
+          User.cache_photo(session[:user_id])
           redirect_to  authentication_welcome_path
         end
 
 
       end
 
-
+   
     end
-
-
-
-
-
 
   end
 
